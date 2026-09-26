@@ -9,16 +9,8 @@ export const dictionaries = {
     },
     home: {
       hero: {
-        role: "Backend-Focused Full-Stack Developer",
-        subRole: "Java 21 · Spring Boot 3 · Distributed Systems · React 19",
-        scroll: "MENYELAM LEBIH DALAM"
-      },
-      depthMeter: {
-        title: "KEDALAMAN SISTEM",
-        zone0: "Permukaan // Identitas & Gambaran Umum",
-        zone1: "250m // Filosofi Rekayasa & Ketangguhan",
-        zone2: "750m // Arsitektur Microservices & Konkurensi",
-        zone3: "1500m // Palung Terdalam: Kernel C & Engine Basis Data"
+        role: "Backend & Full-Stack Developer",
+        scroll: "GULIR"
       },
       statement: {
         label: "01 — Siapa Saya",
@@ -199,8 +191,8 @@ export const dictionaries = {
           description: "Platform SaaS B2B Multi-Tenant POS & WMS dengan mesin kasir anti-race condition (pessimistic row-locking), optimasi inventori otomatis (EOQ, ROP), arsitektur event-driven RabbitMQ, dan Redis caching.",
           tags: ["TypeScript", "Node.js", "Express.js", "React 18", "PostgreSQL", "Redis", "RabbitMQ", "Docker", "CI/CD"],
           githubUrl: "https://github.com/DujanahSr",
-          demoUrl: "",
-          imageUrl: "/reactFundamental.png"
+          demoUrl: "https://stokkita-app-red.vercel.app",
+          imageUrl: "/stokkita.png"
         },
         {
           title: "SIMAKA Enterprise — Aplikasi HR & Absensi Full-Stack",
@@ -463,16 +455,8 @@ export const dictionaries = {
     },
     home: {
       hero: {
-        role: "Backend-Focused Full-Stack Developer",
-        subRole: "Java 21 · Spring Boot 3 · Distributed Systems · React 19",
-        scroll: "DIVE DEEPER"
-      },
-      depthMeter: {
-        title: "SYSTEM DEPTH",
-        zone0: "Surface // Identity & Core Overview",
-        zone1: "250m // Engineering Philosophy & Resilience",
-        zone2: "750m // Distributed Microservices & High-Concurrency",
-        zone3: "1500m // Deep Abyss: C Kernel & Database Engines"
+        role: "Backend & Full-Stack Developer",
+        scroll: "SCROLL"
       },
       statement: {
         label: "01 — Who I Am",
@@ -653,8 +637,8 @@ export const dictionaries = {
           description: "Enterprise B2B Multi-Tenant POS & WMS platform with anti-race condition cashier engine (pessimistic row-locking), automated inventory algorithms (EOQ, ROP), event-driven RabbitMQ, and Redis caching.",
           tags: ["TypeScript", "Node.js", "Express.js", "React 18", "PostgreSQL", "Redis", "RabbitMQ", "Docker", "CI/CD"],
           githubUrl: "https://github.com/DujanahSr",
-          demoUrl: "",
-          imageUrl: "/reactFundamental.png"
+          demoUrl: "https://stokkita-app-red.vercel.app",
+          imageUrl: "/stokkita.png"
         },
         {
           title: "SIMAKA Enterprise — Full-Stack HR & Attendance System",

@@ -4,7 +4,6 @@ import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { LanguageProvider } from "@/context/LanguageContext";
-import { CustomCursor } from "@/components/CustomCursor";
 import { Preloader } from "@/components/Preloader";
 
 export const metadata: Metadata = {
@@ -28,7 +27,6 @@ export default function RootLayout({
       </head>
       <body>
         <Preloader />
-        <CustomCursor />
         <LanguageProvider>
           <Navbar />
           <main className="min-h-screen">

@@ -55,8 +55,8 @@ export function Footer() {
           {/* Social Icons */}
           <div className="flex gap-4 items-center justify-center">
             {[
-            { href: "https://github.com/DujanahSr", icon: <GitBranch style={{ width: "18px", height: "18px" }} />, label: "GitHub" },
-              { href: "#", icon: <ExternalLink style={{ width: "18px", height: "18px" }} />, label: "LinkedIn" },
+              { href: "https://github.com/DujanahSr", icon: <GitBranch style={{ width: "18px", height: "18px" }} />, label: "GitHub" },
+              { href: "https://www.linkedin.com/in/abu-dujanah-siregar-64aa493a2/", icon: <ExternalLink style={{ width: "18px", height: "18px" }} />, label: "LinkedIn" },
               { href: "mailto:abudujanahsiregar@gmail.com", icon: <Mail style={{ width: "18px", height: "18px" }} />, label: "Email" },
             ].map((social) => (
               <a
@@ -68,13 +68,14 @@ export function Footer() {
                 style={{
                   display: "flex", alignItems: "center", justifyContent: "center",
                   width: "40px", height: "40px",
-                  border: "1px solid rgba(232,220,200,0.12)",
+                  border: "1px solid rgba(232,220,200,0.15)",
                   borderRadius: "50%",
-                  color: "#6B6560",
+                  color: "#A89F91",
                   textDecoration: "none",
-                  transition: "border-color 0.3s, color 0.3s",
-                  cursor: "none",
+                  transition: "border-color 0.3s, color 0.3s, transform 0.2s",
+                  cursor: "pointer",
                 }}
+                className="hover:border-[#C9A96E] hover:text-[#C9A96E] hover:scale-105"
               >
                 {social.icon}
               </a>

@@ -1,100 +1,26 @@
 "use client";
 
-import { motion, useScroll, useTransform, useInView, useSpring } from "framer-motion";
-import { ArrowRight, ArrowDown, ExternalLink, GitBranch, Layers, ShieldCheck, Cpu, Terminal } from "lucide-react";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { ArrowRight, ArrowDown, ExternalLink, GitBranch, Layers, ShieldCheck, Cpu } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 
-// ─── Scroll Reveal Wrapper ────────────────────────────────────────────────────
+// ─── Scroll Reveal Component ──────────────────────────────────────────────────
 function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-70px" });
+  const inView = useInView(ref, { once: true, margin: "-60px" });
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 35 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.9, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.85, delay, ease: [0.16, 1, 0.3, 1] }}
       className={className}
     >
       {children}
     </motion.div>
-  );
-}
-
-// ─── Oceanic Depth HUD Widget ─────────────────────────────────────────────────
-function OceanDepthHUD() {
-  const { scrollYProgress } = useScroll();
-  const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
-  const [depth, setDepth] = useState(0);
-
-  useEffect(() => {
-    return smoothProgress.on("change", (latest) => {
-      setDepth(Math.round(latest * 1500));
-    });
-  }, [smoothProgress]);
-
-  const getZoneLabel = (d: number) => {
-    if (d < 350) return "Sunlight Zone // Surface Architecture";
-    if (d < 750) return "Twilight Zone // Distributed Microservices";
-    if (d < 1200) return "Midnight Zone // High-Concurrency Engines";
-    return "The Abyss // Kernel & Low-Level Algorithms";
-  };
-
-  return (
-    <div
-      className="hidden xl:flex fixed right-8 top-1/2 -translate-y-1/2 z-40 flex-col items-end gap-3 pointer-events-none select-none"
-      style={{ opacity: depth > 30 ? 1 : 0, transition: "opacity 0.5s ease" }}
-    >
-      <div
-        style={{
-          background: "rgba(10, 10, 10, 0.82)",
-          border: "1px solid rgba(201, 169, 110, 0.2)",
-          backdropFilter: "blur(12px)",
-          borderRadius: "12px",
-          padding: "1rem 1.25rem",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-end",
-          gap: "0.35rem",
-          boxShadow: "0 10px 30px rgba(0,0,0,0.6), inset 0 1px 0 rgba(201,169,110,0.2)",
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#C9A96E] opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#C9A96E]"></span>
-          </span>
-          <span style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6rem", letterSpacing: "0.2em", color: "#C9A96E", textTransform: "uppercase" }}>
-            SONAR DEPTH
-          </span>
-        </div>
-        <p style={{ fontFamily: "'Space Mono', monospace", fontSize: "1.4rem", fontWeight: 700, color: "#E8DCC8", lineHeight: 1 }}>
-          {String(depth).padStart(4, "0")}<span style={{ fontSize: "0.75rem", color: "#C9A96E", marginLeft: "2px" }}>M</span>
-        </p>
-        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.7rem", color: "#8A8078", maxWidth: "160px", textAlign: "right", lineHeight: 1.3 }}>
-          {getZoneLabel(depth)}
-        </p>
-      </div>
-
-      {/* Depth Gauge Progress Line */}
-      <div style={{ width: "2px", height: "100px", background: "rgba(232, 220, 200, 0.1)", borderRadius: "2px", position: "relative", overflow: "hidden", marginRight: "1rem" }}>
-        <motion.div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            height: "100%",
-            background: "linear-gradient(to bottom, #C9A96E, #E8DCC8)",
-            scaleY: scrollYProgress,
-            transformOrigin: "top",
-          }}
-        />
-      </div>
-    </div>
   );
 }
 
@@ -119,9 +45,9 @@ const selectedWorks = [
     year: "2025",
     tags: ["TypeScript", "Node.js", "Express", "React 18", "Docker"],
     href: "/proyek/stokkita",
-    demoUrl: "",
+    demoUrl: "https://stokkita-app-red.vercel.app",
     githubUrl: "https://github.com/DujanahSr",
-    image: "/reactFundamental.png",
+    image: "/stokkita.png",
     highlight: "Pessimistic Row-Locking · Inventory Algorithms (EOQ & ROP) · CI/CD",
   },
   {
@@ -155,63 +81,58 @@ export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
 
-  // Parallax calculations
-  const imgY = useTransform(scrollYProgress, [0, 1], ["0%", "28%"]);
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "14%"]);
-  const opacityHero = useTransform(scrollYProgress, [0, 0.85], [1, 0.2]);
+  // Parallax transforms
+  const imgY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "12%"]);
+  const opacityHero = useTransform(scrollYProgress, [0, 0.9], [1, 0.25]);
 
   return (
     <div style={{ background: "#050505", color: "#E8DCC8", position: "relative" }}>
-      {/* Oceanic Depth HUD */}
-      <OceanDepthHUD />
 
       {/* ── 1. HERO SECTION ─────────────────────────────────────────────────── */}
       <section
         ref={heroRef}
         style={{ position: "relative", minHeight: "100vh", display: "flex", alignItems: "flex-end", overflow: "hidden" }}
       >
-        {/* Parallax Ocean Hero Image */}
+        {/* Parallax Ocean Hero Background */}
         <motion.div style={{ y: imgY, opacity: opacityHero, position: "absolute", inset: 0, zIndex: 0 }}>
           <Image
             src="/ocean-hero.jpg"
-            alt="Deep Ocean Abyss"
+            alt="Deep Ocean Atmosphere"
             fill
             priority
             sizes="100vw"
             style={{ objectFit: "cover", objectPosition: "center" }}
           />
           {/* Subtle multi-layer cinematic vignette & atmospheric gradients */}
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, #050505 0%, rgba(5,5,5,0.65) 45%, rgba(5,5,5,0.2) 100%)" }} />
-          <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at 50% 30%, transparent 20%, rgba(5,5,5,0.7) 90%)" }} />
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, #050505 0%, rgba(5,5,5,0.65) 45%, rgba(5,5,5,0.25) 100%)" }} />
+          <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at 50% 30%, transparent 25%, rgba(5,5,5,0.65) 90%)" }} />
         </motion.div>
 
         {/* Hero Text Content */}
         <motion.div
-          style={{ y: textY, position: "relative", zIndex: 1, width: "100%", padding: "0 2rem 5rem" }}
+          style={{ y: textY, position: "relative", zIndex: 1, width: "100%", padding: "0 1.5rem 4.5rem sm:padding-0 2rem 5rem" }}
+          className="px-6 sm:px-10"
         >
           <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
-            {/* Tagline / Subtitle */}
+            {/* Clean Professional Role Label (No AI slop, no //, no skill dumping) */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.8 }}
-              style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.25rem", flexWrap: "wrap" }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+              style={{ marginBottom: "1rem" }}
             >
-              <span style={{
-                fontFamily: "'Space Mono', monospace",
-                fontSize: "0.68rem",
-                letterSpacing: "0.25em",
-                color: "#C9A96E",
-                textTransform: "uppercase",
-                background: "rgba(201,169,110,0.1)",
-                border: "1px solid rgba(201,169,110,0.3)",
-                padding: "0.3rem 0.85rem",
-                borderRadius: "9999px",
-              }}>
-                {"//"} {t.home.hero.role}
-              </span>
-              <span style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.65rem", letterSpacing: "0.15em", color: "#A89F91" }} className="hidden sm:inline">
-                {t.home.hero.subRole}
+              <span
+                style={{
+                  fontFamily: "'Space Mono', monospace",
+                  fontSize: "0.72rem",
+                  letterSpacing: "0.22em",
+                  color: "#C9A96E",
+                  textTransform: "uppercase",
+                  display: "inline-block",
+                }}
+              >
+                {t.home.hero.role}
               </span>
             </motion.div>
 
@@ -220,15 +141,15 @@ export default function Home() {
               <motion.h1
                 initial={{ y: "115%" }}
                 animate={{ y: 0 }}
-                transition={{ delay: 0.9, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ delay: 0.75, duration: 1, ease: [0.16, 1, 0.3, 1] }}
                 style={{
                   fontFamily: "'Cormorant Garamond', Georgia, serif",
-                  fontSize: "clamp(3rem, 11vw, 8.5rem)",
+                  fontSize: "clamp(3.2rem, 11vw, 8.8rem)",
                   fontWeight: 700,
                   lineHeight: 0.92,
                   color: "#E8DCC8",
                   letterSpacing: "-0.01em",
-                  textShadow: "0 4px 20px rgba(0,0,0,0.8)",
+                  textShadow: "0 4px 24px rgba(0,0,0,0.85)",
                 }}
               >
                 Abu Dujanah
@@ -238,16 +159,16 @@ export default function Home() {
               <motion.h1
                 initial={{ y: "115%" }}
                 animate={{ y: 0 }}
-                transition={{ delay: 1.05, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ delay: 0.9, duration: 1, ease: [0.16, 1, 0.3, 1] }}
                 style={{
                   fontFamily: "'Cormorant Garamond', Georgia, serif",
-                  fontSize: "clamp(3rem, 11vw, 8.5rem)",
+                  fontSize: "clamp(3.2rem, 11vw, 8.8rem)",
                   fontWeight: 300,
                   fontStyle: "italic",
                   lineHeight: 0.92,
                   color: "#C9A96E",
                   letterSpacing: "-0.01em",
-                  textShadow: "0 0 30px rgba(201,169,110,0.3)",
+                  textShadow: "0 0 35px rgba(201,169,110,0.35)",
                 }}
               >
                 Siregar
@@ -258,7 +179,7 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.3, duration: 0.8 }}
+              transition={{ delay: 1.15, duration: 0.8 }}
               style={{ display: "flex", alignItems: "center", gap: "1.25rem", flexWrap: "wrap" }}
             >
               <Link href="/proyek" className="btn-cream magnetic-btn">
@@ -267,7 +188,7 @@ export default function Home() {
               <Link href="/kontak" className="btn-outline magnetic-btn">
                 {t.hero.contact}
               </Link>
-              <Link href="/tentang" className="btn-outline magnetic-btn hidden sm:inline-flex" style={{ borderColor: "rgba(201,169,110,0.2)" }}>
+              <Link href="/tentang" className="btn-outline magnetic-btn hidden sm:inline-flex" style={{ borderColor: "rgba(201,169,110,0.25)" }}>
                 {t.nav.about}
               </Link>
             </motion.div>
@@ -278,7 +199,7 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.8, duration: 1 }}
+          transition={{ delay: 1.5, duration: 1 }}
           style={{
             position: "absolute",
             bottom: "2.5rem",
@@ -330,7 +251,7 @@ export default function Home() {
                   fontFamily: "'DM Sans', sans-serif",
                   fontSize: "1.08rem",
                   lineHeight: 1.85,
-                  color: "#9E948A",
+                  color: "#A89F91",
                   maxWidth: "520px",
                   textAlign: "justify",
                   marginBottom: "2.5rem",
@@ -339,30 +260,31 @@ export default function Home() {
                 {t.hero.description}
               </p>
 
-              {/* Stats Box */}
+              {/* Stats Grid */}
               <div
                 style={{
                   borderTop: "1px solid rgba(201,169,110,0.2)",
                   paddingTop: "2rem",
                 }}
               >
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
                   {t.home.statement.stats.map((stat: { num: string; label: string }, idx: number) => (
                     <motion.div
                       key={idx}
-                      whileHover={{ y: -4 }}
+                      whileHover={{ y: -4, borderColor: "rgba(201,169,110,0.4)" }}
                       transition={{ duration: 0.2 }}
                       style={{
-                        padding: "1rem",
-                        background: "rgba(12,12,12,0.6)",
-                        border: "1px solid rgba(232,220,200,0.06)",
-                        borderRadius: "8px",
+                        padding: "1.2rem 1rem",
+                        background: "rgba(14,14,14,0.7)",
+                        border: "1px solid rgba(232,220,200,0.08)",
+                        borderRadius: "10px",
+                        boxShadow: "0 4px 20px rgba(0,0,0,0.4)",
                       }}
                     >
-                      <p style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: "2.6rem", fontWeight: 700, color: "#C9A96E", lineHeight: 1 }}>
+                      <p style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: "2.5rem", fontWeight: 700, color: "#C9A96E", lineHeight: 1 }}>
                         {stat.num}
                       </p>
-                      <p style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.62rem", letterSpacing: "0.12em", color: "#8A8078", textTransform: "uppercase", marginTop: "0.4rem" }}>
+                      <p style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.62rem", letterSpacing: "0.12em", color: "#8A8078", textTransform: "uppercase", marginTop: "0.45rem" }}>
                         {stat.label}
                       </p>
                     </motion.div>
@@ -401,10 +323,10 @@ export default function Home() {
             {selectedWorks.map((work, i) => (
               <Reveal key={work.index} delay={i * 0.1}>
                 <motion.div
-                  whileHover={{ scale: 1.01, borderColor: "rgba(201,169,110,0.4)" }}
+                  whileHover={{ y: -4, borderColor: "rgba(201,169,110,0.45)", boxShadow: "0 20px 45px rgba(0,0,0,0.7), 0 0 25px rgba(201,169,110,0.12)" }}
                   transition={{ duration: 0.3 }}
                   style={{
-                    background: "rgba(10, 10, 10, 0.75)",
+                    background: "rgba(12, 12, 12, 0.8)",
                     border: "1px solid rgba(232, 220, 200, 0.08)",
                     borderRadius: "16px",
                     overflow: "hidden",
@@ -414,11 +336,11 @@ export default function Home() {
                 >
                   <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] items-center">
                     {/* Left: Project Specs */}
-                    <div style={{ padding: "2.5rem 2.5rem 2.5rem 2.5rem", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%" }}>
+                    <div style={{ padding: "2.25rem", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%" }}>
                       <div>
                         <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1rem" }}>
                           <span style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.72rem", color: "#C9A96E", letterSpacing: "0.15em" }}>
-                            [{work.index}] // {work.year}
+                            [{work.index}] · {work.year}
                           </span>
                           {work.demoUrl && (
                             <span style={{
@@ -436,7 +358,7 @@ export default function Home() {
                               textTransform: "uppercase",
                             }}>
                               <span className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
-                              Production Live
+                              Live Demo
                             </span>
                           )}
                         </div>
@@ -445,7 +367,7 @@ export default function Home() {
                           <h3
                             style={{
                               fontFamily: "'Cormorant Garamond', Georgia, serif",
-                              fontSize: "clamp(2rem, 3.5vw, 3rem)",
+                              fontSize: "clamp(2rem, 3.5vw, 2.9rem)",
                               fontWeight: 700,
                               color: "#E8DCC8",
                               lineHeight: 1.1,
@@ -462,8 +384,8 @@ export default function Home() {
                           {work.titleFull}
                         </p>
 
-                        <p style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.68rem", color: "#C9A96E", marginBottom: "1.5rem", lineHeight: 1.5 }}>
-                          ✦ {work.highlight}
+                        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "#C9A96E", marginBottom: "1.5rem", lineHeight: 1.5 }}>
+                          {work.highlight}
                         </p>
                       </div>
 
@@ -476,7 +398,7 @@ export default function Home() {
                               style={{
                                 fontFamily: "'Space Mono', monospace",
                                 fontSize: "0.62rem",
-                                letterSpacing: "0.1em",
+                                letterSpacing: "0.08em",
                                 color: "#8A8078",
                                 padding: "0.3rem 0.75rem",
                                 border: "1px solid rgba(232,220,200,0.1)",
@@ -549,15 +471,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 4. ARCHITECTURAL STRENGTHS (SEMACAM PENYELAMAN TEKNIS) ───────────── */}
+      {/* ── 4. ARCHITECTURAL STRENGTHS ───────────────────────────────────────── */}
       <section className="py-20 md:py-28 px-6 md:px-10" style={{ borderTop: "1px solid rgba(232,220,200,0.06)" }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
           <Reveal>
             <p style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", letterSpacing: "0.25em", color: "#C9A96E", textTransform: "uppercase", marginBottom: "0.8rem" }}>
-              03 — KEKUATAN ARSITEKTUR // DEPTH: 800M
+              03 — Arsitektur Sistem
             </p>
             <h2 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: "clamp(2.2rem, 4.5vw, 3.8rem)", fontWeight: 700, color: "#E8DCC8", marginBottom: "3rem" }}>
-              Direkayasa untuk Beban Tinggi & Keamanan Mutlak
+              Direkayasa untuk Beban Tinggi &amp; Keamanan Mutlak
             </h2>
           </Reveal>
 

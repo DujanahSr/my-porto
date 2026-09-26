@@ -169,7 +169,7 @@ export default function Proyek() {
                       ) : (
                         <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", background: "radial-gradient(circle at center, rgba(201,169,110,0.1), transparent)" }}>
                           <p style={{ fontFamily: "'Space Mono', monospace", color: "rgba(201,169,110,0.4)", letterSpacing: "0.1em", fontSize: "0.75rem", textTransform: "uppercase" }}>
-                            ✦ System Architecture
+                            System Architecture
                           </p>
                         </div>
                       )}

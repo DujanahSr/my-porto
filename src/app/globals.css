@@ -30,7 +30,7 @@
 
 html {
   scroll-behavior: smooth;
-  cursor: none; /* Hide default cursor — CustomCursor handles it */
+  cursor: auto;
 }
 
 body {
@@ -195,11 +195,12 @@ body {
   text-transform: uppercase;
   border-radius: 9999px;
   border: none;
-  cursor: none;
-  transition: background 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 .btn-cream:hover {
   background: #C9A96E;
+  box-shadow: 0 0 20px rgba(201, 169, 110, 0.4);
 }
 
 .btn-outline {
@@ -216,15 +217,41 @@ body {
   text-transform: uppercase;
   border-radius: 9999px;
   border: 1px solid rgba(232,220,200,0.3);
-  cursor: none;
-  transition: border-color 0.3s ease, background 0.3s ease;
+  cursor: pointer;
+  transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
 }
 .btn-outline:hover {
   border-color: #C9A96E;
   background: rgba(201,169,110,0.08);
+  box-shadow: 0 0 15px rgba(201, 169, 110, 0.2);
 }
 
-/* ── Form Inputs (underline only) ── */
+/* ── Form Inputs ── */
+.input-modern {
+  width: 100%;
+  background: rgba(18, 18, 18, 0.75);
+  border: 1px solid rgba(232, 220, 200, 0.12);
+  border-radius: 10px;
+  color: #E8DCC8;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 0.95rem 1.2rem;
+  outline: none;
+  transition: all 0.25s ease;
+}
+.input-modern:focus {
+  border-color: #C9A96E;
+  background: rgba(25, 25, 25, 0.95);
+  box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.15);
+}
+.input-modern::placeholder {
+  color: #6B6560;
+  font-size: 0.92rem;
+  font-family: var(--font-body);
+  letter-spacing: normal;
+  text-transform: none;
+}
+
 .input-underline {
   width: 100%;
   background: transparent;
@@ -238,11 +265,11 @@ body {
   transition: border-color 0.3s ease;
 }
 .input-underline::placeholder {
-  color: #4A4A4A;
-  text-transform: uppercase;
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  font-family: var(--font-mono);
+  color: #6B6560;
+  font-size: 0.92rem;
+  font-family: var(--font-body);
+  letter-spacing: normal;
+  text-transform: none;
 }
 .input-underline:focus {
   border-bottom-color: #C9A96E;

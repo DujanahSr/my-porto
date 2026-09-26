@@ -109,7 +109,7 @@ export default function ProjectDetailClient({ slug }: { slug: string }) {
                 }}
               >
                 <p style={{ fontFamily: "'Space Mono', monospace", color: "rgba(201,169,110,0.5)", letterSpacing: "0.15em", fontSize: "0.9rem", textTransform: "uppercase" }}>
-                  ✦ Enterprise Architecture Specification
+                  Enterprise Architecture Specification
                 </p>
               </div>
             )}

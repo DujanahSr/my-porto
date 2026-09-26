@@ -1,15 +1,15 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { Mail, MapPin, GitBranch, ArrowRight, Phone, CheckCircle2 } from "lucide-react";
+import { Mail, MapPin, GitBranch, ArrowRight, Phone, Send, CheckCircle2, MessageSquare } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { useRef, useState } from "react";
 
 function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-70px" });
+  const inView = useInView(ref, { once: true, margin: "-60px" });
   return (
-    <motion.div ref={ref} initial={{ opacity: 0, y: 40 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.9, delay, ease: [0.22, 1, 0.36, 1] }}>
+    <motion.div ref={ref} initial={{ opacity: 0, y: 35 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.85, delay, ease: [0.16, 1, 0.3, 1] }}>
       {children}
     </motion.div>
   );
@@ -24,12 +24,10 @@ export default function Kontak() {
     e.preventDefault();
     setSubmitted(true);
 
-    // Construct a prefilled WhatsApp or mailto dispatch
     const encodedMsg = encodeURIComponent(
       `Halo Abu Dujanah Siregar,\n\nNama: ${formData.name}\nEmail: ${formData.email}\n\nPesan:\n${formData.message}`
     );
     
-    // Automatically trigger mailto link
     const mailtoUrl = `mailto:abudujanahsiregar@gmail.com?subject=Inquiry from Portfolio - ${encodeURIComponent(formData.name)}&body=${encodedMsg}`;
     window.open(mailtoUrl, "_blank");
 
@@ -71,8 +69,8 @@ export default function Kontak() {
         </svg>
       ),
       label: t.contact.labels.linkedin,
-      value: "linkedin.com/in/abudujanahsiregar",
-      href: "https://www.linkedin.com/in/abudujanahsiregar"
+      value: "linkedin.com/in/abu-dujanah-siregar-64aa493a2",
+      href: "https://www.linkedin.com/in/abu-dujanah-siregar-64aa493a2/"
     },
   ];
 
@@ -91,72 +89,81 @@ export default function Kontak() {
             <p style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", letterSpacing: "0.25em", color: "#C9A96E", textTransform: "uppercase", marginBottom: "1rem" }}>
               {t.contact.header.label}
             </p>
-            <h1 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: "clamp(2.6rem, 7.5vw, 6.5rem)", fontWeight: 700, lineHeight: 0.95, color: "#E8DCC8" }}>
+            <h1 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: "clamp(2.6rem, 7vw, 6.2rem)", fontWeight: 700, lineHeight: 0.95, color: "#E8DCC8" }}>
               {t.contact.title}
             </h1>
           </Reveal>
         </div>
 
         {/* Main Content */}
-        <div className="max-w-350 mx-auto px-6 md:px-10 py-16 md:py-24 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+        <div className="max-w-350 mx-auto px-6 md:px-10 py-12 md:py-24 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-20 items-start">
 
-            {/* LEFT: Interactive Message Form */}
+            {/* LEFT: Luxurious Modern Message Form */}
             <Reveal>
               <div
                 style={{
-                  background: "rgba(12,12,12,0.7)",
-                  border: "1px solid rgba(232,220,200,0.08)",
-                  borderRadius: "16px",
-                  padding: "2.5rem md:padding-3rem",
-                  boxShadow: "0 15px 40px rgba(0,0,0,0.6)",
+                  background: "rgba(12,12,12,0.85)",
+                  border: "1px solid rgba(201,169,110,0.2)",
+                  borderRadius: "20px",
+                  padding: "2.5rem 2rem",
+                  boxShadow: "0 25px 60px rgba(0,0,0,0.8), inset 0 1px 0 rgba(201,169,110,0.15)",
                 }}
               >
-                <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+                <div style={{ marginBottom: "2rem" }}>
+                  <span style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.68rem", letterSpacing: "0.15em", color: "#C9A96E", textTransform: "uppercase" }}>
+                    Formulir Komunikasi
+                  </span>
+                  <h3 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: "1.8rem", fontWeight: 700, color: "#E8DCC8", marginTop: "0.25rem" }}>
+                    Kirimkan Pesan Langsung
+                  </h3>
+                </div>
+
+                <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
                   <div>
-                    <label style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.68rem", color: "#C9A96E", letterSpacing: "0.15em", textTransform: "uppercase", display: "block", marginBottom: "0.5rem" }}>
-                      {t.contact.nameLabel || "Nama"}
+                    <label style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.68rem", color: "#C9A96E", letterSpacing: "0.12em", textTransform: "uppercase", display: "block", marginBottom: "0.5rem" }}>
+                      {t.contact.nameLabel || "Nama Lengkap"}
                     </label>
                     <input
                       type="text"
                       required
-                      placeholder={t.contact.namePlaceholder}
+                      placeholder="Masukkan nama Anda..."
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="input-underline"
+                      className="input-modern"
                     />
                   </div>
 
                   <div>
-                    <label style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.68rem", color: "#C9A96E", letterSpacing: "0.15em", textTransform: "uppercase", display: "block", marginBottom: "0.5rem" }}>
-                      {t.contact.emailLabel || "Email"}
+                    <label style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.68rem", color: "#C9A96E", letterSpacing: "0.12em", textTransform: "uppercase", display: "block", marginBottom: "0.5rem" }}>
+                      {t.contact.emailLabel || "Alamat Email"}
                     </label>
                     <input
                       type="email"
                       required
-                      placeholder={t.contact.emailPlaceholder}
+                      placeholder="nama@perusahaan.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="input-underline"
+                      className="input-modern"
                     />
                   </div>
 
                   <div>
-                    <label style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.68rem", color: "#C9A96E", letterSpacing: "0.15em", textTransform: "uppercase", display: "block", marginBottom: "0.5rem" }}>
-                      {t.contact.messageLabel || "Pesan"}
+                    <label style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.68rem", color: "#C9A96E", letterSpacing: "0.12em", textTransform: "uppercase", display: "block", marginBottom: "0.5rem" }}>
+                      {t.contact.messageLabel || "Pesan atau Detail Tawaran"}
                     </label>
                     <textarea
                       required
                       rows={5}
-                      placeholder={t.contact.messagePlaceholder}
+                      placeholder="Tuliskan pesan, tawaran kolaborasi, atau pertanyaan teknis Anda..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="input-underline"
+                      className="input-modern"
                       style={{ resize: "none" }}
                     />
                   </div>
 
-                  <div style={{ paddingTop: "1rem" }}>
+                  <div style={{ paddingTop: "0.5rem" }}>
                     {submitted ? (
                       <motion.div
                         initial={{ opacity: 0, y: 10 }}
@@ -164,17 +171,17 @@ export default function Kontak() {
                         style={{
                           padding: "1rem 2rem",
                           border: "1px solid rgba(201,169,110,0.5)",
-                          background: "rgba(201,169,110,0.1)",
+                          background: "rgba(201,169,110,0.12)",
                           borderRadius: "9999px",
                           textAlign: "center",
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "center",
-                          gap: "0.5rem",
+                          gap: "0.6rem",
                         }}
                       >
-                        <CheckCircle2 style={{ width: "16px", height: "16px", color: "#C9A96E" }} />
-                        <span style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.75rem", letterSpacing: "0.15em", color: "#C9A96E", textTransform: "uppercase" }}>
+                        <CheckCircle2 style={{ width: "18px", height: "18px", color: "#C9A96E" }} />
+                        <span style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.75rem", letterSpacing: "0.12em", color: "#C9A96E", textTransform: "uppercase" }}>
                           {t.contact.successMsg}
                         </span>
                       </motion.div>
@@ -182,9 +189,10 @@ export default function Kontak() {
                       <button
                         type="submit"
                         className="btn-cream magnetic-btn"
-                        style={{ width: "100%", justifyContent: "center" }}
+                        style={{ width: "100%", justifyContent: "center", padding: "1.1rem" }}
                       >
-                        {t.contact.sendBtn} <ArrowRight style={{ width: "15px", height: "15px" }} />
+                        <Send style={{ width: "16px", height: "16px" }} />
+                        {t.contact.sendBtn}
                       </button>
                     )}
                   </div>
@@ -195,31 +203,30 @@ export default function Kontak() {
             {/* RIGHT: Direct Contact Info & Channels */}
             <Reveal delay={0.2}>
               <div>
-                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1.08rem", lineHeight: 1.85, color: "#9E948A", marginBottom: "3rem" }}>
+                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1.08rem", lineHeight: 1.85, color: "#A89F91", marginBottom: "2.5rem" }}>
                   {t.contact.description}
                 </p>
 
-                <div style={{ display: "flex", flexDirection: "column", gap: "1.75rem" }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
                   {contactItems.map((item) => (
                     <motion.div
                       key={item.label}
-                      whileHover={{ x: 6 }}
+                      whileHover={{ x: 6, borderColor: "rgba(201,169,110,0.4)" }}
                       transition={{ duration: 0.2 }}
                       style={{
                         display: "flex",
                         alignItems: "center",
                         gap: "1.25rem",
-                        padding: "1.25rem 1.5rem",
-                        background: "rgba(12,12,12,0.6)",
-                        border: "1px solid rgba(232,220,200,0.06)",
-                        borderRadius: "12px",
+                        padding: "1.2rem 1.4rem",
+                        background: "rgba(14,14,14,0.7)",
+                        border: "1px solid rgba(232,220,200,0.08)",
+                        borderRadius: "14px",
                       }}
-                      className="hover:border-[rgba(201,169,110,0.35)] transition-colors duration-300"
                     >
                       <div
                         style={{
-                          width: "48px",
-                          height: "48px",
+                          width: "46px",
+                          height: "46px",
                           flexShrink: 0,
                           border: "1px solid rgba(201,169,110,0.3)",
                           borderRadius: "50%",
@@ -227,7 +234,7 @@ export default function Kontak() {
                           alignItems: "center",
                           justifyContent: "center",
                           color: "#C9A96E",
-                          background: "rgba(201,169,110,0.06)",
+                          background: "rgba(201,169,110,0.08)",
                         }}
                       >
                         {item.icon}
@@ -243,7 +250,7 @@ export default function Kontak() {
                             rel="noopener noreferrer"
                             style={{
                               fontFamily: "'DM Sans', sans-serif",
-                              fontSize: "1rem",
+                              fontSize: "0.98rem",
                               fontWeight: 500,
                               color: "#E8DCC8",
                               textDecoration: "none",
@@ -254,13 +261,33 @@ export default function Kontak() {
                             {item.value}
                           </a>
                         ) : (
-                          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", color: "#E8DCC8", margin: 0 }}>
+                          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.98rem", color: "#E8DCC8", margin: 0 }}>
                             {item.value}
                           </p>
                         )}
                       </div>
                     </motion.div>
                   ))}
+                </div>
+
+                {/* Quick Instant Messaging Action */}
+                <div style={{ marginTop: "2rem", display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+                  <a
+                    href="https://wa.me/6285187260781"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-outline magnetic-btn"
+                    style={{ padding: "0.85rem 1.6rem", fontSize: "0.78rem" }}
+                  >
+                    <MessageSquare style={{ width: "15px", height: "15px" }} /> WhatsApp Langsung
+                  </a>
+                  <a
+                    href="mailto:abudujanahsiregar@gmail.com"
+                    className="btn-outline magnetic-btn"
+                    style={{ padding: "0.85rem 1.6rem", fontSize: "0.78rem" }}
+                  >
+                    <Mail style={{ width: "15px", height: "15px" }} /> Email Langsung
+                  </a>
                 </div>
               </div>
             </Reveal>
