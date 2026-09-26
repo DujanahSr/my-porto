@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 import { useRef } from "react";
+import { FeaturedProject3DCard } from "@/components/Project3DCard";
 
 // ─── Scroll Reveal Component ──────────────────────────────────────────────────
 function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
@@ -14,9 +15,9 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 35 }}
+      initial={{ opacity: 0, y: 48 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.85, delay, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.9, delay, ease: [0.16, 1, 0.3, 1] }}
       className={className}
     >
       {children}
@@ -318,154 +319,15 @@ export default function Home() {
             </Reveal>
           </div>
 
-          {/* Interactive Project Showcase Cards */}
-          <div className="flex flex-col gap-8">
+          {/* Interactive 3D Project Showcase Cards */}
+          <div className="flex flex-col gap-10">
             {selectedWorks.map((work, i) => (
-              <Reveal key={work.index} delay={i * 0.1}>
-                <motion.div
-                  whileHover={{ y: -4, borderColor: "rgba(201,169,110,0.45)", boxShadow: "0 20px 45px rgba(0,0,0,0.7), 0 0 25px rgba(201,169,110,0.12)" }}
-                  transition={{ duration: 0.3 }}
-                  style={{
-                    background: "rgba(12, 12, 12, 0.8)",
-                    border: "1px solid rgba(232, 220, 200, 0.08)",
-                    borderRadius: "16px",
-                    overflow: "hidden",
-                    position: "relative",
-                  }}
-                  className="group"
-                >
-                  <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] items-center">
-                    {/* Left: Project Specs */}
-                    <div style={{ padding: "2.25rem", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%" }}>
-                      <div>
-                        <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1rem" }}>
-                          <span style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.72rem", color: "#C9A96E", letterSpacing: "0.15em" }}>
-                            [{work.index}] · {work.year}
-                          </span>
-                          {work.demoUrl && (
-                            <span style={{
-                              fontFamily: "'Space Mono', monospace",
-                              fontSize: "0.58rem",
-                              letterSpacing: "0.12em",
-                              color: "#22c55e",
-                              background: "rgba(34,197,94,0.1)",
-                              border: "1px solid rgba(34,197,94,0.3)",
-                              padding: "0.2rem 0.6rem",
-                              borderRadius: "9999px",
-                              display: "inline-flex",
-                              alignItems: "center",
-                              gap: "0.35rem",
-                              textTransform: "uppercase",
-                            }}>
-                              <span className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
-                              Live Demo
-                            </span>
-                          )}
-                        </div>
-
-                        <Link href={work.href} style={{ textDecoration: "none" }}>
-                          <h3
-                            style={{
-                              fontFamily: "'Cormorant Garamond', Georgia, serif",
-                              fontSize: "clamp(2rem, 3.5vw, 2.9rem)",
-                              fontWeight: 700,
-                              color: "#E8DCC8",
-                              lineHeight: 1.1,
-                              marginBottom: "0.5rem",
-                              transition: "color 0.3s ease",
-                            }}
-                            className="group-hover:text-[#C9A96E]"
-                          >
-                            {work.name}
-                          </h3>
-                        </Link>
-
-                        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem", color: "#A89F91", lineHeight: 1.6, marginBottom: "1.25rem" }}>
-                          {work.titleFull}
-                        </p>
-
-                        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "#C9A96E", marginBottom: "1.5rem", lineHeight: 1.5 }}>
-                          {work.highlight}
-                        </p>
-                      </div>
-
-                      <div>
-                        {/* Tech tags */}
-                        <div className="flex flex-wrap gap-2 mb-6">
-                          {work.tags.map((tag) => (
-                            <span
-                              key={tag}
-                              style={{
-                                fontFamily: "'Space Mono', monospace",
-                                fontSize: "0.62rem",
-                                letterSpacing: "0.08em",
-                                color: "#8A8078",
-                                padding: "0.3rem 0.75rem",
-                                border: "1px solid rgba(232,220,200,0.1)",
-                                borderRadius: "9999px",
-                                textTransform: "uppercase",
-                                background: "rgba(5,5,5,0.4)",
-                              }}
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-
-                        {/* Direct CTA Links */}
-                        <div style={{ display: "flex", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
-                          <Link href={work.href} className="btn-cream magnetic-btn" style={{ padding: "0.75rem 1.6rem", fontSize: "0.75rem" }}>
-                            {t.projects.overview || "Detail Proyek"} <ArrowRight style={{ width: "12px", height: "12px" }} />
-                          </Link>
-                          {work.demoUrl && (
-                            <a
-                              href={work.demoUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="btn-outline magnetic-btn"
-                              style={{ padding: "0.75rem 1.4rem", fontSize: "0.75rem", display: "inline-flex", alignItems: "center", gap: "0.4rem" }}
-                            >
-                              <ExternalLink style={{ width: "13px", height: "13px" }} /> Live Demo
-                            </a>
-                          )}
-                          {work.githubUrl && (
-                            <a
-                              href={work.githubUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              style={{ color: "#8A8078", transition: "color 0.2s", padding: "0.5rem" }}
-                              className="hover:text-[#C9A96E]"
-                              title="GitHub Repository"
-                            >
-                              <GitBranch style={{ width: "18px", height: "18px" }} />
-                            </a>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Right: Project Image Thumbnail */}
-                    <div style={{ position: "relative", width: "100%", height: "100%", minHeight: "280px", overflow: "hidden", background: "#050505" }}>
-                      <Link href={work.href}>
-                        <motion.div
-                          whileHover={{ scale: 1.05 }}
-                          transition={{ duration: 0.6 }}
-                          style={{ position: "relative", width: "100%", height: "100%", minHeight: "280px" }}
-                        >
-                          <Image
-                            src={work.image}
-                            alt={work.name}
-                            fill
-                            sizes="(max-width: 1024px) 100vw, 50vw"
-                            style={{ objectFit: "cover" }}
-                          />
-                          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,10,10,0.85) 0%, transparent 50%)" }} />
-                        </motion.div>
-                      </Link>
-                    </div>
-                  </div>
-                </motion.div>
-              </Reveal>
+              <FeaturedProject3DCard
+                key={work.index}
+                work={work}
+                index={i}
+                overviewText={t.projects.overview || "Detail Proyek"}
+              />
             ))}
           </div>
         </div>
@@ -502,21 +364,42 @@ export default function Home() {
               },
             ].map((feature, idx) => (
               <Reveal key={idx} delay={idx * 0.15}>
-                <div
+                <motion.div
+                  whileHover={{
+                    y: -6,
+                    borderColor: "rgba(201,169,110,0.45)",
+                    boxShadow: "0 20px 45px rgba(0,0,0,0.8), 0 0 25px rgba(201,169,110,0.14)",
+                  }}
+                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                   style={{
                     padding: "2.5rem",
-                    background: "rgba(10,10,10,0.6)",
+                    background: "linear-gradient(145deg, rgba(16,14,12,0.85) 0%, rgba(8,8,8,0.92) 100%)",
                     border: "1px solid rgba(232,220,200,0.08)",
-                    borderRadius: "12px",
+                    borderRadius: "16px",
                     height: "100%",
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "space-between",
+                    position: "relative",
+                    overflow: "hidden",
                   }}
-                  className="hover:border-[rgba(201,169,110,0.4)] transition-all duration-300"
+                  className="group"
                 >
+                  {/* Subtle top edge glow */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      height: "1px",
+                      background: "linear-gradient(90deg, transparent, rgba(201,169,110,0.4), transparent)",
+                    }}
+                  />
                   <div>
-                    <div style={{ color: "#C9A96E", marginBottom: "1.5rem" }}>{feature.icon}</div>
+                    <div style={{ color: "#C9A96E", marginBottom: "1.5rem" }} className="group-hover:scale-110 transition-transform duration-300 origin-left">
+                      {feature.icon}
+                    </div>
                     <h3 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: "1.6rem", fontWeight: 700, color: "#E8DCC8", marginBottom: "0.8rem" }}>
                       {feature.title}
                     </h3>
@@ -524,7 +407,7 @@ export default function Home() {
                       {feature.desc}
                     </p>
                   </div>
-                </div>
+                </motion.div>
               </Reveal>
             ))}
           </div>

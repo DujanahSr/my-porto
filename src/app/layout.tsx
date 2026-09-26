@@ -5,6 +5,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { Preloader } from "@/components/Preloader";
+import { CustomCursor } from "@/components/CustomCursor";
 
 export const metadata: Metadata = {
   title: "Abu Dujanah Siregar | Software Engineer",
@@ -26,6 +27,7 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <CustomCursor />
         <Preloader />
         <LanguageProvider>
           <Navbar />
