@@ -28,6 +28,17 @@ export function CustomCursor() {
 
     checkTouch();
 
+    const updateCursorClass = (active: boolean) => {
+      const isFinePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+      if (active && isFinePointer) {
+        document.documentElement.classList.add("has-custom-cursor");
+        document.body.classList.add("has-custom-cursor");
+      } else {
+        document.documentElement.classList.remove("has-custom-cursor");
+        document.body.classList.remove("has-custom-cursor");
+      }
+    };
+
     const handleMouseMove = (e: MouseEvent) => {
       mousePos.current = { x: e.clientX, y: e.clientY };
 
@@ -35,6 +46,7 @@ export function CustomCursor() {
         setIsVisible(true);
         ringPos.current = { x: e.clientX, y: e.clientY };
       }
+      updateCursorClass(true);
 
       // Instant update for the central gold dot
       if (dotRef.current) {
@@ -45,8 +57,15 @@ export function CustomCursor() {
     const handleMouseDown = () => setIsClicked(true);
     const handleMouseUp = () => setIsClicked(false);
 
-    const handleMouseLeave = () => setIsVisible(false);
-    const handleMouseEnter = () => setIsVisible(true);
+    const handleMouseLeave = () => {
+      setIsVisible(false);
+      updateCursorClass(false);
+    };
+
+    const handleMouseEnter = () => {
+      setIsVisible(true);
+      updateCursorClass(true);
+    };
 
     // Dynamic hover detection for interactive elements
     const handleMouseOver = (e: MouseEvent) => {
@@ -89,6 +108,7 @@ export function CustomCursor() {
       document.documentElement.removeEventListener("mouseleave", handleMouseLeave);
       document.documentElement.removeEventListener("mouseenter", handleMouseEnter);
 
+      updateCursorClass(false);
       if (rafId.current) cancelAnimationFrame(rafId.current);
     };
   }, [isVisible]);

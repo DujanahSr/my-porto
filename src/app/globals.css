@@ -42,6 +42,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ── Hide native OS cursor when custom glowing cursor is active on desktop ── */
+@media (hover: hover) and (pointer: fine) {
+  html.has-custom-cursor,
+  html.has-custom-cursor *,
+  body.has-custom-cursor,
+  body.has-custom-cursor * {
+    cursor: none !important;
+  }
+}
+
 /* ── Typography ── */
 .font-display { font-family: var(--font-display); }
 .font-body    { font-family: var(--font-body); }

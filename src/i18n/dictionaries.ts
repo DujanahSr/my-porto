@@ -12,6 +12,15 @@ export const dictionaries = {
         role: "Backend & Full-Stack Developer",
         scroll: "GULIR"
       },
+      depthMeter: {
+        label: "Kedalaman Laut",
+        status: "Telemetri Aktif",
+        unit: "m",
+        surface: "Permukaan",
+        meso: "Zona Fotik",
+        bathy: "Zona Batipelagik",
+        abyss: "Palung Abisal"
+      },
       statement: {
         label: "01 — Siapa Saya",
         title1: "Merekayasa",
@@ -457,6 +466,15 @@ export const dictionaries = {
       hero: {
         role: "Backend & Full-Stack Developer",
         scroll: "SCROLL"
+      },
+      depthMeter: {
+        label: "Ocean Depth",
+        status: "Telemetry Active",
+        unit: "m",
+        surface: "Surface",
+        meso: "Photic Zone",
+        bathy: "Bathypelagic",
+        abyss: "Abyssal Trench"
       },
       statement: {
         label: "01 — Who I Am",

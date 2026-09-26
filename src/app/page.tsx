@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 import { useRef } from "react";
 import { FeaturedProject3DCard } from "@/components/Project3DCard";
+import { OceanDepthMeter } from "@/components/OceanDepthMeter";
 
 // ─── Scroll Reveal Component ──────────────────────────────────────────────────
 function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
@@ -89,6 +90,8 @@ export default function Home() {
 
   return (
     <div style={{ background: "#050505", color: "#E8DCC8", position: "relative" }}>
+      {/* ── Oceanic Depth Telemetry HUD ── */}
+      <OceanDepthMeter />
 
       {/* ── 1. HERO SECTION ─────────────────────────────────────────────────── */}
       <section
@@ -196,22 +199,39 @@ export default function Home() {
           </div>
         </motion.div>
 
-        {/* Scroll Indicator */}
+        {/* Scroll & Depth Telemetry Origin Indicator */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5, duration: 1 }}
           style={{
             position: "absolute",
             bottom: "2.5rem",
             right: "2.5rem",
-            zIndex: 1,
+            zIndex: 10,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: "0.6rem",
+            gap: "0.55rem",
           }}
         >
+          {/* Depth Telemetry Origin Tag */}
+          <div style={{ display: "flex", alignItems: "center", gap: "0.35rem" }}>
+            <span className="h-1.5 w-1.5 rounded-full bg-[#C9A96E] animate-ping" />
+            <span
+              style={{
+                fontFamily: "'Space Mono', monospace",
+                fontSize: "0.6rem",
+                letterSpacing: "0.15em",
+                color: "#C9A96E",
+                fontWeight: 700,
+                textTransform: "uppercase",
+              }}
+            >
+              0m
+            </span>
+          </div>
+
           <span style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.58rem", letterSpacing: "0.22em", color: "#A89F91", writingMode: "vertical-rl" }}>
             {t.home.hero.scroll}
           </span>
