@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { X, ZoomIn, FileText } from "lucide-react";
+import { X, ZoomIn, FileText, ExternalLink } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { useRef, useState } from "react";
 
@@ -62,27 +62,57 @@ function Lightbox({ cert, onClose }: { cert: Certificate; onClose: () => void })
             background: "#0D0D0D",
           }}
         >
-          {/* Close button */}
-          <button
-            onClick={onClose}
-            style={{
-              position: "absolute", top: "1rem", right: "1rem", zIndex: 10,
-              background: "rgba(5,5,5,0.8)", border: "1px solid rgba(232,220,200,0.15)",
-              borderRadius: "50%", padding: "0.5rem", color: "#E8DCC8",
-              cursor: "pointer", display: "flex",
-            }}
-          >
-            <X style={{ width: "16px", height: "16px" }} />
-          </button>
+          {/* Action buttons */}
+          <div style={{ position: "absolute", top: "1rem", right: "1rem", zIndex: 10, display: "flex", alignItems: "center", gap: "0.5rem" }}>
+            {cert.fileUrl && (
+              <a
+                href={cert.fileUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Buka Dokumen di Tab Baru"
+                style={{
+                  background: "rgba(5,5,5,0.85)", border: "1px solid rgba(232,220,200,0.15)",
+                  borderRadius: "50%", padding: "0.5rem", color: "#E8DCC8",
+                  cursor: "pointer", display: "flex", textDecoration: "none",
+                  transition: "color 0.2s, border-color 0.2s",
+                }}
+                className="hover:text-[#C9A96E] hover:border-[#C9A96E]"
+              >
+                <ExternalLink style={{ width: "16px", height: "16px" }} />
+              </a>
+            )}
+            <button
+              onClick={onClose}
+              title="Tutup"
+              style={{
+                background: "rgba(5,5,5,0.85)", border: "1px solid rgba(232,220,200,0.15)",
+                borderRadius: "50%", padding: "0.5rem", color: "#E8DCC8",
+                cursor: "pointer", display: "flex",
+                transition: "color 0.2s, border-color 0.2s",
+              }}
+              className="hover:text-[#C9A96E] hover:border-[#C9A96E]"
+            >
+              <X style={{ width: "16px", height: "16px" }} />
+            </button>
+          </div>
 
           {/* Document Viewer */}
           {cert.fileUrl ? (
-            <div style={{ position: "relative", width: "100%", height: "65vh", background: "#e5e5e5" }}>
-              <iframe 
-                src={`${cert.fileUrl}#toolbar=0&navpanes=0`} 
-                style={{ width: "100%", height: "100%", border: "none" }} 
-                title={cert.title} 
-              />
+            <div style={{ position: "relative", width: "100%", height: "65vh", background: "#0a0a0a", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
+              {/\.(jpe?g|png|webp|svg)$/i.test(cert.fileUrl) ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={cert.fileUrl}
+                  alt={cert.title}
+                  style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }}
+                />
+              ) : (
+                <iframe 
+                  src={`${cert.fileUrl}#toolbar=0&navpanes=0`} 
+                  style={{ width: "100%", height: "100%", border: "none" }} 
+                  title={cert.title} 
+                />
+              )}
             </div>
           ) : (
             <div style={{ padding: "4rem", textAlign: "center" }}>

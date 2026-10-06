@@ -411,9 +411,9 @@ export const dictionaries = {
         {
           title: "Logika Algoritma (Bahasa C)",
           issuer: "Beasiswa PUB",
-          year: "2024",
+          year: "2025",
           description: "Pelatihan fundamental pemrograman tingkat rendah, algoritma sorting/searching, dan alokasi memori dinamis.",
-          fileUrl: "/bahasaC.png"
+          fileUrl: "/sertifikat/sertifikat-logika-algoritma.pdf"
         },
         {
           title: "Struktur Data C Lanjutan",
@@ -866,9 +866,9 @@ export const dictionaries = {
         {
           title: "Algorithmic Logic (C Language)",
           issuer: "PUB Scholarship",
-          year: "2024",
+          year: "2025",
           description: "Foundational low-level programming, searching/sorting algorithms, and dynamic memory pointers.",
-          fileUrl: "/bahasaC.png"
+          fileUrl: "/sertifikat/sertifikat-logika-algoritma.pdf"
         },
         {
           title: "Advanced Data Structures in C",
