@@ -17,6 +17,7 @@ interface Project {
   githubUrl?: string;
   githubUrl2?: string;
   demoUrl?: string;
+  swaggerUrl?: string;
   imageUrl?: string;
   slug: string;
 }

@@ -2,13 +2,20 @@
 
 import { useLanguage } from "@/context/LanguageContext";
 import { motion, useInView } from "framer-motion";
-import { ArrowLeft, ExternalLink, GitBranch, CheckCircle2, ShieldCheck, Cpu } from "lucide-react";
+import { ArrowLeft, ArrowRight, ExternalLink, GitBranch, CheckCircle2, ShieldCheck, Cpu, FileCode, GitFork, Server, Activity } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { useRef } from "react";
 
-interface Project {
+export interface ProjectBranch {
+  name: string;
+  role: string;
+  desc: string;
+  url?: string;
+}
+
+export interface Project {
   title: string;
   description: string;
   longDescription?: string;
@@ -17,6 +24,9 @@ interface Project {
   githubUrl?: string;
   githubUrl2?: string;
   demoUrl?: string;
+  swaggerUrl?: string;
+  branches?: ProjectBranch[];
+  testMetric?: string;
   imageUrl?: string;
   slug: string;
 }
@@ -219,6 +229,29 @@ export default function ProjectDetailClient({ slug }: { slug: string }) {
                 <GitBranch style={{ width: "16px", height: "16px" }} /> {t.projects.viewBackend || "Kode Backend (GitHub)"}
               </a>
             )}
+            {project.swaggerUrl && (
+              <a
+                href={project.swaggerUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline magnetic-btn"
+                style={{
+                  padding: "0.9rem 2.2rem",
+                  fontSize: "0.82rem",
+                  borderColor: "rgba(56,189,248,0.45)",
+                  color: "#38bdf8",
+                  background: "rgba(56,189,248,0.08)",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.55rem",
+                  boxShadow: "0 0 25px rgba(56,189,248,0.15)",
+                }}
+              >
+                <FileCode style={{ width: "16px", height: "16px" }} />
+                <span>Swagger API Docs (Live)</span>
+                <span className="h-2 w-2 rounded-full bg-sky-400 animate-ping ml-1" />
+              </a>
+            )}
           </div>
         </Reveal>
 
@@ -252,6 +285,154 @@ export default function ProjectDetailClient({ slug }: { slug: string }) {
               </p>
             </div>
           </Reveal>
+
+          {/* Automated Test Suite & Reliability */}
+          {project.testMetric && (
+            <Reveal delay={0.28}>
+              <div
+                style={{
+                  background: "linear-gradient(135deg, rgba(34,197,94,0.08) 0%, rgba(12,12,12,0.85) 100%)",
+                  border: "1px solid rgba(34,197,94,0.3)",
+                  borderRadius: "14px",
+                  padding: "1.75rem 2.5rem",
+                  display: "flex",
+                  flexWrap: "wrap",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  gap: "1.5rem",
+                  boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
+                }}
+              >
+                <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+                  <div
+                    style={{
+                      width: "42px",
+                      height: "42px",
+                      borderRadius: "10px",
+                      background: "rgba(34,197,94,0.15)",
+                      border: "1px solid rgba(34,197,94,0.4)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "#22c55e",
+                    }}
+                  >
+                    <Activity style={{ width: "22px", height: "22px" }} />
+                  </div>
+                  <div>
+                    <p style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.68rem", letterSpacing: "0.15em", color: "#22c55e", textTransform: "uppercase" }}>
+                      Quality &amp; Test Suite Assurance
+                    </p>
+                    <p style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: "1.45rem", fontWeight: 700, color: "#E8DCC8", margin: "0.2rem 0 0" }}>
+                      {project.testMetric}
+                    </p>
+                  </div>
+                </div>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+                  <span style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", color: "#8A8078", letterSpacing: "0.1em" }}>
+                    ALL TESTS PASSING
+                  </span>
+                </div>
+              </div>
+            </Reveal>
+          )}
+
+          {/* Branch & Deployment Infrastructure Breakdown */}
+          {project.branches && project.branches.length > 0 && (
+            <Reveal delay={0.29}>
+              <div
+                style={{
+                  background: "rgba(12,12,12,0.6)",
+                  border: "1px solid rgba(232,220,200,0.08)",
+                  borderRadius: "14px",
+                  padding: "2.5rem",
+                }}
+              >
+                <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "1.5rem" }}>
+                  <GitFork style={{ width: "18px", height: "18px", color: "#C9A96E" }} />
+                  <p style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.75rem", letterSpacing: "0.2em", color: "#C9A96E", textTransform: "uppercase" }}>
+                    Arsitektur Branch &amp; Konfigurasi Deployment
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {project.branches.map((b, idx) => (
+                    <motion.div
+                      key={idx}
+                      whileHover={{ y: -4, borderColor: "rgba(201,169,110,0.4)" }}
+                      style={{
+                        padding: "1.5rem",
+                        background: "rgba(5,5,5,0.6)",
+                        border: "1px solid rgba(232,220,200,0.08)",
+                        borderRadius: "10px",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <div>
+                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "0.85rem" }}>
+                          <span
+                            style={{
+                              fontFamily: "'Space Mono', monospace",
+                              fontSize: "0.72rem",
+                              fontWeight: 700,
+                              color: "#C9A96E",
+                              background: "rgba(201,169,110,0.12)",
+                              border: "1px solid rgba(201,169,110,0.3)",
+                              padding: "0.3rem 0.75rem",
+                              borderRadius: "6px",
+                              display: "inline-flex",
+                              alignItems: "center",
+                              gap: "0.4rem",
+                            }}
+                          >
+                            <GitBranch style={{ width: "13px", height: "13px" }} />
+                            branch: {b.name}
+                          </span>
+                          <span
+                            style={{
+                              fontFamily: "'Space Mono', monospace",
+                              fontSize: "0.6rem",
+                              color: "#8A8078",
+                              letterSpacing: "0.1em",
+                              textTransform: "uppercase",
+                            }}
+                          >
+                            {b.role}
+                          </span>
+                        </div>
+                        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem", color: "#A89F91", lineHeight: 1.65 }}>
+                          {b.desc}
+                        </p>
+                      </div>
+                      {b.url && (
+                        <div style={{ marginTop: "1.25rem", paddingTop: "0.85rem", borderTop: "1px solid rgba(232,220,200,0.06)" }}>
+                          <a
+                            href={b.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                              fontFamily: "'Space Mono', monospace",
+                              fontSize: "0.68rem",
+                              color: "#C9A96E",
+                              display: "inline-flex",
+                              alignItems: "center",
+                              gap: "0.4rem",
+                              textDecoration: "none",
+                            }}
+                            className="hover:underline"
+                          >
+                            Buka Branch di GitHub <ArrowRight style={{ width: "12px", height: "12px" }} />
+                          </a>
+                        </div>
+                      )}
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+          )}
 
           {/* Key Features & Architecture Breakdown */}
           {project.features && project.features.length > 0 && (

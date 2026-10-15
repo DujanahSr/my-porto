@@ -35,8 +35,11 @@ const allTechItems: TechItem[] = [
   // Backend
   { name: "Java 21", category: "backend", badge: "Core Language", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" },
   { name: "Spring Boot 3", category: "backend", badge: "Enterprise Framework", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg" },
+  { name: "Spring Cloud Gateway", category: "backend", badge: "API Gateway", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg" },
+  { name: "WebSocket & STOMP", category: "backend", badge: "Real-Time Gate", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/socketio/socketio-original.svg", invertOnDark: true },
   { name: "Node.js", category: "backend", badge: "Runtime", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" },
   { name: "Express.js", category: "backend", badge: "REST API", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg", invertOnDark: true },
+  { name: "Bucket4j", category: "backend", badge: "Token Bucket Rate Limit", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" },
   { name: "Python", category: "backend", badge: "Flask / Scripts", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" },
   { name: "C Language", category: "backend", badge: "Low-Level & Memory", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg" },
 
@@ -55,14 +58,17 @@ const allTechItems: TechItem[] = [
 
   // DevOps & Brokers
   { name: "RabbitMQ", category: "devops", badge: "Message Broker", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/rabbitmq/rabbitmq-original.svg" },
-  { name: "Docker", category: "devops", badge: "Containerization", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" },
+  { name: "Docker & Compose", category: "devops", badge: "Multi-Container", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" },
+  { name: "Dokploy & Traefik", category: "devops", badge: "VPS Deployment", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/traefik/traefik-original.svg" },
   { name: "Nginx", category: "devops", badge: "Reverse Proxy", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nginx/nginx-original.svg" },
   { name: "GitHub Actions", category: "devops", badge: "CI/CD Pipeline", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/githubactions/githubactions-original.svg" },
   { name: "Git & GitHub", category: "devops", badge: "Version Control", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg", invertOnDark: true },
 
   // Tools & Testing
-  { name: "Postman", category: "tools", badge: "API Testing", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg" },
+  { name: "JUnit 5 & Mockito", category: "tools", badge: "94 Tests Suite", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" },
   { name: "Swagger / OpenAPI", category: "tools", badge: "API Documentation", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/swagger/swagger-original.svg" },
+  { name: "Prometheus & Grafana", category: "tools", badge: "Monitoring & Metrics", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/grafana/grafana-original.svg" },
+  { name: "Postman", category: "tools", badge: "API Testing", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg" },
   { name: "Vercel", category: "tools", badge: "Cloud Deployment", iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original.svg", invertOnDark: true },
 ];
 

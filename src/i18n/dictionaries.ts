@@ -73,7 +73,7 @@ export const dictionaries = {
         {
           name: "Backend & Cloud",
           icon: "backend",
-          skills: ["Java 21", "Spring Boot 3", "Spring Security", "Spring Cloud Gateway", "Node.js", "Express.js", "Python (Flask)", "C Language", "RESTful API", "JWT & RBAC"]
+          skills: ["Java 21", "Spring Boot 3", "Spring Security", "Spring Cloud Gateway", "WebSocket STOMP", "Bucket4j", "Node.js", "Express.js", "Python (Flask)", "C Language", "RESTful API", "JWT & RBAC"]
         },
         {
           name: "Frontend & UI",
@@ -88,26 +88,26 @@ export const dictionaries = {
         {
           name: "DevOps & Message Broker",
           icon: "tools",
-          skills: ["RabbitMQ", "Docker", "Docker Compose", "Nginx", "GitHub Actions (CI/CD)", "Git & GitHub", "Vercel"]
+          skills: ["RabbitMQ", "Docker Compose", "Docker", "Dokploy (PaaS)", "Traefik", "Nginx", "GitHub Actions (CI/CD)", "Git & GitHub", "Vercel"]
         },
         {
-          name: "Testing & Architecture",
+          name: "Testing & Monitoring",
           icon: "target",
-          skills: ["Microservices Architecture", "Event-Driven Architecture", "JUnit 5", "Mockito", "Swagger/OpenAPI", "Postman", "Jest", "SOLID Principles"]
+          skills: ["Microservices Architecture", "Event-Driven Architecture", "JUnit 5 & Mockito (94 Tests)", "MockMvc", "Prometheus & Grafana", "Swagger / OpenAPI", "Postman", "SOLID Principles"]
         },
         {
           name: "Third-Party Integration",
           icon: "zap",
-          skills: ["Midtrans Snap API", "Cloudinary", "Google OAuth", "OpenPDF", "ZXing (QR Code)", "JavaMailSender (SMTP)"]
+          skills: ["Midtrans Snap & Webhook (SHA-512)", "Cloudinary API", "WebSocket STOMP", "OpenPDF", "ZXing (QR Code)", "Apache POI", "JavaMailSender (SMTP)"]
         }
       ],
       timelineTitle: "Riwayat Pengalaman & Pendidikan",
       timeline: [
         {
-          year: "2025",
+          year: "Oktober 2025 – Januari 2026",
           role: "Instruktur Fundamental Java Backend",
           org: "Beasiswa PUB — Universitas Nasional PASIM Bandung",
-          desc: "Memimpin sesi pelatihan teknis intensif 120 menit per pertemuan untuk membimbing penerima beasiswa menguasai fundamental backend Java, konsep OOP, struktur data, studi kasus algoritma, serta proses debugging sistem yang tangguh."
+          desc: "Mengajar dan membimbing mahasiswa penerima beasiswa PUB dalam 14+ pertemuan intensif (@120 menit) mengenai fundamental backend Java, konsep OOP, struktur data, algoritma rekursif, exception handling, serta proses debugging sistem yang tangguh."
         },
         {
           year: "2024",
@@ -163,37 +163,54 @@ export const dictionaries = {
       viewFrontend: "Kode Frontend",
       viewBackend: "Kode Backend",
       viewDemo: "Kunjungi Live Demo",
+      viewSwagger: "Swagger API Docs (Live)",
       items: [
         {
           title: "RegarStore — Enterprise Distributed E-Commerce Microservices",
           slug: "regarstore",
-          longDescription: "Platform E-Commerce Microservices terdistribusi yang dirancang untuk skala enterprise. Dibangun dengan arsitektur distributed microservices berbasis Java 21 & Spring Boot 3 (API Gateway, Auth Service, Catalog Service, Order Service, Payment Service, Notification Service) memanfaatkan Java Virtual Threads untuk efisiensi konkurensi tinggi. Dilengkapi pipeline event-driven asinkron RabbitMQ untuk checkout pesanan dan notifikasi email instan, Redis Caching untuk akses katalog cepat, payment gateway Midtrans (Snap & Webhook idempotensi) dengan otorisasi JWT RBAC, automated testing (JUnit 5 & Mockito), serta antarmuka modern React 19 & Tailwind CSS dengan fitur klaim garansi dan ekspor invoice PDF otomatis.",
+          longDescription: "Platform E-Commerce Microservices terdistribusi yang dirancang untuk skala enterprise dan beban konkurensi tinggi. Dibangun dengan arsitektur microservices modern berbasis Java 21 & Spring Boot 3 (Spring Cloud Gateway, Auth Service, Catalog Service, Order Service, Payment Service, Notification Service) memanfaatkan Java Virtual Threads untuk efisiensi throughput maksimal. Mengimplementasikan pipeline event-driven RabbitMQ untuk checkout pesanan dan notifikasi email tanpa blocking, Redis Caching untuk akses katalog cepat sub-milidetik, payment gateway Midtrans (Snap & Webhook idempotensi terverifikasi SHA-512) dengan otorisasi JWT HttpOnly Cookies, serta automated test suite komprehensif mencapai 94 pengujian otomatis (JUnit 5, Mockito & MockMvc). Sistem ini di-deploy ke server VPS Dokploy menggunakan Docker Compose multi-container dan Traefik reverse proxy dengan dokumentasi API interaktif Swagger UI (OpenAPI 3.0).",
           features: [
-            "Arsitektur Distributed Microservices berbasis Java 21 & Spring Boot 3 (API Gateway, Auth, Catalog, Order, Payment, Notification)",
-            "High-Throughput Concurrency dengan Java Virtual Threads",
-            "Pipeline Event-Driven Asinkron menggunakan RabbitMQ untuk alur Checkout dan Dispatch Notifikasi Email",
+            "Arsitektur Enterprise Distributed Microservices berbasis Java 21 & Spring Boot 3 (Spring Cloud Gateway, Auth, Catalog, Order, Payment, Notification)",
+            "High-Throughput Concurrency dengan Java Virtual Threads untuk efisiensi beban tinggi",
+            "Pipeline Event-Driven Asinkron RabbitMQ untuk checkout pesanan dan notifikasi email otomatis",
             "Akses Katalog Sub-Millisecond dengan Multi-Tier Redis Caching",
-            "Integrasi Payment Gateway Midtrans (Snap & Idempotent Webhook Verification) dengan Keamanan JWT RBAC",
-            "Automated Testing Komprehensif (JUnit 5 & Mockito) pada Lapisan Service & Security",
-            "Frontend Modern & Responsif menggunakan React 19 (Vite) & Tailwind CSS",
-            "Fitur Klaim Garansi Interaktif & Generator Ekspor Faktur Invoice PDF Otomatis",
-            "Containerized Deployment berbasis Docker & Live Deployment via Vercel"
+            "Payment Gateway Midtrans (Snap & Idempotent Webhook Verification SHA-512) dengan Keamanan JWT HttpOnly Cookies",
+            "Automated Testing Komprehensif: 94 automated tests (JUnit 5, Mockito, MockMvc) pada Service & Security Layer",
+            "Dokumentasi API Interaktif Swagger UI (OpenAPI 3.0) yang dapat diuji langsung (Live)",
+            "Deployment Server VPS Modern via Docker Compose, Dokploy, dan Traefik Reverse Proxy",
+            "Frontend Modern & Responsif menggunakan React 19 (Vite), Tailwind CSS, klaim garansi interaktif, dan generator invoice PDF otomatis"
           ],
-          description: "Platform E-Commerce Microservices enterprise berbasis Java 21 & Spring Boot 3 dengan Java Virtual Threads, pipeline event-driven RabbitMQ, Redis caching, payment gateway Midtrans ber-webhook idempotensi, dan antarmuka modern React 19.",
-          tags: ["Java 21", "Spring Boot 3", "Microservices", "RabbitMQ", "Redis", "React 19", "PostgreSQL", "Docker", "Midtrans"],
-          githubUrl: "https://github.com/DujanahSr/regarstore-ecommerce.git",
+          description: "Platform E-Commerce Microservices enterprise berbasis Java 21 & Spring Boot 3 dengan Java Virtual Threads, pipeline event-driven RabbitMQ, Redis caching, payment gateway Midtrans ber-webhook idempotensi, 94 automated tests, dan deployment server Dokploy/Traefik.",
+          tags: ["Java 21", "Spring Boot 3", "Spring Cloud Gateway", "Dokploy / Traefik", "RabbitMQ", "Redis", "React 19", "PostgreSQL", "Midtrans"],
+          githubUrl: "https://github.com/DujanahSr/RegarStore-EcommerceV2",
+          swaggerUrl: "https://regarstore.145.79.8.137.sslip.io/webjars/swagger-ui/index.html",
+          testMetric: "94 Pengujian Otomatis Lulus (JUnit 5, Mockito & MockMvc) pada Service & Security Layer",
+          branches: [
+            {
+              name: "main",
+              role: "Local Development & Core Codebase",
+              desc: "Cabang utama kode sumber seluruh microservices (API Gateway, Auth, Catalog, Order, Payment, Notification) berbasis Java 21 & Spring Boot 3 untuk kebutuhan pengembangan lokal.",
+              url: "https://github.com/DujanahSr/RegarStore-EcommerceV2/tree/main"
+            },
+            {
+              name: "deploy",
+              role: "Server Infrastructure & VPS Deployment",
+              desc: "Konfigurasi orkestrasi container Docker Compose, Dokploy PaaS, Traefik Reverse Proxy dengan SSL otomatis, dan isolasi skema PostgreSQL per-service untuk server production.",
+              url: "https://github.com/DujanahSr/RegarStore-EcommerceV2/tree/deploy"
+            }
+          ],
           demoUrl: "https://regarstore-ecommerce-virid.vercel.app/",
           imageUrl: "/regarstore.png"
         },
         {
           title: "StokKita — Enterprise Multi-Tenant POS & Warehouse Management SaaS",
           slug: "stokkita",
-          longDescription: "Platform SaaS B2B Multi-Tenant POS & Warehouse Management System (WMS) yang mengelola alokasi stok multi-gudang, penyesuaian stok otomatis (Stock Opname), dan sinkronisasi inventori multi-channel secara real-time. Membangun mesin POS Kasir berkonkurensi tinggi menggunakan pessimistic row-locking (SELECT FOR UPDATE) untuk mencegah race condition, mendukung Multi-Payment, cetak struk thermal, dan audit kas shift (Z-Report). Menerapkan algoritma optimasi inventori (Safety Stock, ROP Dinamis, dan EOQ) guna mengotomatisasi pengadaan barang (Purchase Order) serta pembuatan dokumen PO PDF resmi.",
+          longDescription: "Platform SaaS B2B Multi-Tenant POS & Warehouse Management System (WMS) yang mengelola alokasi stok multi-gudang, penyesuaian stok otomatis (Stock Opname), dan sinkronisasi inventori multi-channel secara real-time. Membangun mesin POS Kasir berkonkurensi tinggi menggunakan pessimistic row-locking (SELECT FOR UPDATE) untuk mencegah race condition saat flash sale, mendukung Multi-Payment, cetak struk thermal, dan audit kas shift (Z-Report). Menerapkan algoritma riset operasional (Safety Stock, ROP Dinamis, dan EOQ) guna mengotomatisasi pengadaan barang (Purchase Order) serta pembuatan dokumen PO PDF resmi.",
           features: [
             "Arsitektur B2B Multi-Tenant POS & WMS untuk Manajemen Alokasi Multi-Gudang & Sinkronisasi Stok Real-Time",
             "High-Concurrency POS Cashier Engine dengan Pessimistic Row-Locking (SELECT FOR UPDATE) Anti-Race Condition",
             "Dukungan Multi-Payment, Cetak Struk Thermal, dan Audit Kas Shift (Z-Report)",
-            "Algoritma Optimasi Inventori (Safety Stock, Dynamic ROP, EOQ) untuk Auto-Purchase Order",
+            "Algoritma Riset Operasional Optimasi Inventori (Safety Stock, Dynamic ROP, EOQ) untuk Auto-Purchase Order",
             "Arsitektur Event-Driven (RabbitMQ & Redis Caching) yang Memangkas Latensi API hingga ~60%",
             "Containerization Docker Lengkap dengan Pipeline Automated CI/CD GitHub Actions"
           ],
@@ -242,17 +259,18 @@ export const dictionaries = {
         {
           title: "Eventease — Platform E-Commerce Event & Ticketing",
           slug: "eventease",
-          longDescription: "Aplikasi manajemen acara dan penjualan tiket full-stack dengan arsitektur multi-role (Peserta, Penyelenggara, Admin). Mengintegrasikan Payment Gateway Midtrans untuk transaksi end-to-end (QRIS, GoPay, Virtual Account), Cloudinary API untuk manajemen media berbasis cloud, sistem autentikasi multi-role berbasis session, generator QR code e-tiket otomatis (OpenPDF & ZXing), notifikasi transaksi otomatis via SMTP email, serta dashboard Command Center interaktif dengan fitur dompet digital dan scanner QR code self-service untuk check-in acara.",
+          longDescription: "Aplikasi manajemen acara dan penjualan tiket full-stack dengan arsitektur multi-role (Peserta Acara, Penyelenggara, Admin). Mengintegrasikan Payment Gateway Midtrans untuk transaksi end-to-end (QRIS, Virtual Account, GoPay), validasi gate check-in real-time menggunakan WebSocket STOMP tanpa polling, proteksi rate limiting anti-bot berbasis Token Bucket (Bucket4j), generator tiket PDF ber-QR code unik (ZXing & OpenPDF) dengan notifikasi SMTP otomatis, serta fitur ekspor laporan keuangan dan rekapitulasi penjualan acara ke format Excel otomatis menggunakan Apache POI.",
           features: [
-            "Arsitektur Multi-Role Komprehensif (Peserta, Penyelenggara, dan Administrator)",
-            "Integrasi End-to-End Payment Gateway Midtrans (QRIS, GoPay, VA)",
-            "Penyimpanan Aset Media Cloud Terdesentralisasi dengan Cloudinary API",
-            "Generator E-Tiket PDF Dinamis Ber-QR Code Unik (OpenPDF & ZXing)",
-            "Notifikasi Email Konfirmasi & Riwayat Transaksi Otomatis (SMTP)",
-            "Dashboard Command Center Interaktif & Pemindai QR Self-Service Check-in Peserta"
+            "Arsitektur Multi-Tier RBAC Komprehensif (Peserta, Penyelenggara, Admin) dengan JWT HttpOnly Cookies",
+            "Pemindai Gate Check-In Real-Time via WebSocket STOMP untuk Validasi Tiket QR Instan Tanpa Polling",
+            "Rate Limiting & Proteksi Anti-Bot Berbasis Token Bucket Algorithm (Bucket4j)",
+            "Integrasi End-to-End Payment Gateway Midtrans (QRIS, VA, E-Wallet)",
+            "Generator E-Tiket PDF Dinamis Ber-QR Code Unik (ZXing & OpenPDF) & Notifikasi Email SMTP",
+            "Ekspor Laporan Keuangan dan Rekapitulasi Penjualan Acara Otomatis ke Format Excel dengan Apache POI",
+            "Penyimpanan Media Aset Cloud Terdesentralisasi dengan Cloudinary API"
           ],
-          description: "Platform e-commerce tiket acara dengan integrasi Midtrans, penyimpanan media Cloudinary, generator tiket PDF ber-QR code otomatis, dan Command Center penyelenggara.",
-          tags: ["Java 21", "Spring Boot 3", "MySQL", "Midtrans API", "Thymeleaf", "Bootstrap 5", "Cloudinary"],
+          description: "Platform e-commerce tiket acara dengan WebSocket STOMP real-time gate scanner, rate limiting Bucket4j, integrasi Midtrans, generator tiket QR code unik, dan ekspor laporan Excel Apache POI.",
+          tags: ["Java 21", "Spring Boot 3", "React 18", "WebSocket STOMP", "Bucket4j", "Redis", "Midtrans", "Apache POI"],
           githubUrl: "https://github.com/DujanahSr/eventease",
           demoUrl: "",
           imageUrl: "/javaFundamental.png"
@@ -528,7 +546,7 @@ export const dictionaries = {
         {
           name: "Backend & Cloud",
           icon: "backend",
-          skills: ["Java 21", "Spring Boot 3", "Spring Security", "Spring Cloud Gateway", "Node.js", "Express.js", "Python (Flask)", "C Language", "RESTful API", "JWT & RBAC"]
+          skills: ["Java 21", "Spring Boot 3", "Spring Security", "Spring Cloud Gateway", "WebSocket STOMP", "Bucket4j", "Node.js", "Express.js", "Python (Flask)", "C Language", "RESTful API", "JWT & RBAC"]
         },
         {
           name: "Frontend & UI",
@@ -543,26 +561,26 @@ export const dictionaries = {
         {
           name: "DevOps & Message Broker",
           icon: "tools",
-          skills: ["RabbitMQ", "Docker", "Docker Compose", "Nginx", "GitHub Actions (CI/CD)", "Git & GitHub", "Vercel"]
+          skills: ["RabbitMQ", "Docker Compose", "Docker", "Dokploy (PaaS)", "Traefik", "Nginx", "GitHub Actions (CI/CD)", "Git & GitHub", "Vercel"]
         },
         {
-          name: "Testing & Architecture",
+          name: "Testing & Monitoring",
           icon: "target",
-          skills: ["Microservices Architecture", "Event-Driven Architecture", "JUnit 5", "Mockito", "Swagger/OpenAPI", "Postman", "Jest", "SOLID Principles"]
+          skills: ["Microservices Architecture", "Event-Driven Architecture", "JUnit 5 & Mockito (94 Tests)", "MockMvc", "Prometheus & Grafana", "Swagger / OpenAPI", "Postman", "SOLID Principles"]
         },
         {
           name: "Third-Party Integration",
           icon: "zap",
-          skills: ["Midtrans Snap API", "Cloudinary", "Google OAuth", "OpenPDF", "ZXing (QR Code)", "JavaMailSender (SMTP)"]
+          skills: ["Midtrans Snap & Webhook (SHA-512)", "Cloudinary API", "WebSocket STOMP", "OpenPDF", "ZXing (QR Code)", "Apache POI", "JavaMailSender (SMTP)"]
         }
       ],
       timelineTitle: "Experience & Educational Background",
       timeline: [
         {
-          year: "2025",
+          year: "October 2025 – January 2026",
           role: "Fundamental Java Backend Instructor",
           org: "PUB Scholarship — National University of PASIM Bandung",
-          desc: "Led intensive 120-minute technical training sessions mentoring scholarship recipients in core Java backend, Object-Oriented Programming (OOP), algorithmic case studies, and robust system debugging."
+          desc: "Taught and mentored PUB scholarship recipients over 14+ intensive 120-minute sessions covering Java backend fundamentals, OOP principles, data structures, recursive algorithms, exception handling, and robust debugging techniques."
         },
         {
           year: "2024",
@@ -618,37 +636,54 @@ export const dictionaries = {
       viewFrontend: "Frontend Code",
       viewBackend: "Backend Code",
       viewDemo: "Visit Live Demo",
+      viewSwagger: "Swagger API Docs (Live)",
       items: [
         {
           title: "RegarStore — Enterprise Distributed E-Commerce Microservices",
           slug: "regarstore",
-          longDescription: "An enterprise-grade distributed microservices e-commerce platform architected with Java 21 & Spring Boot 3 (API Gateway, Auth Service, Catalog Service, Order Service, Payment Service, Notification Service) leveraging Java Virtual Threads for high-concurrency throughput. Features asynchronous event-driven messaging via RabbitMQ for checkout pipelines and immediate email notifications, Redis Caching for sub-millisecond product retrieval, Midtrans Payment Gateway (Snap & Idempotent Webhook verification) with JWT RBAC security, automated testing coverage (JUnit 5 & Mockito), and a modern React 19 & Tailwind CSS frontend with automated PDF invoice generation and warranty claims.",
+          longDescription: "An enterprise-grade distributed microservices e-commerce platform architected with Java 21 & Spring Boot 3 (Spring Cloud Gateway, Auth Service, Catalog Service, Order Service, Payment Service, Notification Service) leveraging Java Virtual Threads for high-throughput concurrency. Features asynchronous event-driven messaging via RabbitMQ for checkout pipelines and immediate email notifications, Redis Caching for sub-millisecond product retrieval, Midtrans Payment Gateway (Snap & Idempotent Webhook verification with SHA-512) secured with JWT HttpOnly cookies, and a comprehensive automated test suite consisting of 94 tests (JUnit 5, Mockito, and MockMvc). Deployed to a Dokploy VPS server via Docker Compose and Traefik reverse proxy with live interactive Swagger UI (OpenAPI 3.0) API documentation.",
           features: [
-            "Distributed Microservices Architecture based on Java 21 & Spring Boot 3 (API Gateway, Auth, Catalog, Order, Payment, Notification)",
-            "High-Throughput Concurrency utilizing Java Virtual Threads",
+            "Enterprise Distributed Microservices Architecture based on Java 21 & Spring Boot 3 (Spring Cloud Gateway, Auth, Catalog, Order, Payment, Notification)",
+            "High-Throughput Concurrency utilizing Java Virtual Threads for peak load efficiency",
             "Asynchronous Event-Driven Pipeline using RabbitMQ for Order Checkout & Automated Email Dispatch",
             "Sub-Millisecond Catalog Retrieval backed by Multi-Tier Redis Caching",
-            "Midtrans Payment Gateway Integration (Snap & Idempotent Webhooks) secured with JWT RBAC",
-            "Comprehensive Automated Testing (JUnit 5 & Mockito) across Service & Security Layers",
-            "Modern & Responsive User Interface crafted with React 19 (Vite) & Tailwind CSS",
-            "Interactive Warranty Claim System & Automated PDF Invoice Export Engine",
-            "Containerized Docker Deployment & Production-Ready Live Deployment on Vercel"
+            "Midtrans Payment Gateway Integration (Snap & Idempotent SHA-512 Webhooks) secured with JWT HttpOnly Cookies",
+            "Comprehensive Automated Testing: 94 automated tests (JUnit 5, Mockito, MockMvc) across Service & Security Layers",
+            "Live Interactive API Documentation via Swagger UI (OpenAPI 3.0)",
+            "Production VPS Server Deployment using Docker Compose, Dokploy PaaS, and Traefik Reverse Proxy",
+            "Modern & Responsive Frontend crafted with React 19 (Vite), Tailwind CSS, interactive warranty claims, and automated PDF invoice generator"
           ],
-          description: "Enterprise distributed microservices e-commerce platform built on Java 21 & Spring Boot 3 with Java Virtual Threads, RabbitMQ event-driven messaging, Redis caching, idempotent Midtrans payment gateway, and modern React 19 frontend.",
-          tags: ["Java 21", "Spring Boot 3", "Microservices", "RabbitMQ", "Redis", "React 19", "PostgreSQL", "Docker", "Midtrans"],
-          githubUrl: "https://github.com/DujanahSr/regarstore-ecommerce.git",
+          description: "Enterprise distributed microservices e-commerce platform built on Java 21 & Spring Boot 3 with Java Virtual Threads, RabbitMQ event-driven messaging, Redis caching, idempotent Midtrans payment gateway, 94 automated tests, and Dokploy/Traefik VPS deployment.",
+          tags: ["Java 21", "Spring Boot 3", "Spring Cloud Gateway", "Dokploy / Traefik", "RabbitMQ", "Redis", "React 19", "PostgreSQL", "Midtrans"],
+          githubUrl: "https://github.com/DujanahSr/RegarStore-EcommerceV2",
+          swaggerUrl: "https://regarstore.145.79.8.137.sslip.io/webjars/swagger-ui/index.html",
+          testMetric: "94 Automated Tests Passing (JUnit 5, Mockito & MockMvc) across Service & Security Layers",
+          branches: [
+            {
+              name: "main",
+              role: "Local Development & Core Codebase",
+              desc: "Main branch housing the complete microservices source code (API Gateway, Auth, Catalog, Order, Payment, Notification) built with Java 21 Virtual Threads & Spring Boot 3 for local development.",
+              url: "https://github.com/DujanahSr/RegarStore-EcommerceV2/tree/main"
+            },
+            {
+              name: "deploy",
+              role: "Server Infrastructure & VPS Deployment",
+              desc: "Production deployment configurations including Docker Compose orchestration, Dokploy PaaS setup, Traefik reverse proxy with automated SSL, and PostgreSQL schema-per-service isolation.",
+              url: "https://github.com/DujanahSr/RegarStore-EcommerceV2/tree/deploy"
+            }
+          ],
           demoUrl: "https://regarstore-ecommerce-virid.vercel.app/",
           imageUrl: "/regarstore.png"
         },
         {
           title: "StokKita — Enterprise Multi-Tenant POS & Warehouse Management SaaS",
           slug: "stokkita",
-          longDescription: "A B2B Multi-Tenant POS & Warehouse Management SaaS platform designed to manage multi-warehouse inventory allocation, automated stock reconciliation (Stock Opname), and real-time multi-channel inventory sync. Features a high-concurrency cashier POS engine with pessimistic row-locking (SELECT FOR UPDATE) to eliminate race conditions, multi-payment support, thermal receipt printing, and cashier shift audits (Z-Report). Implements inventory optimization algorithms (Safety Stock, Dynamic ROP, EOQ) to automate Purchase Orders with official PDF generation.",
+          longDescription: "A B2B Multi-Tenant POS & Warehouse Management SaaS platform designed to manage multi-warehouse inventory allocation, automated stock reconciliation (Stock Opname), and real-time multi-channel inventory sync. Features a high-concurrency cashier POS engine with pessimistic row-locking (SELECT FOR UPDATE) to eliminate race conditions during high-volume sales, multi-payment support, thermal receipt printing, and cashier shift audits (Z-Report). Implements Operations Research inventory optimization algorithms (Safety Stock, Dynamic ROP, EOQ) to automate Purchase Orders with official PDF generation.",
           features: [
             "B2B Multi-Tenant Architecture for Multi-Warehouse Stock Allocation & Real-Time Sync",
             "High-Concurrency POS Cashier Engine with Pessimistic Row-Locking (SELECT FOR UPDATE) preventing Race Conditions",
             "Multi-Payment Support, Thermal Receipt Generation, and Cashier Shift Z-Report Audits",
-            "Inventory Optimization Algorithms (Safety Stock, Dynamic ROP, EOQ) for Automated PO Creation",
+            "Operations Research Inventory Optimization Algorithms (Safety Stock, Dynamic ROP, EOQ) for Automated PO Creation",
             "Event-Driven Architecture (RabbitMQ & Redis Cache) slashing API latency by ~60%",
             "Full Docker Containerization with Automated CI/CD GitHub Actions Pipeline"
           ],
@@ -697,17 +732,18 @@ export const dictionaries = {
         {
           title: "Eventease — Event Ticketing & Management Platform",
           slug: "eventease",
-          longDescription: "A full-stack event management and ticketing platform featuring a multi-role architecture (Attendees, Organizers, Admin). Integrates Midtrans Payment Gateway for end-to-end checkout (QRIS, GoPay, Virtual Account), Cloudinary API for cloud-based media storage, session-based multi-role authentication, automated QR code e-ticket generation (OpenPDF & ZXing), automated SMTP email transaction notifications, and an interactive Command Center dashboard with digital wallet and self-service QR scanner for event check-in.",
+          longDescription: "A full-stack event management and ticketing platform featuring a multi-tier RBAC architecture (Attendees, Organizers, Admin). Integrates Midtrans Payment Gateway for end-to-end checkout (QRIS, Virtual Account, GoPay), real-time gate scanner using WebSocket STOMP for instantaneous QR check-in validation without polling, anti-bot Token Bucket rate limiting (Bucket4j), automated dynamic PDF ticket generation with unique QR codes (ZXing & OpenPDF), automated SMTP email confirmations, and automated Excel financial report exports powered by Apache POI.",
           features: [
-            "Comprehensive Multi-Role Architecture (Attendees, Event Organizers, and Administrators)",
-            "End-to-End Midtrans Payment Gateway Integration (QRIS, GoPay, VA)",
-            "Decentralized Cloud Media Asset Storage with Cloudinary API",
-            "Dynamic PDF E-Ticket Generator with Unique QR Codes (OpenPDF & ZXing)",
-            "Automated SMTP Email Order Confirmations and Transaction History",
-            "Interactive Command Center Dashboard & Self-Service QR Check-In Scanner"
+            "Comprehensive Multi-Tier RBAC Architecture (Attendees, Event Organizers, Admin) with JWT HttpOnly Cookies",
+            "Real-Time Gate Scanner via WebSocket STOMP for Instantaneous QR Ticket Check-In Without Polling",
+            "Anti-Bot & Rate-Limiting Protection using Token Bucket Algorithm (Bucket4j)",
+            "End-to-End Midtrans Payment Gateway Integration (QRIS, VA, E-Wallet)",
+            "Dynamic PDF E-Ticket Generator with Unique QR Codes (ZXing & OpenPDF) & Automated SMTP Notifications",
+            "Automated Event Financial & Sales Reconciliation Export to Excel using Apache POI",
+            "Decentralized Cloud Media Asset Storage with Cloudinary API"
           ],
-          description: "Full-stack event ticketing platform with Midtrans integration, Cloudinary media storage, automated QR-coded PDF ticket generation, and organizer Command Center.",
-          tags: ["Java 21", "Spring Boot 3", "MySQL", "Midtrans API", "Thymeleaf", "Bootstrap 5", "Cloudinary"],
+          description: "Full-stack event ticketing platform with WebSocket STOMP real-time gate scanner, Bucket4j rate limiting, Midtrans integration, unique QR ticket generator, and automated Excel exports.",
+          tags: ["Java 21", "Spring Boot 3", "React 18", "WebSocket STOMP", "Bucket4j", "Redis", "Midtrans", "Apache POI"],
           githubUrl: "https://github.com/DujanahSr/eventease",
           demoUrl: "",
           imageUrl: "/javaFundamental.png"

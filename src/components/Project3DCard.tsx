@@ -4,7 +4,7 @@ import React, { useRef, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, ExternalLink, GitBranch } from "lucide-react";
+import { ArrowRight, ExternalLink, GitBranch, FileCode } from "lucide-react";
 
 // ─── 1. FEATURED PROJECT CARD (For Homepage Horizontal Showcase) ───────────────
 export interface FeaturedWork {
@@ -16,6 +16,7 @@ export interface FeaturedWork {
   href: string;
   demoUrl?: string;
   githubUrl?: string;
+  swaggerUrl?: string;
   image: string;
   highlight: string;
 }
@@ -186,6 +187,36 @@ export function FeaturedProject3DCard({
                     Live Demo
                   </span>
                 )}
+
+                {work.swaggerUrl && (
+                  <a
+                    href={work.swaggerUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    style={{
+                      fontFamily: "'Space Mono', monospace",
+                      fontSize: "0.58rem",
+                      letterSpacing: "0.12em",
+                      color: "#38bdf8",
+                      background: "rgba(56,189,248,0.12)",
+                      border: "1px solid rgba(56,189,248,0.35)",
+                      padding: "0.22rem 0.65rem",
+                      borderRadius: "9999px",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "0.35rem",
+                      textTransform: "uppercase",
+                      boxShadow: "0 0 12px rgba(56,189,248,0.2)",
+                      textDecoration: "none",
+                    }}
+                    className="hover:scale-105 transition-transform"
+                    title="Interactive API Documentation"
+                  >
+                    <span className="h-1.5 w-1.5 rounded-full bg-sky-400 animate-ping" />
+                    Swagger UI
+                  </a>
+                )}
               </div>
 
               {/* Project Title */}
@@ -297,6 +328,25 @@ export function FeaturedProject3DCard({
                     <ExternalLink style={{ width: "13px", height: "13px" }} /> Live Demo
                   </a>
                 )}
+                {work.swaggerUrl && (
+                  <a
+                    href={work.swaggerUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-outline magnetic-btn"
+                    style={{
+                      padding: "0.75rem 1.4rem",
+                      fontSize: "0.75rem",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "0.45rem",
+                      borderColor: "rgba(56,189,248,0.35)",
+                      color: "#38bdf8",
+                    }}
+                  >
+                    <FileCode style={{ width: "13px", height: "13px" }} /> Swagger API
+                  </a>
+                )}
                 {work.githubUrl && (
                   <a
                     href={work.githubUrl}
@@ -368,6 +418,7 @@ export interface ProjectItem {
   imageUrl?: string;
   demoUrl?: string;
   githubUrl?: string;
+  swaggerUrl?: string;
   slug: string;
 }
 
@@ -693,6 +744,34 @@ export function ProjectGrid3DCard({
               </span>
 
               <div style={{ display: "flex", gap: "0.85rem", alignItems: "center" }}>
+                {project.swaggerUrl && (
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      window.open(project.swaggerUrl, "_blank");
+                    }}
+                    title="Interactive Swagger API Docs"
+                    style={{
+                      background: "rgba(56,189,248,0.12)",
+                      border: "1px solid rgba(56,189,248,0.35)",
+                      borderRadius: "6px",
+                      color: "#38bdf8",
+                      cursor: "pointer",
+                      padding: "0.28rem 0.55rem",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "0.35rem",
+                      fontSize: "0.6rem",
+                      fontFamily: "'Space Mono', monospace",
+                      transition: "all 0.2s",
+                    }}
+                    className="hover:bg-sky-500/25 hover:scale-105"
+                  >
+                    <FileCode style={{ width: "13px", height: "13px" }} />
+                    <span>API Docs</span>
+                  </button>
+                )}
                 {project.githubUrl && (
                   <button
                     onClick={(e) => {
