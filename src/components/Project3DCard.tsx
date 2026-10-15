@@ -183,7 +183,23 @@ export function FeaturedProject3DCard({
                       boxShadow: "0 0 12px rgba(34,197,94,0.2)",
                     }}
                   >
-                    <span className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
+                    <span className="inline-flex items-center gap-[2px] h-2.5 mr-0.5" aria-hidden="true">
+                      <motion.span
+                        animate={{ height: ["3px", "9px", "3px"], opacity: [0.5, 1, 0.5] }}
+                        transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
+                        className="w-[1.5px] rounded-full bg-[#22c55e]"
+                      />
+                      <motion.span
+                        animate={{ height: ["8px", "2.5px", "8px"], opacity: [1, 0.4, 1] }}
+                        transition={{ repeat: Infinity, duration: 0.95, ease: "easeInOut", delay: 0.15 }}
+                        className="w-[1.5px] rounded-full bg-[#22c55e]"
+                      />
+                      <motion.span
+                        animate={{ height: ["4px", "10px", "4px"], opacity: [0.6, 1, 0.6] }}
+                        transition={{ repeat: Infinity, duration: 1.35, ease: "easeInOut", delay: 0.3 }}
+                        className="w-[1.5px] rounded-full bg-[#22c55e]"
+                      />
+                    </span>
                     Live Demo
                   </span>
                 )}
@@ -213,7 +229,13 @@ export function FeaturedProject3DCard({
                     className="hover:scale-105 transition-transform"
                     title="Interactive API Documentation"
                   >
-                    <span className="h-1.5 w-1.5 rounded-full bg-sky-400 animate-ping" />
+                    <span className="font-mono text-[0.62rem] text-[#38bdf8] font-bold tracking-tight inline-flex items-center mr-0.5" aria-hidden="true">
+                      <span>›</span>
+                      <motion.span
+                        animate={{ opacity: [1, 1, 0, 0] }}
+                        transition={{ repeat: Infinity, duration: 0.9, times: [0, 0.5, 0.51, 1] }}
+                      >_</motion.span>
+                    </span>
                     Swagger UI
                   </a>
                 )}
@@ -620,7 +642,23 @@ export function ProjectGrid3DCard({
                   boxShadow: "0 0 15px rgba(34,197,94,0.25)",
                 }}
               >
-                <span className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
+                <span className="inline-flex items-center gap-[2px] h-2.5 mr-0.5" aria-hidden="true">
+                  <motion.span
+                    animate={{ height: ["3px", "9px", "3px"], opacity: [0.5, 1, 0.5] }}
+                    transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
+                    className="w-[1.5px] rounded-full bg-[#22c55e]"
+                  />
+                  <motion.span
+                    animate={{ height: ["8px", "2.5px", "8px"], opacity: [1, 0.4, 1] }}
+                    transition={{ repeat: Infinity, duration: 0.95, ease: "easeInOut", delay: 0.15 }}
+                    className="w-[1.5px] rounded-full bg-[#22c55e]"
+                  />
+                  <motion.span
+                    animate={{ height: ["4px", "10px", "4px"], opacity: [0.6, 1, 0.6] }}
+                    transition={{ repeat: Infinity, duration: 1.35, ease: "easeInOut", delay: 0.3 }}
+                    className="w-[1.5px] rounded-full bg-[#22c55e]"
+                  />
+                </span>
                 Live Demo
               </span>
             </div>

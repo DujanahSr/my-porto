@@ -107,23 +107,13 @@ export function OceanDepthMeter() {
           >
             <span
               style={{
-                position: "absolute",
-                width: "100%",
-                height: "100%",
-                borderRadius: "50%",
-                backgroundColor: "#C9A96E",
-                opacity: 0.4,
-              }}
-              className="animate-ping"
-            />
-            <span
-              style={{
                 position: "relative",
-                width: "6px",
-                height: "6px",
-                borderRadius: "50%",
-                backgroundColor: "#C9A96E",
-                boxShadow: "0 0 8px #C9A96E",
+                width: "7px",
+                height: "7px",
+                border: "1px solid #C9A96E",
+                transform: "rotate(45deg)",
+                boxShadow: "0 0 10px rgba(201,169,110,0.6)",
+                background: "rgba(201,169,110,0.35)",
               }}
             />
           </div>
@@ -257,7 +247,7 @@ export function OceanDepthMeter() {
             gap: "0.5rem",
           }}
         >
-          <span className="h-1.5 w-1.5 rounded-full bg-[#C9A96E] animate-pulse" />
+          <span style={{ color: "#C9A96E", fontSize: "0.68rem", lineHeight: 1 }} aria-hidden="true">⌖</span>
           <span
             style={{
               fontFamily: "'Space Mono', monospace",

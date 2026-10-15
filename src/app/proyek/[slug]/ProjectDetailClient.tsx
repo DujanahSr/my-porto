@@ -146,7 +146,23 @@ export default function ProjectDetailClient({ slug }: { slug: string }) {
                     boxShadow: "0 4px 15px rgba(0,0,0,0.6)",
                   }}
                 >
-                  <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+                  <span className="inline-flex items-center gap-[2.5px] h-3 mr-0.5" aria-hidden="true">
+                    <motion.span
+                      animate={{ height: ["4px", "12px", "4px"], opacity: [0.5, 1, 0.5] }}
+                      transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
+                      className="w-[2px] rounded-full bg-[#22c55e]"
+                    />
+                    <motion.span
+                      animate={{ height: ["11px", "3px", "11px"], opacity: [1, 0.4, 1] }}
+                      transition={{ repeat: Infinity, duration: 0.95, ease: "easeInOut", delay: 0.15 }}
+                      className="w-[2px] rounded-full bg-[#22c55e]"
+                    />
+                    <motion.span
+                      animate={{ height: ["5px", "13px", "5px"], opacity: [0.6, 1, 0.6] }}
+                      transition={{ repeat: Infinity, duration: 1.35, ease: "easeInOut", delay: 0.3 }}
+                      className="w-[2px] rounded-full bg-[#22c55e]"
+                    />
+                  </span>
                   {t.projects.liveBadge || "Production Live"}
                 </span>
               </div>
@@ -249,7 +265,13 @@ export default function ProjectDetailClient({ slug }: { slug: string }) {
               >
                 <FileCode style={{ width: "16px", height: "16px" }} />
                 <span>Swagger API Docs (Live)</span>
-                <span className="h-2 w-2 rounded-full bg-sky-400 animate-ping ml-1" />
+                <span className="font-mono text-[0.75rem] text-[#38bdf8] font-bold tracking-tight inline-flex items-center ml-1" aria-hidden="true">
+                  <span>›</span>
+                  <motion.span
+                    animate={{ opacity: [1, 1, 0, 0] }}
+                    transition={{ repeat: Infinity, duration: 0.9, times: [0, 0.5, 0.51, 1] }}
+                  >_</motion.span>
+                </span>
               </a>
             )}
           </div>
@@ -328,10 +350,24 @@ export default function ProjectDetailClient({ slug }: { slug: string }) {
                     </p>
                   </div>
                 </div>
-                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                  <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
-                  <span style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", color: "#8A8078", letterSpacing: "0.1em" }}>
-                    ALL TESTS PASSING
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <span
+                    style={{
+                      fontFamily: "'Space Mono', monospace",
+                      fontSize: "0.65rem",
+                      letterSpacing: "0.12em",
+                      color: "#22c55e",
+                      background: "rgba(34,197,94,0.12)",
+                      border: "1px solid rgba(34,197,94,0.35)",
+                      padding: "0.3rem 0.75rem",
+                      borderRadius: "6px",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "0.45rem",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    <span>✓</span> 94/94 SUITE VERIFIED
                   </span>
                 </div>
               </div>

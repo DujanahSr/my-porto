@@ -35,7 +35,7 @@ const selectedWorks = [
     year: "2026",
     tags: ["Java 21", "Spring Boot 3", "Dokploy / Traefik", "RabbitMQ", "Redis", "React 19"],
     href: "/proyek/regarstore",
-    demoUrl: "https://regarstore-ecommerce-virid.vercel.app/",
+    demoUrl: "https://regarstore.145.79.8.137.sslip.io/",
     githubUrl: "https://github.com/DujanahSr/RegarStore-EcommerceV2",
     swaggerUrl: "https://regarstore.145.79.8.137.sslip.io/webjars/swagger-ui/index.html",
     image: "/regarstore.png",
@@ -218,7 +218,9 @@ export default function Home() {
         >
           {/* Depth Telemetry Origin Tag */}
           <div style={{ display: "flex", alignItems: "center", gap: "0.35rem" }}>
-            <span className="h-1.5 w-1.5 rounded-full bg-[#C9A96E] animate-ping" />
+            <span style={{ color: "#C9A96E", fontSize: "0.7rem", lineHeight: 1, display: "inline-flex" }}>
+              ⌖
+            </span>
             <span
               style={{
                 fontFamily: "'Space Mono', monospace",

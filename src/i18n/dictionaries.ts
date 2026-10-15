@@ -199,7 +199,7 @@ export const dictionaries = {
               url: "https://github.com/DujanahSr/RegarStore-EcommerceV2/tree/deploy"
             }
           ],
-          demoUrl: "https://regarstore-ecommerce-virid.vercel.app/",
+          demoUrl: "https://regarstore.145.79.8.137.sslip.io/",
           imageUrl: "/regarstore.png"
         },
         {
@@ -672,7 +672,7 @@ export const dictionaries = {
               url: "https://github.com/DujanahSr/RegarStore-EcommerceV2/tree/deploy"
             }
           ],
-          demoUrl: "https://regarstore-ecommerce-virid.vercel.app/",
+          demoUrl: "https://regarstore.145.79.8.137.sslip.io/",
           imageUrl: "/regarstore.png"
         },
         {
