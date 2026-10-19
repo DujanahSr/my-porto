@@ -13,6 +13,8 @@ import {
   Sparkles,
   Layers,
   X,
+  Bot,
+  ShieldCheck,
 } from "lucide-react";
 import { audioController, playClick, playHoverTick } from "@/lib/audio";
 
@@ -204,7 +206,29 @@ export function SystemControlDropdown() {
                 </div>
               </button>
 
-              {/* 4. Command Palette */}
+              {/* 4. AI Architectural Twin Co-Pilot */}
+              <button
+                onClick={() => triggerAction("open-copilot")}
+                onMouseEnter={() => playHoverTick()}
+                className="w-full flex items-start gap-3 p-2.5 rounded-xl text-left hover:bg-[#C9A96E]/10 border border-transparent hover:border-[#C9A96E]/30 transition-all group"
+              >
+                <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 group-hover:scale-110 transition-transform mt-0.5">
+                  <Bot className="w-4 h-4" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between">
+                    <span className="font-serif font-bold text-sm text-[#E8DCC8] group-hover:text-[#C9A96E] transition-colors">
+                      Dujanah AI Twin (Co-Pilot)
+                    </span>
+                    <span className="text-[9px] text-emerald-400 font-bold">AI TWIN</span>
+                  </div>
+                  <p className="font-sans text-[11px] text-[#8A8078] leading-tight mt-0.5 line-clamp-1">
+                    Tanya keputusan rekayasa, Virtual Threads &amp; arsitektur sistem.
+                  </p>
+                </div>
+              </button>
+
+              {/* 5. Command Palette */}
               <button
                 onClick={() => triggerAction("open-command-palette")}
                 onMouseEnter={() => playHoverTick()}

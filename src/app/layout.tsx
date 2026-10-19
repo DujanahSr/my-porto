@@ -18,6 +18,7 @@ import { CommandPalette } from "@/components/CommandPalette";
 import { MiniTerminalREPL } from "@/components/MiniTerminalREPL";
 import { SubmersibleDiveMode } from "@/components/submersible/SubmersibleDiveMode";
 import { XRayBlueprintMode } from "@/components/xray/XRayBlueprintMode";
+import { ArchitecturalCoPilot } from "@/components/copilot/ArchitecturalCoPilot";
 
 export default function RootLayout({
   children,
@@ -46,6 +47,7 @@ export default function RootLayout({
             <MiniTerminalREPL />
             <SubmersibleDiveMode />
             <XRayBlueprintMode />
+            <ArchitecturalCoPilot />
           </LanguageProvider>
         </SmoothScrollProvider>
       </body>

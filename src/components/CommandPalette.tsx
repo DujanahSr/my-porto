@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, ArrowRight, FileText, Code2, Globe, Volume2, ExternalLink, Compass, Terminal, Eye } from "lucide-react";
+import { Search, ArrowRight, FileText, Code2, Globe, Volume2, ExternalLink, Compass, Terminal, Eye, Bot } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useLanguage } from "@/context/LanguageContext";
 import { audioController } from "@/lib/audio";
@@ -139,6 +139,19 @@ export function CommandPalette() {
     },
 
     // Quick Actions & Interactive Modes
+    {
+      id: "act-copilot",
+      category: "Aksi Cepat",
+      title: "Tanya Dujanah AI Twin (Architectural Co-Pilot)",
+      subtitle: "Asisten virtual keputusan rekayasa, Virtual Threads & microservices",
+      icon: <Bot className="w-4 h-4 text-emerald-400" />,
+      action: () => {
+        setIsOpen(false);
+        if (typeof window !== "undefined") {
+          window.dispatchEvent(new CustomEvent("open-copilot"));
+        }
+      },
+    },
     {
       id: "act-submersible",
       category: "Aksi Cepat",

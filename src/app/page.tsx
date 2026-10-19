@@ -14,6 +14,8 @@ import { RegarStoreStressSimulator } from "@/components/simulator/RegarStoreStre
 import { RowLockingVisualizer } from "@/components/simulator/RowLockingVisualizer";
 import { MorphingArchitectureTimeline } from "@/components/simulator/MorphingArchitectureTimeline";
 import { ChaosEngineeringSandbox } from "@/components/simulator/ChaosEngineeringSandbox";
+import { FluidParticlesSimulation } from "@/components/3d/FluidParticlesSimulation";
+import { CryptographicDossier } from "@/components/dossier/CryptographicDossier";
 
 // ─── Scroll Reveal Component ──────────────────────────────────────────────────
 function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
@@ -117,6 +119,8 @@ export default function Home() {
           />
           {/* Interactive 3D WebGL Caustics & Volumetric God-Rays Shader */}
           <OceanCausticsShader />
+          {/* Real-Time Navier-Stokes Fluid Particles Simulation */}
+          <FluidParticlesSimulation />
           {/* Subtle multi-layer cinematic vignette & atmospheric gradients */}
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, #050505 0%, rgba(5,5,5,0.65) 45%, rgba(5,5,5,0.25) 100%)" }} />
           <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at 50% 30%, transparent 25%, rgba(5,5,5,0.65) 90%)" }} />
@@ -497,6 +501,13 @@ export default function Home() {
               </div>
             </Reveal>
           </div>
+        </div>
+
+        {/* Interactive 3D Cryptographic Dossier & Optical Loupe */}
+        <div id="dossier" className="max-w-[1400px] mx-auto mt-16 sm:mt-24">
+          <Reveal delay={0.25}>
+            <CryptographicDossier />
+          </Reveal>
         </div>
       </section>
 

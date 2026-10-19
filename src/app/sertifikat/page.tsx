@@ -4,6 +4,7 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import { X, ZoomIn, FileText, ExternalLink } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { useRef, useState } from "react";
+import { CryptographicDossier } from "@/components/dossier/CryptographicDossier";
 
 interface Certificate {
   title: string;
@@ -167,8 +168,15 @@ export default function Sertifikat() {
             </h1>
           </Reveal>
 
+          {/* Interactive 3D Cryptographic Dossier & Optical Loupe */}
+          <div className="mt-14 mb-16">
+            <Reveal delay={0.15}>
+              <CryptographicDossier />
+            </Reveal>
+          </div>
+
           {/* Certificates Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
             {certificates.map((cert, idx) => (
               <Reveal key={idx} delay={idx * 0.05}>
                 <motion.div
