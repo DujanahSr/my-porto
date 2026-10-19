@@ -8,6 +8,10 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useRef } from "react";
 import { FeaturedProject3DCard } from "@/components/Project3DCard";
 import { OceanDepthMeter } from "@/components/OceanDepthMeter";
+import { OceanCausticsShader } from "@/components/3d/OceanCausticsShader";
+import { Holographic3DBadge } from "@/components/3d/Holographic3DBadge";
+import { RegarStoreStressSimulator } from "@/components/simulator/RegarStoreStressSimulator";
+import { RowLockingVisualizer } from "@/components/simulator/RowLockingVisualizer";
 
 // ─── Scroll Reveal Component ──────────────────────────────────────────────────
 function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
@@ -109,6 +113,8 @@ export default function Home() {
             sizes="100vw"
             style={{ objectFit: "cover", objectPosition: "center" }}
           />
+          {/* Interactive 3D WebGL Caustics & Volumetric God-Rays Shader */}
+          <OceanCausticsShader />
           {/* Subtle multi-layer cinematic vignette & atmospheric gradients */}
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, #050505 0%, rgba(5,5,5,0.65) 45%, rgba(5,5,5,0.25) 100%)" }} />
           <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at 50% 30%, transparent 25%, rgba(5,5,5,0.65) 90%)" }} />
@@ -434,42 +440,53 @@ export default function Home() {
               </Reveal>
             ))}
           </div>
+
+          {/* Interactive Senior System Architecture Simulators */}
+          <div className="mt-16 sm:mt-24 space-y-12">
+            <Reveal delay={0.2}>
+              <RegarStoreStressSimulator />
+            </Reveal>
+
+            <Reveal delay={0.3}>
+              <RowLockingVisualizer />
+            </Reveal>
+          </div>
         </div>
       </section>
 
       {/* ── 5. ABOUT PREVIEW ─────────────────────────────────────────────────── */}
       <section className="py-24 md:py-32 px-6 md:px-10" style={{ background: "#080808", borderTop: "1px solid rgba(232,220,200,0.06)" }}>
-        <div className="max-w-350 mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
-          <Reveal>
-            <div style={{ position: "relative" }}>
-              <div style={{ position: "relative", width: "100%", aspectRatio: "4/5", overflow: "hidden", borderRadius: "8px", border: "1px solid rgba(201,169,110,0.2)" }}>
-                <Image src="/profile.jpeg" alt="Abu Dujanah Siregar" fill sizes="50vw" style={{ objectFit: "cover", objectPosition: "top" }} />
-                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(8,8,8,0.85) 0%, transparent 50%)" }} />
+        <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          {/* Interactive 3D Holographic Engineer ID Badge */}
+          <div className="lg:col-span-5 flex justify-center">
+            <Reveal>
+              <Holographic3DBadge />
+            </Reveal>
+          </div>
+
+          {/* About Biography & Credentials */}
+          <div className="lg:col-span-7">
+            <Reveal delay={0.2}>
+              <p style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", letterSpacing: "0.25em", color: "#C9A96E", textTransform: "uppercase", marginBottom: "1.2rem" }}>
+                {t.home.about.label}
+              </p>
+              <h2 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: "clamp(2.2rem, 5vw, 4rem)", fontWeight: 700, lineHeight: 1.1, color: "#E8DCC8", marginBottom: "1.5rem" }}>
+                {t.home.about.title1}<br />
+                <em style={{ color: "#C9A96E", fontStyle: "italic", fontWeight: 300 }}>{t.home.about.title2}</em>
+              </h2>
+              <p style={{ fontFamily: "'DM Sans', sans-serif", textAlign: "justify", fontSize: "1.05rem", lineHeight: 1.85, color: "#9E948A", marginBottom: "2.5rem" }}>
+                {t.about.journeyText[0]}
+              </p>
+              <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+                <Link href="/tentang" className="btn-cream magnetic-btn">
+                  {t.nav.about} <ArrowRight style={{ width: "14px", height: "14px" }} />
+                </Link>
+                <Link href="/sertifikat" className="btn-outline magnetic-btn">
+                  {t.nav.certificates}
+                </Link>
               </div>
-              <div style={{ position: "absolute", top: "-2px", left: "-2px", width: "30px", height: "30px", borderTop: "2px solid #C9A96E", borderLeft: "2px solid #C9A96E" }} />
-              <div style={{ position: "absolute", bottom: "-2px", right: "-2px", width: "30px", height: "30px", borderBottom: "2px solid #C9A96E", borderRight: "2px solid #C9A96E" }} />
-            </div>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <p style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", letterSpacing: "0.25em", color: "#C9A96E", textTransform: "uppercase", marginBottom: "1.2rem" }}>
-              {t.home.about.label}
-            </p>
-            <h2 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: "clamp(2.2rem, 5vw, 4rem)", fontWeight: 700, lineHeight: 1.1, color: "#E8DCC8", marginBottom: "1.5rem" }}>
-              {t.home.about.title1}<br />
-              <em style={{ color: "#C9A96E", fontStyle: "italic", fontWeight: 300 }}>{t.home.about.title2}</em>
-            </h2>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", textAlign: "justify", fontSize: "1.05rem", lineHeight: 1.85, color: "#9E948A", marginBottom: "2.5rem" }}>
-              {t.about.journeyText[0]}
-            </p>
-            <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-              <Link href="/tentang" className="btn-cream magnetic-btn">
-                {t.nav.about} <ArrowRight style={{ width: "14px", height: "14px" }} />
-              </Link>
-              <Link href="/sertifikat" className="btn-outline magnetic-btn">
-                {t.nav.certificates}
-              </Link>
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
         </div>
       </section>
 

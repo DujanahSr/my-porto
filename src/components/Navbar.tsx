@@ -3,9 +3,11 @@
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Globe, Menu, X, ChevronDown } from "lucide-react";
+import { Globe, Menu, X, ChevronDown, Command } from "lucide-react";
 import { useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
+import { ServerTelemetryWidget } from "@/components/ServerTelemetryWidget";
+import { SoundToggle } from "@/components/SoundToggle";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -140,8 +142,47 @@ export function Navbar() {
             })}
           </div>
 
-          {/* Right Action: Language Selector & Mobile Menu Button */}
-          <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+          {/* Right Action: Telemetry, Audio, Command Palette, Language Selector & Mobile Menu */}
+          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+            {/* Live Server Telemetry Widget (VPS Dokploy) */}
+            <div className="hidden lg:block">
+              <ServerTelemetryWidget />
+            </div>
+
+            {/* Global Command Palette Trigger Button */}
+            <button
+              onClick={() => {
+                if (typeof window !== "undefined") {
+                  window.dispatchEvent(new CustomEvent("open-command-palette"));
+                }
+              }}
+              aria-label="Open Command Palette (Ctrl+K)"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.4rem",
+                padding: "0.38rem 0.75rem",
+                border: "1px solid rgba(201,169,110,0.25)",
+                borderRadius: "9999px",
+                background: "rgba(10, 10, 10, 0.6)",
+                backdropFilter: "blur(10px)",
+                color: "#A89F91",
+                fontFamily: "'Space Mono', monospace",
+                fontSize: "0.65rem",
+                letterSpacing: "0.08em",
+                cursor: "pointer",
+                transition: "all 0.25s ease",
+              }}
+              className="hover:border-[#C9A96E] hover:text-[#E8DCC8]"
+            >
+              <Command style={{ width: "11px", height: "11px", color: "#C9A96E" }} />
+              <span className="hidden sm:inline">⌘K</span>
+            </button>
+
+            {/* Tactile Audio Sound Toggle */}
+            <SoundToggle />
+
+            {/* Language Selector Dropdown */}
             <div style={{ position: "relative" }}>
               <button
                 onClick={() => setLangOpen(!langOpen)}

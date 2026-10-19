@@ -7,6 +7,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { useRef } from "react";
+import { Microservices3DTopology } from "@/components/3d/Microservices3DTopology";
+import { RegarStoreStressSimulator } from "@/components/simulator/RegarStoreStressSimulator";
+import { RowLockingVisualizer } from "@/components/simulator/RowLockingVisualizer";
 
 export interface ProjectBranch {
   name: string;
@@ -371,6 +374,24 @@ export default function ProjectDetailClient({ slug }: { slug: string }) {
                   </span>
                 </div>
               </div>
+            </Reveal>
+          )}
+
+          {/* Interactive 3D Architecture Topology & Load Simulators */}
+          {slug === "regarstore" && (
+            <>
+              <Reveal delay={0.28}>
+                <Microservices3DTopology />
+              </Reveal>
+              <Reveal delay={0.29}>
+                <RegarStoreStressSimulator />
+              </Reveal>
+            </>
+          )}
+
+          {slug === "stokkita" && (
+            <Reveal delay={0.28}>
+              <RowLockingVisualizer />
             </Reveal>
           )}
 

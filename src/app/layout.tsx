@@ -13,6 +13,10 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
+import { CommandPalette } from "@/components/CommandPalette";
+import { MiniTerminalREPL } from "@/components/MiniTerminalREPL";
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -27,15 +31,19 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <CustomCursor />
-        <Preloader />
-        <LanguageProvider>
-          <Navbar />
-          <main className="min-h-screen">
-            {children}
-          </main>
-          <Footer />
-        </LanguageProvider>
+        <SmoothScrollProvider>
+          <CustomCursor />
+          <Preloader />
+          <LanguageProvider>
+            <Navbar />
+            <main className="min-h-screen">
+              {children}
+            </main>
+            <Footer />
+            <CommandPalette />
+            <MiniTerminalREPL />
+          </LanguageProvider>
+        </SmoothScrollProvider>
       </body>
     </html>
   );
