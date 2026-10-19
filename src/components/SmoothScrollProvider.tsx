@@ -28,9 +28,12 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
     }
     animationFrameId = requestAnimationFrame(raf);
 
+    (window as unknown as { __lenis?: Lenis }).__lenis = lenis;
+
     return () => {
       cancelAnimationFrame(animationFrameId);
       lenis.destroy();
+      delete (window as unknown as { __lenis?: Lenis }).__lenis;
     };
   }, []);
 

@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import { Globe, Menu, X, ChevronDown, Command } from "lucide-react";
 import { useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
-import { ServerTelemetryWidget } from "@/components/ServerTelemetryWidget";
 import { SoundToggle } from "@/components/SoundToggle";
 
 export function Navbar() {
@@ -142,13 +141,8 @@ export function Navbar() {
             })}
           </div>
 
-          {/* Right Action: Telemetry, Audio, Command Palette, Language Selector & Mobile Menu */}
+          {/* Right Action: Audio, Command Palette, Language Selector & Mobile Menu */}
           <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-            {/* Live Server Telemetry Widget (VPS Dokploy) */}
-            <div className="hidden lg:block">
-              <ServerTelemetryWidget />
-            </div>
-
             {/* Global Command Palette Trigger Button */}
             <button
               onClick={() => {

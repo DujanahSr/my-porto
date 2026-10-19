@@ -117,7 +117,7 @@ export function RegarStoreStressSimulator() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10 relative z-10">
         <div>
           <div className="flex items-center gap-2 mb-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#c9a96e] animate-pulse" />
+            <span className="font-mono text-[#c9a96e] text-xs">◈</span>
             <span className="font-mono text-xs uppercase tracking-widest text-[#c9a96e] font-bold">
               Show, Don&apos;t Just Tell // Interactive Architecture Demo
             </span>

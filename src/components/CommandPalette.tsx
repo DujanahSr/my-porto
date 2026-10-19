@@ -45,10 +45,20 @@ export function CommandPalette() {
   }, []);
 
   useEffect(() => {
+    const lenis = (typeof window !== "undefined" ? (window as unknown as { __lenis?: { stop: () => void; start: () => void } }).__lenis : null);
     if (isOpen) {
+      document.body.style.overflow = "hidden";
+      lenis?.stop();
       setTimeout(() => inputRef.current?.focus(), 50);
       setSelectedIndex(0);
+    } else {
+      document.body.style.overflow = "";
+      lenis?.start();
     }
+    return () => {
+      document.body.style.overflow = "";
+      lenis?.start();
+    };
   }, [isOpen]);
 
   const commands: CommandItem[] = [
@@ -132,7 +142,7 @@ export function CommandPalette() {
     {
       id: "act-swagger",
       category: "Aksi Cepat",
-      title: "Buka Live Swagger UI (Dokploy VPS)",
+      title: "Buka Live Swagger UI (RegarStore)",
       subtitle: "Dokumentasi Interaktif API RegarStore",
       icon: <ExternalLink className="w-4 h-4 text-sky-400" />,
       action: () => window.open("https://regarstore.145.79.8.137.sslip.io/webjars/swagger-ui/index.html", "_blank"),
@@ -194,7 +204,7 @@ export function CommandPalette() {
     <>
       <AnimatePresence>
         {isOpen && (
-          <div className="fixed inset-0 z-[100] flex items-start justify-center pt-[15vh] px-4">
+          <div className="fixed inset-0 z-[200] flex items-start justify-center pt-[15vh] px-4">
             {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}

@@ -183,23 +183,7 @@ export function FeaturedProject3DCard({
                       boxShadow: "0 0 12px rgba(34,197,94,0.2)",
                     }}
                   >
-                    <span className="inline-flex items-center gap-[2px] h-2.5 mr-0.5" aria-hidden="true">
-                      <motion.span
-                        animate={{ height: ["3px", "9px", "3px"], opacity: [0.5, 1, 0.5] }}
-                        transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
-                        className="w-[1.5px] rounded-full bg-[#22c55e]"
-                      />
-                      <motion.span
-                        animate={{ height: ["8px", "2.5px", "8px"], opacity: [1, 0.4, 1] }}
-                        transition={{ repeat: Infinity, duration: 0.95, ease: "easeInOut", delay: 0.15 }}
-                        className="w-[1.5px] rounded-full bg-[#22c55e]"
-                      />
-                      <motion.span
-                        animate={{ height: ["4px", "10px", "4px"], opacity: [0.6, 1, 0.6] }}
-                        transition={{ repeat: Infinity, duration: 1.35, ease: "easeInOut", delay: 0.3 }}
-                        className="w-[1.5px] rounded-full bg-[#22c55e]"
-                      />
-                    </span>
+                    <span className="font-mono text-[#22c55e] text-xs mr-0.5">◈</span>
                     Live Demo
                   </span>
                 )}
@@ -642,23 +626,7 @@ export function ProjectGrid3DCard({
                   boxShadow: "0 0 15px rgba(34,197,94,0.25)",
                 }}
               >
-                <span className="inline-flex items-center gap-[2px] h-2.5 mr-0.5" aria-hidden="true">
-                  <motion.span
-                    animate={{ height: ["3px", "9px", "3px"], opacity: [0.5, 1, 0.5] }}
-                    transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
-                    className="w-[1.5px] rounded-full bg-[#22c55e]"
-                  />
-                  <motion.span
-                    animate={{ height: ["8px", "2.5px", "8px"], opacity: [1, 0.4, 1] }}
-                    transition={{ repeat: Infinity, duration: 0.95, ease: "easeInOut", delay: 0.15 }}
-                    className="w-[1.5px] rounded-full bg-[#22c55e]"
-                  />
-                  <motion.span
-                    animate={{ height: ["4px", "10px", "4px"], opacity: [0.6, 1, 0.6] }}
-                    transition={{ repeat: Infinity, duration: 1.35, ease: "easeInOut", delay: 0.3 }}
-                    className="w-[1.5px] rounded-full bg-[#22c55e]"
-                  />
-                </span>
+                <span className="font-mono text-[#22c55e] text-xs mr-0.5">◈</span>
                 Live Demo
               </span>
             </div>

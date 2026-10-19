@@ -37,7 +37,7 @@ export function RowLockingVisualizer() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
         <div>
           <div className="flex items-center gap-2 mb-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#38bdf8] animate-pulse" />
+            <span className="font-mono text-[#38bdf8] text-xs">◈</span>
             <span className="font-mono text-xs uppercase tracking-widest text-[#38bdf8] font-bold">
               Database Concurrency Engine // StokKita POS Visualizer
             </span>

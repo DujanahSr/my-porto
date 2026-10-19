@@ -1,14 +1,13 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Image from "next/image";
-import { ShieldCheck, Cpu, RefreshCw, Sparkles, Terminal, Wifi } from "lucide-react";
+import { ShieldCheck, RefreshCw, Sparkles, Terminal, Code2 } from "lucide-react";
 import { playClick, playHoverTick } from "@/lib/audio";
 
 export function Holographic3DBadge() {
   const [isFlipped, setIsFlipped] = useState(false);
-  const [isDragging, setIsDragging] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
   // Mouse tilt physics motion values
@@ -16,13 +15,13 @@ export function Holographic3DBadge() {
   const y = useMotionValue(0);
 
   // Smooth spring physics for fluid 120fps motion inertia
-  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [18, -18]), {
+  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [16, -16]), {
     stiffness: 180,
-    damping: 18,
+    damping: 20,
   });
-  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-18, 18]), {
+  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-16, 16]), {
     stiffness: 180,
-    damping: 18,
+    damping: 20,
   });
 
   // Glare / Holo sheen highlight coordinates
@@ -90,7 +89,7 @@ export function Holographic3DBadge() {
             {/* Iridescent Hologram Foil Shader Overlay */}
             <motion.div
               style={{
-                background: `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(201,169,110,0.35) 0%, rgba(56,189,248,0.2) 30%, rgba(217,70,239,0.15) 55%, transparent 75%)`,
+                background: `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(201,169,110,0.3) 0%, rgba(56,189,248,0.15) 30%, rgba(217,70,239,0.1) 55%, transparent 75%)`,
                 mixBlendMode: "color-dodge",
               }}
               className="absolute inset-0 pointer-events-none z-10 opacity-70 transition-opacity duration-300"
@@ -98,30 +97,30 @@ export function Holographic3DBadge() {
 
             {/* Subtle Metallic Grid Texture */}
             <div
-              className="absolute inset-0 opacity-[0.07] pointer-events-none"
+              className="absolute inset-0 opacity-[0.05] pointer-events-none"
               style={{
                 backgroundImage: `radial-gradient(#c9a96e 1px, transparent 1px)`,
                 backgroundSize: "16px 16px",
               }}
             />
 
-            {/* Header: Pass Authority & Telemetry */}
+            {/* Header: Editorial Geometric Pass Seal (Bebas dari AI-slop pulsating green dot) */}
             <div className="relative z-10 flex items-center justify-between border-b border-[#c9a96e]/20 pb-3">
               <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#22c55e] animate-pulse shadow-[0_0_8px_#22c55e]" />
+                <span className="font-mono text-[#c9a96e] text-xs">◈</span>
                 <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-[#c9a96e] font-bold">
-                  SEC-OPS // ID-001
+                  DEV-PASS // ID-2026
                 </span>
               </div>
-              <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#c9a96e]/10 border border-[#c9a96e]/30">
+              <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-[#c9a96e]/10 border border-[#c9a96e]/30">
                 <ShieldCheck className="w-3 h-3 text-[#c9a96e]" />
                 <span className="font-mono text-[8px] tracking-wider text-[#e8dcc8] uppercase font-semibold">
-                  VERIFIED ARCHITECT
+                  AUTHENTICATED
                 </span>
               </div>
             </div>
 
-            {/* Middle: Golden Microchip & Holographic Photo */}
+            {/* Middle: Golden Microchip & Portrait */}
             <div className="relative z-10 my-auto flex flex-col items-center">
               {/* Gold Security IC Chip */}
               <div className="relative w-12 h-9 mb-4 rounded-md bg-gradient-to-tr from-[#947844] via-[#ffd580] to-[#b89552] p-0.5 shadow-md border border-[#c9a96e]">
@@ -148,32 +147,32 @@ export function Holographic3DBadge() {
                 <div className="absolute inset-0 bg-[#c9a96e]/10 mix-blend-color" />
               </div>
 
-              {/* Name & Title */}
+              {/* Verified Accurate Identity Information */}
               <div className="text-center mt-3">
                 <h3 className="font-serif text-[1.45rem] font-bold tracking-wide text-[#e8dcc8] leading-tight drop-shadow-sm">
                   Abu Dujanah Siregar
                 </h3>
                 <p className="font-mono text-[10px] tracking-[0.16em] uppercase text-[#c9a96e] mt-1 font-semibold">
-                  Systems Architect &amp; Software Engineer
+                  Backend &amp; Full-Stack Developer
                 </p>
                 <p className="font-sans text-[11px] text-[#a89f91] mt-0.5">
-                  Industrial Engineering Alumni · USU
+                  Universitas Nasional PASIM Bandung · Beasiswa PUB
                 </p>
               </div>
             </div>
 
-            {/* Bottom: Barcode & Clearance Tag */}
+            {/* Bottom: Barcode & Stack Specialization */}
             <div className="relative z-10 pt-3 border-t border-[#c9a96e]/20 flex items-center justify-between">
               <div>
                 <span className="font-mono text-[8px] uppercase tracking-widest text-[#7a7266] block">
-                  CLEARANCE
+                  FOCUS
                 </span>
-                <span className="font-mono text-[10px] tracking-wider text-[#22c55e] font-bold">
-                  LEVEL 01 · ROOT
+                <span className="font-mono text-[10px] tracking-wider text-[#c9a96e] font-bold">
+                  JAVA 21 · SPRING BOOT 3
                 </span>
               </div>
 
-              {/* Faux Barcode */}
+              {/* Barcode */}
               <div className="flex items-center gap-[2px] h-6 px-2 py-0.5 bg-black/60 rounded border border-white/5">
                 {[3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5, 8, 9, 7, 9].map((w, i) => (
                   <span
@@ -198,79 +197,78 @@ export function Holographic3DBadge() {
             {/* Hologram Foil */}
             <motion.div
               style={{
-                background: `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(201,169,110,0.3) 0%, rgba(34,197,94,0.15) 40%, transparent 70%)`,
+                background: `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(201,169,110,0.3) 0%, rgba(56,189,248,0.15) 40%, transparent 70%)`,
                 mixBlendMode: "color-dodge",
               }}
               className="absolute inset-0 pointer-events-none z-10 opacity-70"
             />
 
-            {/* Back Header: Cryptographic Node Signature */}
+            {/* Back Header */}
             <div className="relative z-10 flex items-center justify-between border-b border-[#c9a96e]/20 pb-3">
               <div className="flex items-center gap-1.5">
-                <Terminal className="w-3.5 h-3.5 text-[#c9a96e]" />
+                <Code2 className="w-3.5 h-3.5 text-[#c9a96e]" />
                 <span className="font-mono text-[9px] tracking-widest uppercase text-[#c9a96e] font-bold">
-                  CRYPTO PROOF // GPG
+                  DEVELOPER CREDENTIALS
                 </span>
               </div>
-              <span className="font-mono text-[8px] text-[#22c55e] font-semibold bg-[#22c55e]/10 px-2 py-0.5 rounded-full border border-[#22c55e]/30">
-                PROD NODE 145.79.8.137
+              <span className="font-mono text-[8px] text-[#c9a96e] font-semibold bg-[#c9a96e]/10 px-2 py-0.5 rounded border border-[#c9a96e]/30">
+                IPK 3.75 / 4.00
               </span>
             </div>
 
-            {/* Core Spec Sheet */}
+            {/* Core Verified Spec Sheet (Bebas dari data fiktif / VPS sementara) */}
             <div className="relative z-10 my-auto space-y-3 font-mono text-[10px]">
               <div className="p-2.5 rounded-lg bg-black/60 border border-white/5 space-y-1">
                 <span className="text-[#8a8078] text-[8px] uppercase tracking-wider block">
-                  RUNTIME ENVIRONMENT
+                  PENDIDIKAN &amp; AKADEMIK
                 </span>
                 <p className="text-[#e8dcc8] font-bold">
-                  Java 21 LTS · Spring Boot 3.3 · Virtual Threads
+                  S1 Teknik Industri (Akselerasi 3 Tahun)
                 </p>
                 <p className="text-[#c9a96e] text-[9px]">
-                  RabbitMQ AMQP 0-9-1 · Redis Caching · Docker
+                  Universitas Nasional PASIM Bandung · Beasiswa PUB
                 </p>
               </div>
 
               <div className="p-2.5 rounded-lg bg-black/60 border border-white/5 space-y-1">
                 <span className="text-[#8a8078] text-[8px] uppercase tracking-wider block">
-                  DEPLOYMENT CLUSTER
+                  PENGALAMAN INSTRUKTUR &amp; CODE RELIABILITY
                 </span>
-                <div className="flex items-center justify-between text-[#e8dcc8]">
-                  <span>Dokploy PaaS · Traefik Proxy</span>
-                  <span className="text-[#22c55e]">SSL/TLS ACTIVE</span>
+                <div className="text-[#e8dcc8]">
+                  Instruktur Fundamental Java Backend (14+ Sesi)
                 </div>
                 <p className="text-[#8a8078] text-[9px]">
-                  Host: Linode Singapore · Ping: ~42ms
+                  94 Automated Tests (JUnit 5 &amp; Mockito) · ACID Transactions
                 </p>
               </div>
 
               <div className="p-2.5 rounded-lg bg-black/60 border border-white/5">
                 <span className="text-[#8a8078] text-[8px] uppercase tracking-wider block mb-0.5">
-                  GPG FINGERPRINT HASH
+                  CORE TECH STACK
                 </span>
-                <p className="text-[#a89f91] text-[8.5px] font-mono break-all leading-tight">
-                  8F3B 90EA 4C12 7701 BC89 240D 5A6F 112E DUJANAH-KEY-2026
+                <p className="text-[#a89f91] text-[9px] leading-tight">
+                  Java 21 · Spring Boot 3 · React 19 · PostgreSQL · RabbitMQ · Redis · Docker
                 </p>
               </div>
             </div>
 
-            {/* Back Footer: Golden Foil Seal */}
+            {/* Back Footer: Golden Foil Signature Seal */}
             <div className="relative z-10 pt-3 border-t border-[#c9a96e]/20 flex items-center justify-between">
               <div className="flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5 text-[#c9a96e]" />
                 <span className="font-serif italic text-xs text-[#c9a96e]">
-                  Official Engineering Pass
+                  Abu Dujanah Siregar
                 </span>
               </div>
-              <span className="font-mono text-[8px] text-[#7a7266]">
-                AUTHENTICATED
+              <span className="font-mono text-[8px] text-[#7a7266] uppercase">
+                VERIFIED DEVELOPER
               </span>
             </div>
           </div>
         </motion.div>
       </motion.div>
 
-      {/* Interactive 3D Flip Button & Instructions */}
+      {/* Interactive 3D Flip Button */}
       <div className="mt-4 flex items-center gap-3">
         <button
           onClick={toggleFlip}

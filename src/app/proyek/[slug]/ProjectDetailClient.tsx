@@ -149,27 +149,11 @@ export default function ProjectDetailClient({ slug }: { slug: string }) {
                     boxShadow: "0 4px 15px rgba(0,0,0,0.6)",
                   }}
                 >
-                  <span className="inline-flex items-center gap-[2.5px] h-3 mr-0.5" aria-hidden="true">
-                    <motion.span
-                      animate={{ height: ["4px", "12px", "4px"], opacity: [0.5, 1, 0.5] }}
-                      transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
-                      className="w-[2px] rounded-full bg-[#22c55e]"
-                    />
-                    <motion.span
-                      animate={{ height: ["11px", "3px", "11px"], opacity: [1, 0.4, 1] }}
-                      transition={{ repeat: Infinity, duration: 0.95, ease: "easeInOut", delay: 0.15 }}
-                      className="w-[2px] rounded-full bg-[#22c55e]"
-                    />
-                    <motion.span
-                      animate={{ height: ["5px", "13px", "5px"], opacity: [0.6, 1, 0.6] }}
-                      transition={{ repeat: Infinity, duration: 1.35, ease: "easeInOut", delay: 0.3 }}
-                      className="w-[2px] rounded-full bg-[#22c55e]"
-                    />
+                    <span className="font-mono text-[#22c55e] text-xs mr-0.5">◈</span>
+                    {t.projects.liveBadge || "Production Live"}
                   </span>
-                  {t.projects.liveBadge || "Production Live"}
-                </span>
-              </div>
-            )}
+                </div>
+              )}
           </div>
         </div>
       </Reveal>

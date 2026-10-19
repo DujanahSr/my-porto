@@ -324,7 +324,7 @@ export function Microservices3DTopology() {
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4 pb-4 border-b border-white/5">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#22c55e] animate-pulse" />
+            <span className="font-mono text-[#c9a96e] text-xs">◈</span>
             <span className="font-mono text-xs uppercase tracking-widest text-[#c9a96e] font-bold">
               3D Live Topology // RegarStore Cluster
             </span>
