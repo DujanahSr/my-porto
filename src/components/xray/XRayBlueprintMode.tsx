@@ -38,7 +38,7 @@ const SERVICE_REGISTRY: MicroserviceNode[] = [
 
 export function XRayBlueprintMode() {
   const [isActive, setIsActive] = useState(false);
-  const [isMinimized, setIsMinimized] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(true);
   const [fps, setFps] = useState<number>(60);
   const [domCount, setDomCount] = useState<number>(0);
   const [heapMb, setHeapMb] = useState<number>(614);
@@ -136,34 +136,6 @@ export function XRayBlueprintMode() {
         </>
       )}
 
-      {/* ── Persistent Floating X-Ray Trigger (Bottom Left HUD) ── */}
-      <div className="fixed bottom-6 left-6 z-40 hidden sm:block">
-        <button
-          onClick={() => {
-            playClick(true);
-            setIsActive(!isActive);
-          }}
-          title="Toggle X-Ray / PCB Schematic Blueprint Mode (Shortcut: X)"
-          className={`group flex items-center gap-2 px-3 py-1.5 rounded-full border backdrop-blur-xl transition-all duration-300 font-mono text-[11px] shadow-2xl ${
-            isActive
-              ? "bg-[#C9A96E] text-black border-[#C9A96E] shadow-[0_0_20px_rgba(201,169,110,0.5)] font-bold"
-              : "bg-[#090807]/90 text-[#C9A96E] border-[#C9A96E]/30 hover:border-[#C9A96E] hover:text-[#E8DCC8]"
-          }`}
-        >
-          {isActive ? (
-            <EyeOff className="w-3.5 h-3.5" />
-          ) : (
-            <Eye className="w-3.5 h-3.5 animate-pulse" />
-          )}
-          <span className="tracking-wider uppercase">
-            {isActive ? "X-RAY ON" : "X-RAY BLUEPRINT"}
-          </span>
-          <kbd className="px-1.5 py-0.2 rounded bg-black/40 text-[9px] text-[#E8DCC8] border border-white/10">
-            X
-          </kbd>
-        </button>
-      </div>
-
       {/* ── Interactive X-Ray Telemetry HUD Window ── */}
       <AnimatePresence>
         {isActive && (
@@ -171,23 +143,28 @@ export function XRayBlueprintMode() {
             initial={{ opacity: 0, scale: 0.95, y: -20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -20 }}
-            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed top-24 right-4 sm:right-8 z-[210] w-[calc(100vw-2rem)] sm:w-[420px] rounded-2xl border border-[#C9A96E]/40 bg-[#06080A]/95 backdrop-blur-2xl shadow-[0_20px_60px_rgba(0,0,0,0.9),0_0_30px_rgba(201,169,110,0.15)] overflow-hidden font-mono text-xs select-none"
+            className={`fixed top-24 right-4 sm:right-8 z-[210] rounded-xl border border-[#C9A96E]/40 bg-[#06080A]/95 backdrop-blur-2xl shadow-[0_15px_40px_rgba(0,0,0,0.85)] overflow-hidden font-mono text-xs select-none transition-all duration-300 ${
+              isMinimized ? "w-auto" : "w-[calc(100vw-2rem)] sm:w-[420px]"
+            }`}
           >
             {/* Top Drag/Status Bar */}
-            <div className="flex items-center justify-between px-4 py-2.5 bg-[#0D1117] border-b border-[#C9A96E]/20 text-[#C9A96E]">
-              <div className="flex items-center gap-2">
+            <div className="flex items-center justify-between gap-3 px-3.5 py-2 bg-[#0D1117] border-b border-[#C9A96E]/20 text-[#C9A96E]">
+              <div
+                className="flex items-center gap-2 cursor-pointer"
+                onClick={() => setIsMinimized(!isMinimized)}
+                title={isMinimized ? "Klik untuk melihat telemetri lengkap" : "Kecilkan"}
+              >
                 <Radio className="w-3.5 h-3.5 animate-pulse text-[#22C55E]" />
-                <span className="font-bold tracking-widest text-[10px] uppercase">
-                  X-RAY SCHEMATIC // ARCH-TELEMETRY
+                <span className="font-bold tracking-wider text-[10px] uppercase">
+                  {isMinimized ? `X-RAY · ${fps} FPS · ${heapMb}MB` : "X-RAY SCHEMATIC // ARCH-TELEMETRY"}
                 </span>
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5">
                 <button
                   onClick={() => setIsMinimized(!isMinimized)}
                   className="p-1 text-[#8A8078] hover:text-[#E8DCC8] transition-colors"
-                  title={isMinimized ? "Maximize" : "Minimize"}
+                  title={isMinimized ? "Perbesar Telemetri" : "Kecilkan"}
                 >
                   {isMinimized ? (
                     <Maximize2 className="w-3.5 h-3.5" />
@@ -201,7 +178,7 @@ export function XRayBlueprintMode() {
                     setIsActive(false);
                   }}
                   className="p-1 text-[#8A8078] hover:text-red-400 transition-colors"
-                  title="Close X-Ray Mode (ESC)"
+                  title="Tutup Mode X-Ray (ESC / X)"
                 >
                   <X className="w-3.5 h-3.5" />
                 </button>

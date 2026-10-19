@@ -64,15 +64,24 @@ export function SubmersibleDiveMode() {
     return () => clearInterval(interval);
   }, [isActive]);
 
-  // Lock body scroll and listen for ESC key
+  // Lock body scroll and listen for ESC key & open-submersible event
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape" && isActive) {
         setIsActive(false);
       }
     };
+    const handleOpen = () => {
+      playClick(true);
+      setIsActive(true);
+    };
+
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    window.addEventListener("open-submersible", handleOpen);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("open-submersible", handleOpen);
+    };
   }, [isActive]);
 
   // Navigate to Waypoint with cinematic smooth descent
@@ -117,36 +126,16 @@ export function SubmersibleDiveMode() {
 
   return (
     <>
-      {/* ── Submersible Mode Launcher Button (Floating HUD) ── */}
-      <div className="fixed bottom-20 left-6 z-40 hidden sm:block">
-        <button
-          onClick={() => {
-            playClick(true);
-            setIsActive(true);
-          }}
-          title="Aktifkan Mode Ekspedisi Penyelaman Kapal Selam 3D"
-          className="group relative flex items-center gap-2.5 px-3.5 py-2 rounded-full border border-[#C9A96E]/30 bg-[#090807]/90 backdrop-blur-xl shadow-[0_8px_25px_rgba(0,0,0,0.7)] text-[#C9A96E] hover:border-[#C9A96E] transition-all duration-300"
-        >
-          <div className="p-1 rounded bg-[#C9A96E]/10 group-hover:scale-110 transition-transform">
-            <Compass className="w-3.5 h-3.5 animate-[spin_10s_linear_infinite]" />
-          </div>
-          <span className="font-mono text-xs font-bold tracking-wider uppercase text-[#E8DCC8]">
-            DIVE EXPEDITION
-          </span>
-          <span className="font-mono text-[9px] text-[#C9A96E] font-bold">◈ 3D</span>
-        </button>
-      </div>
-
-      {/* ── Fullscreen Cockpit HUD Expedition Overlay ── */}
+      {/* ── Fullscreen Cockpit HUD Expedition Overlay (Triggered from Navbar Labs Menu or ⌘K) ── */}
       <AnimatePresence>
         {isActive && (
           <div className="fixed inset-0 z-[220] pointer-events-none select-none flex flex-col justify-between p-4 sm:p-8">
-            {/* Cockpit Vignette & Periscope Scope Overlay */}
+            {/* Cockpit Vignette & Periscope Scope Overlay (Softened so page content remains visible) */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-radial from-transparent via-[#050505]/30 to-[#020202]/80 pointer-events-none"
+              className="absolute inset-0 bg-radial from-transparent via-[#050505]/15 to-[#020202]/60 pointer-events-none"
             />
 
             {/* Top Cockpit Header & Flight Telemetry */}

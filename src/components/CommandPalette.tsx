@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, ArrowRight, FileText, Code2, Globe, Volume2, ExternalLink, Compass } from "lucide-react";
+import { Search, ArrowRight, FileText, Code2, Globe, Volume2, ExternalLink, Compass, Terminal, Eye } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useLanguage } from "@/context/LanguageContext";
 import { audioController } from "@/lib/audio";
@@ -138,7 +138,46 @@ export function CommandPalette() {
       action: () => router.push("/proyek/simaka"),
     },
 
-    // Quick Actions
+    // Quick Actions & Interactive Modes
+    {
+      id: "act-submersible",
+      category: "Aksi Cepat",
+      title: "Mulai Ekspedisi Kapal Selam 3D",
+      subtitle: "Mode penjelajahan laut dalam, sonar sweep & telemetri hidrostatik",
+      icon: <Compass className="w-4 h-4 text-[#C9A96E]" />,
+      action: () => {
+        setIsOpen(false);
+        if (typeof window !== "undefined") {
+          window.dispatchEvent(new CustomEvent("open-submersible"));
+        }
+      },
+    },
+    {
+      id: "act-xray",
+      category: "Aksi Cepat",
+      title: "Toggle Mode X-Ray PCB Blueprint (Shortcut: X)",
+      subtitle: "Cetak biru sirkuit teknis, alokasi JVM ZGC Heap & port matriks",
+      icon: <Eye className="w-4 h-4 text-[#C9A96E]" />,
+      action: () => {
+        setIsOpen(false);
+        if (typeof window !== "undefined") {
+          window.dispatchEvent(new CustomEvent("toggle-xray-mode"));
+        }
+      },
+    },
+    {
+      id: "act-terminal",
+      category: "Aksi Cepat",
+      title: "Buka Interactive CLI Terminal",
+      subtitle: "Shell simulator arsitektur (cek skills, CV, repositori)",
+      icon: <Terminal className="w-4 h-4 text-sky-400" />,
+      action: () => {
+        setIsOpen(false);
+        if (typeof window !== "undefined") {
+          window.dispatchEvent(new CustomEvent("open-terminal"));
+        }
+      },
+    },
     {
       id: "act-swagger",
       category: "Aksi Cepat",

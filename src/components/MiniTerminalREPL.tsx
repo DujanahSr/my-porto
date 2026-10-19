@@ -38,12 +38,19 @@ export function MiniTerminalREPL() {
         setIsOpen(false);
       }
     };
+    const handleOpen = () => {
+      audioController.playMechanicalClick();
+      setIsOpen(true);
+    };
+
     window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("open-terminal", handleOpen);
 
     return () => {
       document.body.style.overflow = "";
       lenis?.start();
       window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("open-terminal", handleOpen);
     };
   }, [isOpen]);
 
@@ -169,27 +176,7 @@ export function MiniTerminalREPL() {
 
   return (
     <>
-      {/* ── Floating Launcher Button (Bottom Right) ── */}
-      <div className="fixed bottom-6 right-6 z-40">
-        <button
-          onClick={() => {
-            audioController.playMechanicalClick();
-            setIsOpen(!isOpen);
-          }}
-          title="Buka Terminal Arsitektur (Interactive REPL)"
-          className="group relative flex items-center gap-2.5 px-3.5 py-2 rounded-full border border-[#C9A96E]/30 bg-[#0A0A0A]/90 backdrop-blur-xl shadow-[0_8px_25px_rgba(0,0,0,0.7)] text-[#C9A96E] hover:border-[#C9A96E] transition-all duration-300"
-        >
-          <div className="p-1 rounded bg-[#C9A96E]/10">
-            <Terminal className="w-3.5 h-3.5" />
-          </div>
-          <span className="font-mono text-xs font-bold tracking-wider uppercase hidden sm:inline">
-            CLI Terminal
-          </span>
-          <span className="font-mono text-[0.65rem] text-[#38bdf8] font-bold">›_</span>
-        </button>
-      </div>
-
-      {/* ── Interactive Terminal Window & Backdrop ── */}
+      {/* ── Interactive Terminal Window & Backdrop (Triggered from Navbar Labs Menu or ⌘K) ── */}
       <AnimatePresence>
         {isOpen && (
           <>
