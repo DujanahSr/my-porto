@@ -212,7 +212,7 @@ export default function Home() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 1.6, duration: 1 }}
-          className="absolute bottom-10 right-24 sm:right-36 z-10 hidden sm:block"
+          className="absolute bottom-5 sm:bottom-7 right-20 sm:right-32 z-10 hidden sm:block"
         >
           <BioluminescentPearlShell />
         </motion.div>
