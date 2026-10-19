@@ -12,6 +12,7 @@ import { OceanCausticsShader } from "@/components/3d/OceanCausticsShader";
 import { Holographic3DBadge } from "@/components/3d/Holographic3DBadge";
 import { RegarStoreStressSimulator } from "@/components/simulator/RegarStoreStressSimulator";
 import { RowLockingVisualizer } from "@/components/simulator/RowLockingVisualizer";
+import { BioluminescentPearlShell } from "@/components/3d/BioluminescentPearlShell";
 
 // ─── Scroll Reveal Component ──────────────────────────────────────────────────
 function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
@@ -204,6 +205,16 @@ export default function Home() {
               </Link>
             </motion.div>
           </div>
+        </motion.div>
+
+        {/* Interactive Bioluminescent Golden Pearl Shell nestled on seabed rocks */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 1.6, duration: 1 }}
+          className="absolute bottom-10 right-24 sm:right-36 z-10 hidden sm:block"
+        >
+          <BioluminescentPearlShell />
         </motion.div>
 
         {/* Scroll & Depth Telemetry Origin Indicator */}
