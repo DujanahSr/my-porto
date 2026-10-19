@@ -10,6 +10,8 @@ import { useRef } from "react";
 import { Microservices3DTopology } from "@/components/3d/Microservices3DTopology";
 import { RegarStoreStressSimulator } from "@/components/simulator/RegarStoreStressSimulator";
 import { RowLockingVisualizer } from "@/components/simulator/RowLockingVisualizer";
+import { MorphingArchitectureTimeline } from "@/components/simulator/MorphingArchitectureTimeline";
+import { ChaosEngineeringSandbox } from "@/components/simulator/ChaosEngineeringSandbox";
 
 export interface ProjectBranch {
   name: string;
@@ -361,13 +363,19 @@ export default function ProjectDetailClient({ slug }: { slug: string }) {
             </Reveal>
           )}
 
-          {/* Interactive 3D Architecture Topology & Load Simulators */}
+          {/* Interactive 3D Architecture Topology, Timeline & Chaos Simulators */}
           {slug === "regarstore" && (
             <>
+              <Reveal delay={0.27}>
+                <MorphingArchitectureTimeline />
+              </Reveal>
               <Reveal delay={0.28}>
                 <Microservices3DTopology />
               </Reveal>
               <Reveal delay={0.29}>
+                <ChaosEngineeringSandbox />
+              </Reveal>
+              <Reveal delay={0.3}>
                 <RegarStoreStressSimulator />
               </Reveal>
             </>

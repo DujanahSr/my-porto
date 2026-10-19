@@ -12,6 +12,8 @@ import { OceanCausticsShader } from "@/components/3d/OceanCausticsShader";
 import { Holographic3DBadge } from "@/components/3d/Holographic3DBadge";
 import { RegarStoreStressSimulator } from "@/components/simulator/RegarStoreStressSimulator";
 import { RowLockingVisualizer } from "@/components/simulator/RowLockingVisualizer";
+import { MorphingArchitectureTimeline } from "@/components/simulator/MorphingArchitectureTimeline";
+import { ChaosEngineeringSandbox } from "@/components/simulator/ChaosEngineeringSandbox";
 
 // ─── Scroll Reveal Component ──────────────────────────────────────────────────
 function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
@@ -444,10 +446,18 @@ export default function Home() {
           {/* Interactive Senior System Architecture Simulators */}
           <div className="mt-16 sm:mt-24 space-y-12">
             <Reveal delay={0.2}>
-              <RegarStoreStressSimulator />
+              <MorphingArchitectureTimeline />
+            </Reveal>
+
+            <Reveal delay={0.25}>
+              <ChaosEngineeringSandbox />
             </Reveal>
 
             <Reveal delay={0.3}>
+              <RegarStoreStressSimulator />
+            </Reveal>
+
+            <Reveal delay={0.35}>
               <RowLockingVisualizer />
             </Reveal>
           </div>

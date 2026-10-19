@@ -143,6 +143,38 @@ export function Navbar() {
 
           {/* Right Action: Audio, Command Palette, Language Selector & Mobile Menu */}
           <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+            {/* X-Ray Blueprint Mode Trigger Button */}
+            <button
+              onClick={() => {
+                if (typeof window !== "undefined") {
+                  window.dispatchEvent(new CustomEvent("toggle-xray-mode"));
+                }
+              }}
+              aria-label="Toggle X-Ray Blueprint (X)"
+              title="Toggle X-Ray / PCB Schematic Blueprint Mode (Shortcut: X)"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.35rem",
+                padding: "0.38rem 0.75rem",
+                border: "1px solid rgba(201,169,110,0.25)",
+                borderRadius: "9999px",
+                background: "rgba(10, 10, 10, 0.6)",
+                backdropFilter: "blur(10px)",
+                color: "#A89F91",
+                fontFamily: "'Space Mono', monospace",
+                fontSize: "0.65rem",
+                letterSpacing: "0.08em",
+                cursor: "pointer",
+                transition: "all 0.25s ease",
+              }}
+              className="hover:border-[#C9A96E] hover:text-[#E8DCC8]"
+            >
+              <span style={{ color: "#C9A96E", fontSize: "0.6rem" }}>◈</span>
+              <span className="hidden sm:inline">X-RAY</span>
+              <span className="sm:hidden font-mono">X</span>
+            </button>
+
             {/* Global Command Palette Trigger Button */}
             <button
               onClick={() => {

@@ -8,14 +8,16 @@ import { Preloader } from "@/components/Preloader";
 import { CustomCursor } from "@/components/CustomCursor";
 
 export const metadata: Metadata = {
-  title: "Abu Dujanah Siregar | Software Engineer",
-  description: "Portfolio of Abu Dujanah Siregar — Full-Stack Software Engineer specializing in Java Spring Boot, React.js, REST API Architecture & System Design.",
+  title: "Abu Dujanah Siregar | Backend & Full-Stack Developer",
+  description: "Portfolio of Abu Dujanah Siregar — Backend & Full-Stack Developer specializing in Java Spring Boot, React.js, Microservices & Distributed Architecture.",
   robots: { index: true, follow: true },
 };
 
 import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
 import { CommandPalette } from "@/components/CommandPalette";
 import { MiniTerminalREPL } from "@/components/MiniTerminalREPL";
+import { SubmersibleDiveMode } from "@/components/submersible/SubmersibleDiveMode";
+import { XRayBlueprintMode } from "@/components/xray/XRayBlueprintMode";
 
 export default function RootLayout({
   children,
@@ -42,6 +44,8 @@ export default function RootLayout({
             <Footer />
             <CommandPalette />
             <MiniTerminalREPL />
+            <SubmersibleDiveMode />
+            <XRayBlueprintMode />
           </LanguageProvider>
         </SmoothScrollProvider>
       </body>

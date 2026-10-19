@@ -279,3 +279,65 @@ body {
 /* ── Horizontal rule with cream ── */
 hr.cream { border-color: rgba(232,220,200,0.1); }
 
+/* ── X-Ray / PCB Schematic Blueprint Mode ── */
+html.xray-active {
+  --color-background: #020608 !important;
+}
+
+html.xray-active body {
+  background-color: #020608 !important;
+  background-image: 
+    linear-gradient(rgba(201, 169, 110, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201, 169, 110, 0.08) 1px, transparent 1px),
+    linear-gradient(rgba(201, 169, 110, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201, 169, 110, 0.03) 1px, transparent 1px) !important;
+  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px !important;
+  background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px !important;
+}
+
+html.xray-active section {
+  border-color: rgba(201, 169, 110, 0.25) !important;
+  position: relative;
+}
+
+html.xray-active .glass-card,
+html.xray-active .glass {
+  background: rgba(3, 8, 12, 0.88) !important;
+  border: 1px dashed rgba(201, 169, 110, 0.35) !important;
+  box-shadow: 0 0 20px rgba(201, 169, 110, 0.08), inset 0 0 15px rgba(201, 169, 110, 0.03) !important;
+}
+
+/* X-Ray Laser Scanline Overlay */
+.xray-scanline {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 190;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(0, 0, 0, 0.35) 51%
+  );
+  background-size: 100% 4px;
+  opacity: 0.6;
+}
+
+.xray-beam {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #C9A96E, #F3E5AB, #C9A96E, transparent);
+  box-shadow: 0 0 15px #C9A96E, 0 0 30px #C9A96E;
+  pointer-events: none;
+  z-index: 195;
+  animation: xrayScan 4s linear infinite;
+}
+
+@keyframes xrayScan {
+  0% { top: -5%; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: 105%; opacity: 0; }
+}
+
