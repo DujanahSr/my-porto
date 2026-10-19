@@ -67,7 +67,7 @@ export function OceanDepthMeter() {
         transition={{ delay: 1.4, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
         style={{
           position: "fixed",
-          right: "1.75rem",
+          right: "1.2rem",
           top: "50%",
           transform: "translateY(-50%)",
           zIndex: 40,
@@ -77,18 +77,18 @@ export function OceanDepthMeter() {
       >
         <div
           style={{
-            background: "rgba(10, 10, 10, 0.72)",
+            background: "rgba(10, 10, 10, 0.75)",
             backdropFilter: "blur(16px)",
             WebkitBackdropFilter: "blur(16px)",
-            border: "1px solid rgba(232, 220, 200, 0.1)",
+            border: "1px solid rgba(232, 220, 200, 0.12)",
             boxShadow:
               "0 15px 35px rgba(0,0,0,0.6), inset 0 1px 0 rgba(201,169,110,0.2)",
             borderRadius: "9999px",
-            padding: "1.1rem 0.65rem",
+            padding: "0.9rem 0.5rem",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: "0.85rem",
+            gap: "0.75rem",
             transition: "border-color 0.3s ease",
           }}
           className="hover:border-[#C9A96E]/40"

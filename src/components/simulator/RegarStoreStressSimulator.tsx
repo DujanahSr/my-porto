@@ -24,6 +24,7 @@ export function RegarStoreStressSimulator() {
   const [deadlocks, setDeadlocks] = useState<number>(0);
   const [isDone, setIsDone] = useState<boolean>(false);
   const logContainerRef = useRef<HTMLDivElement>(null);
+  const formatNum = (num: number) => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
   const startSimulation = () => {
     if (isRunning) return;
@@ -175,7 +176,7 @@ export function RegarStoreStressSimulator() {
                   : "bg-white/5 text-[#a89f91] hover:bg-white/10"
               }`}
             >
-              {val.toLocaleString()} Req
+              {formatNum(val)} Req
             </button>
           ))}
         </div>
@@ -200,10 +201,10 @@ export function RegarStoreStressSimulator() {
             REQUESTS EXECUTED
           </span>
           <span className="font-serif text-2xl font-bold text-[#e8dcc8]">
-            {processedReqs.toLocaleString()}
+            {formatNum(processedReqs)}
           </span>
           <span className="font-mono text-[9px] text-[#c9a96e] block mt-0.5">
-            / {concurrency.toLocaleString()} Total
+            / {formatNum(concurrency)} Total
           </span>
         </div>
 
@@ -212,7 +213,7 @@ export function RegarStoreStressSimulator() {
             THROUGHPUT (TPS)
           </span>
           <span className="font-serif text-2xl font-bold text-[#22c55e]">
-            {tps > 0 ? `${tps.toLocaleString()} req/s` : "STANDBY"}
+            {tps > 0 ? `${formatNum(tps)} req/s` : "STANDBY"}
           </span>
           <span className="font-mono text-[9px] text-[#22c55e] block mt-0.5">
             Peak ~8,900 TPS

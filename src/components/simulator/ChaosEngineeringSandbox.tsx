@@ -80,6 +80,8 @@ export function ChaosEngineeringSandbox() {
     ]);
   };
 
+  const formatNum = (num: number) => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
   return (
     <div className="w-full rounded-2xl border border-[#C9A96E]/30 bg-gradient-to-b from-[#13110E] via-[#080808] to-[#0A0A0A] p-6 sm:p-8 shadow-2xl relative overflow-hidden">
       {/* Background Amber Alert Glow */}
@@ -119,7 +121,7 @@ export function ChaosEngineeringSandbox() {
         <div className="md:col-span-7 space-y-2 font-mono">
           <div className="flex justify-between text-xs">
             <span className="text-[#8A8078]">SIMULASI BEBAN TRAFFIC:</span>
-            <span className="text-[#C9A96E] font-bold">{rps.toLocaleString()} RPS (Req/Sec)</span>
+            <span className="text-[#C9A96E] font-bold">{formatNum(rps)} RPS (Req/Sec)</span>
           </div>
           <input
             type="range"
@@ -249,7 +251,7 @@ export function ChaosEngineeringSandbox() {
         <div className="p-3 rounded-lg bg-black/60 border border-white/5">
           <span className="text-[#8A8078] text-[9px] uppercase block">FALLBACK DEGRADATION</span>
           <span className="font-serif text-2xl font-bold text-[#C9A96E]">
-            {fallbackCount.toLocaleString()}
+            {formatNum(fallbackCount)}
           </span>
           <span className="text-[#C9A96E] text-[9px] block">Requests Handled Safely</span>
         </div>

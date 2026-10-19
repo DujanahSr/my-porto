@@ -481,8 +481,8 @@ export default function Home() {
       </section>
 
       {/* ── 5. ABOUT PREVIEW ─────────────────────────────────────────────────── */}
-      <section className="py-24 md:py-32 px-6 md:px-10" style={{ background: "#080808", borderTop: "1px solid rgba(232,220,200,0.06)" }}>
-        <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <section className="py-24 md:py-32 px-6 md:px-12 lg:px-16" style={{ background: "#080808", borderTop: "1px solid rgba(232,220,200,0.06)" }}>
+        <div className="max-w-[1360px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           {/* Interactive 3D Holographic Engineer ID Badge */}
           <div className="lg:col-span-5 flex justify-center">
             <Reveal>
@@ -491,7 +491,7 @@ export default function Home() {
           </div>
 
           {/* About Biography & Credentials */}
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-7 lg:pr-12 xl:pr-16">
             <Reveal delay={0.2}>
               <p style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", letterSpacing: "0.25em", color: "#C9A96E", textTransform: "uppercase", marginBottom: "1.2rem" }}>
                 {t.home.about.label}
@@ -500,7 +500,7 @@ export default function Home() {
                 {t.home.about.title1}<br />
                 <em style={{ color: "#C9A96E", fontStyle: "italic", fontWeight: 300 }}>{t.home.about.title2}</em>
               </h2>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", textAlign: "justify", fontSize: "1.05rem", lineHeight: 1.85, color: "#9E948A", marginBottom: "2.5rem" }}>
+              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1.05rem", lineHeight: 1.85, color: "#9E948A", marginBottom: "2.5rem", maxWidth: "560px" }}>
                 {t.about.journeyText[0]}
               </p>
               <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>

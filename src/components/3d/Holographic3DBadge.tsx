@@ -3,7 +3,7 @@
 import React, { useState, useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Image from "next/image";
-import { ShieldCheck, RefreshCw, Sparkles, Terminal, Code2, QrCode, Award } from "lucide-react";
+import { ShieldCheck, RefreshCw, Sparkles, Terminal, Code2, QrCode, Award, CheckCircle2 } from "lucide-react";
 import { playClick, playHoverTick } from "@/lib/audio";
 
 export function Holographic3DBadge() {
@@ -15,13 +15,13 @@ export function Holographic3DBadge() {
   const y = useMotionValue(0);
 
   // Smooth spring physics for fluid 120fps motion inertia
-  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [14, -14]), {
-    stiffness: 180,
-    damping: 22,
+  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [12, -12]), {
+    stiffness: 160,
+    damping: 20,
   });
-  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-14, 14]), {
-    stiffness: 180,
-    damping: 22,
+  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-12, 12]), {
+    stiffness: 160,
+    damping: 20,
   });
 
   // Glare / Holo sheen highlight coordinates
@@ -51,28 +51,20 @@ export function Holographic3DBadge() {
 
   return (
     <div className="relative flex flex-col items-center justify-center p-2 select-none perspective-[1200px]">
-      {/* ── Realistic Woven Lanyard Strap with Metal Clip ── */}
-      <div className="flex flex-col items-center mb-[-6px] z-20 pointer-events-none">
-        {/* Woven Fabric Strap extending upwards */}
-        <div className="w-6 h-8 bg-gradient-to-b from-transparent via-[#181614] to-[#121110] border-x border-[#C9A96E]/20 shadow-inner" />
-        {/* Precision Metal Lanyard Swivel Clip */}
-        <div className="w-8 h-3.5 rounded-t-sm bg-gradient-to-r from-[#8A7445] via-[#E5C98E] to-[#8A7445] shadow-[0_2px_8px_rgba(0,0,0,0.8)] border border-[#C9A96E]/50" />
-        {/* Oval clip hook entering the badge punch hole */}
-        <div className="w-3 h-3 rounded-full border-2 border-[#C9A96E] bg-black/80 -mt-1 shadow-sm" />
-      </div>
-
-      {/* ── 3D Tilting Card Container ── */}
+      {/* ── Floating 3D Architectural Titanium & Glass Specimen Pass ── */}
       <motion.div
         ref={cardRef}
         onPointerMove={handlePointerMove}
         onPointerLeave={handlePointerLeave}
         onHoverStart={() => playHoverTick()}
+        animate={{ y: [0, -6, 0] }}
+        transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
         style={{
           rotateX,
           rotateY,
           transformStyle: "preserve-3d",
         }}
-        className="relative w-full max-w-[340px] h-[520px] rounded-[24px] cursor-grab active:cursor-grabbing"
+        className="relative w-[330px] sm:w-[350px] h-[480px] rounded-[22px] cursor-grab active:cursor-grabbing shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_40px_rgba(201,169,110,0.14)]"
       >
         {/* Animated Inner Flipping Shell */}
         <motion.div
@@ -87,56 +79,84 @@ export function Holographic3DBadge() {
               backfaceVisibility: "hidden",
               WebkitBackfaceVisibility: "hidden",
             }}
-            className="absolute inset-0 rounded-[24px] overflow-hidden p-6 flex flex-col justify-between border border-[#C9A96E]/40 bg-gradient-to-br from-[#141210] via-[#080808] to-[#161411] shadow-[0_30px_70px_rgba(0,0,0,0.9),0_0_35px_rgba(201,169,110,0.12)]"
+            className="absolute inset-0 rounded-[22px] overflow-hidden p-6 flex flex-col justify-between border border-[#C9A96E]/40 bg-gradient-to-br from-[#151310] via-[#0A0A09] to-[#141210]"
           >
-            {/* Holographic Foil Iridescent Glare */}
+            {/* Holographic Iridescent Sheen Layer */}
             <motion.div
               style={{
-                background: `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(201,169,110,0.28) 0%, rgba(56,189,248,0.12) 35%, rgba(217,70,239,0.08) 60%, transparent 80%)`,
+                background: `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(201,169,110,0.3) 0%, rgba(56,189,248,0.12) 40%, rgba(217,70,239,0.06) 65%, transparent 80%)`,
                 mixBlendMode: "color-dodge",
               }}
-              className="absolute inset-0 pointer-events-none z-10 opacity-70 transition-opacity duration-300"
+              className="absolute inset-0 pointer-events-none z-10 opacity-75 transition-opacity duration-300"
             />
 
             {/* Subtle Engineering Grid Mesh */}
             <div
-              className="absolute inset-0 opacity-[0.04] pointer-events-none"
+              className="absolute inset-0 opacity-[0.035] pointer-events-none"
               style={{
                 backgroundImage: `radial-gradient(#C9A96E 1px, transparent 1px)`,
-                backgroundSize: "18px 18px",
+                backgroundSize: "16px 16px",
               }}
             />
 
-            {/* 1. Top Section: Punch Slot & Credential Header */}
-            <div className="relative z-10 space-y-2.5">
-              {/* Lanyard Slot Punch Cutout */}
-              <div className="flex justify-center">
-                <div className="w-12 h-2.5 rounded-full bg-black/90 border border-[#C9A96E]/30 shadow-[inset_0_2px_4px_rgba(0,0,0,0.9)]" />
+            {/* Top Header: Security ID & Verification */}
+            <div className="relative z-10 flex items-center justify-between border-b border-[#C9A96E]/20 pb-3">
+              <div className="flex items-center gap-2">
+                <span className="font-mono text-[#C9A96E] text-xs">◈</span>
+                <span className="font-mono text-[9.5px] tracking-[0.22em] uppercase text-[#C9A96E] font-bold">
+                  DEV-PASS // ID-2026
+                </span>
+              </div>
+              <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#22C55E]/10 border border-[#22C55E]/30">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#22C55E] animate-pulse" />
+                <span className="font-mono text-[8.5px] tracking-wider text-[#22C55E] uppercase font-bold">
+                  AUTHENTICATED
+                </span>
+              </div>
+            </div>
+
+            {/* Middle Section: Portrait & Identity Details */}
+            <div className="relative z-10 flex flex-col items-center text-center my-auto">
+              {/* Portrait Frame with Gold Bezel */}
+              <div className="relative w-32 h-32 rounded-2xl overflow-hidden border-2 border-[#C9A96E]/70 p-0.5 bg-black/60 shadow-[0_0_25px_rgba(201,169,110,0.25)]">
+                <div className="relative w-full h-full rounded-xl overflow-hidden">
+                  <Image
+                    src="/profile.jpeg"
+                    alt="Abu Dujanah Siregar"
+                    fill
+                    sizes="140px"
+                    priority
+                    className="object-cover object-top filter grayscale contrast-110 brightness-100"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A09]/80 via-transparent to-transparent" />
+                </div>
               </div>
 
-              <div className="flex items-center justify-between border-b border-[#C9A96E]/20 pb-2.5">
-                <div className="flex items-center gap-1.5">
-                  <span className="font-mono text-[#C9A96E] text-xs">◈</span>
-                  <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-[#C9A96E] font-bold">
-                    DEV-PASS // ID-2026
-                  </span>
-                </div>
-                <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#C9A96E]/10 border border-[#C9A96E]/30">
-                  <ShieldCheck className="w-3 h-3 text-[#22C55E]" />
-                  <span className="font-mono text-[8px] tracking-wider text-[#E8DCC8] uppercase font-semibold">
-                    AUTHENTICATED
-                  </span>
+              {/* Verified Identity Typography (No awkward wrapping) */}
+              <div className="mt-3.5 space-y-1">
+                <h3 className="font-serif text-[1.45rem] font-bold text-[#E8DCC8] tracking-normal leading-tight whitespace-nowrap">
+                  Abu Dujanah Siregar
+                </h3>
+                <p className="font-mono text-[10px] tracking-[0.16em] uppercase text-[#C9A96E] font-bold">
+                  Backend &amp; Full-Stack Developer
+                </p>
+                <div className="pt-0.5 space-y-0.5">
+                  <p className="font-sans text-xs text-[#E8DCC8] font-medium">
+                    Universitas Nasional PASIM Bandung
+                  </p>
+                  <p className="font-sans text-[11px] text-[#A89F91]">
+                    Akselerasi 3 Tahun · Beasiswa Penuh PUB
+                  </p>
                 </div>
               </div>
             </div>
 
-            {/* 2. Middle Section: Smart IC Chip & High-Definition Portrait */}
-            <div className="relative z-10 my-auto flex flex-col items-center text-center">
-              {/* Sub-row: Microchip + QR Code */}
-              <div className="w-full flex items-center justify-between px-2 mb-3">
-                {/* Gold Security IC Chip */}
-                <div className="relative w-11 h-8 rounded bg-gradient-to-tr from-[#8E733D] via-[#FFE194] to-[#B08D46] p-0.5 shadow-md border border-[#C9A96E]/60">
-                  <div className="w-full h-full grid grid-cols-3 grid-rows-2 gap-[1.5px] opacity-75">
+            {/* Bottom Section: Chip, Focus Stack & Barcode */}
+            <div className="relative z-10 pt-3 border-t border-[#C9A96E]/20 flex items-center justify-between">
+              {/* Gold IC Chip */}
+              <div className="flex items-center gap-2.5">
+                <div className="relative w-9 h-7 rounded bg-gradient-to-tr from-[#8E733D] via-[#FFE194] to-[#B08D46] p-0.5 shadow-sm border border-[#C9A96E]/70">
+                  <div className="w-full h-full grid grid-cols-3 grid-rows-2 gap-[1px] opacity-75">
                     <div className="border border-[#61491C] rounded-xs" />
                     <div className="border border-[#61491C] rounded-xs" />
                     <div className="border border-[#61491C] rounded-xs" />
@@ -145,58 +165,17 @@ export function Holographic3DBadge() {
                     <div className="border border-[#61491C] rounded-xs" />
                   </div>
                 </div>
-
-                {/* Encrypted Micro QR */}
-                <div className="w-8 h-8 rounded-lg bg-black/60 border border-[#C9A96E]/30 flex items-center justify-center text-[#C9A96E]/80">
-                  <QrCode className="w-4 h-4" />
+                <div>
+                  <span className="font-mono text-[7.5px] uppercase tracking-widest text-[#7A7266] block">
+                    SPECIALIZATION
+                  </span>
+                  <span className="font-mono text-[9.5px] tracking-wider text-[#C9A96E] font-bold">
+                    JAVA 21 · SPRING BOOT 3
+                  </span>
                 </div>
               </div>
 
-              {/* Portrait Frame */}
-              <div className="relative w-28 h-28 rounded-2xl overflow-hidden border-2 border-[#C9A96E] p-0.5 bg-black/60 shadow-[0_0_25px_rgba(201,169,110,0.3)]">
-                <div className="relative w-full h-full rounded-xl overflow-hidden">
-                  <Image
-                    src="/profile.jpeg"
-                    alt="Abu Dujanah Siregar"
-                    fill
-                    sizes="120px"
-                    className="object-cover object-top filter grayscale contrast-115 brightness-100"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/70 via-transparent to-transparent" />
-                </div>
-              </div>
-
-              {/* Name & Official Titles */}
-              <div className="mt-3.5 space-y-1">
-                <h3 className="font-serif text-2xl font-bold tracking-wide text-[#E8DCC8] leading-tight drop-shadow-sm">
-                  Abu Dujanah Siregar
-                </h3>
-                <p className="font-mono text-[10.5px] tracking-[0.16em] uppercase text-[#C9A96E] font-bold">
-                  Backend &amp; Full-Stack Developer
-                </p>
-                <div className="pt-0.5">
-                  <p className="font-sans text-xs text-[#E8DCC8] font-medium">
-                    Universitas Nasional PASIM Bandung
-                  </p>
-                  <p className="font-sans text-[11px] text-[#A89F91]">
-                    Akselerasi 3 Tahun · Penerima Beasiswa Penuh PUB
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* 3. Bottom Section: Stack Specialization & Authentic Barcode */}
-            <div className="relative z-10 pt-3 border-t border-[#C9A96E]/20 flex items-center justify-between">
-              <div>
-                <span className="font-mono text-[8px] uppercase tracking-widest text-[#7A7266] block">
-                  FOCUS
-                </span>
-                <span className="font-mono text-[10px] tracking-wider text-[#C9A96E] font-bold">
-                  JAVA 21 · SPRING BOOT 3
-                </span>
-              </div>
-
-              {/* Barcode */}
+              {/* Barcode & Signature */}
               <div className="flex flex-col items-end">
                 <div className="flex items-center gap-[2px] h-5 px-1.5 py-0.5 bg-black/60 rounded border border-white/5">
                   {[3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5, 8, 9, 7, 9].map((w, i) => (
@@ -207,8 +186,8 @@ export function Holographic3DBadge() {
                     />
                   ))}
                 </div>
-                <span className="font-mono text-[7px] text-[#6B6560] tracking-widest mt-0.5">
-                  PASIM-PUB-2023
+                <span className="font-mono text-[7px] text-[#7A7266] tracking-widest mt-0.5">
+                  PUB-2023-PASS
                 </span>
               </div>
             </div>
@@ -221,34 +200,28 @@ export function Holographic3DBadge() {
               backfaceVisibility: "hidden",
               WebkitBackfaceVisibility: "hidden",
             }}
-            className="absolute inset-0 rounded-[24px] overflow-hidden p-6 flex flex-col justify-between border border-[#C9A96E]/40 bg-gradient-to-br from-[#161411] via-[#080808] to-[#141210] shadow-[0_30px_70px_rgba(0,0,0,0.9),0_0_35px_rgba(201,169,110,0.12)]"
+            className="absolute inset-0 rounded-[22px] overflow-hidden p-6 flex flex-col justify-between border border-[#C9A96E]/40 bg-gradient-to-br from-[#161411] via-[#090807] to-[#13110E]"
           >
             {/* Hologram Foil */}
             <motion.div
               style={{
-                background: `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(201,169,110,0.28) 0%, rgba(56,189,248,0.12) 35%, transparent 70%)`,
+                background: `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(201,169,110,0.3) 0%, rgba(56,189,248,0.12) 35%, transparent 70%)`,
                 mixBlendMode: "color-dodge",
               }}
               className="absolute inset-0 pointer-events-none z-10 opacity-70"
             />
 
             {/* Back Header */}
-            <div className="relative z-10 space-y-2">
-              <div className="flex justify-center">
-                <div className="w-12 h-2.5 rounded-full bg-black/90 border border-[#C9A96E]/30 shadow-[inset_0_2px_4px_rgba(0,0,0,0.9)]" />
-              </div>
-
-              <div className="flex items-center justify-between border-b border-[#C9A96E]/20 pb-2.5">
-                <div className="flex items-center gap-1.5">
-                  <Code2 className="w-3.5 h-3.5 text-[#C9A96E]" />
-                  <span className="font-mono text-[9px] tracking-widest uppercase text-[#C9A96E] font-bold">
-                    CREDENTIALS SPEC SHEET
-                  </span>
-                </div>
-                <span className="font-mono text-[8px] text-[#C9A96E] font-bold bg-[#C9A96E]/15 px-2 py-0.5 rounded-full border border-[#C9A96E]/30">
-                  IPK 3.75 / 4.00
+            <div className="relative z-10 flex items-center justify-between border-b border-[#C9A96E]/20 pb-3">
+              <div className="flex items-center gap-1.5">
+                <Code2 className="w-3.5 h-3.5 text-[#C9A96E]" />
+                <span className="font-mono text-[9px] tracking-widest uppercase text-[#C9A96E] font-bold">
+                  VERIFIED CREDENTIALS
                 </span>
               </div>
+              <span className="font-mono text-[8.5px] text-[#C9A96E] font-bold bg-[#C9A96E]/15 px-2.5 py-0.5 rounded-full border border-[#C9A96E]/30">
+                IPK 3.75 / 4.00
+              </span>
             </div>
 
             {/* Spec Sheet Rows */}
@@ -282,7 +255,7 @@ export function Holographic3DBadge() {
                   CORE TECH ECOSYSTEM
                 </span>
                 <p className="text-[#A89F91] text-[9.5px] leading-relaxed">
-                  Java 21 (Virtual Threads) · Spring Boot 3 · PostgreSQL · RabbitMQ · Redis · Docker
+                  Java 21 (Virtual Threads) · Spring Boot 3 · PostgreSQL · RabbitMQ · Redis · Docker · Dokploy
                 </p>
               </div>
             </div>
@@ -296,7 +269,7 @@ export function Holographic3DBadge() {
                 </span>
               </div>
               <span className="font-mono text-[8px] text-[#7A7266] uppercase tracking-wider">
-                VERIFIED CREDENTIALS
+                VALIDATED IDENTITY
               </span>
             </div>
           </div>
