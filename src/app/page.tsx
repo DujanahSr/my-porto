@@ -205,6 +205,18 @@ export default function Home() {
               <Link href="/kontak" className="btn-outline magnetic-btn">
                 {t.hero.contact}
               </Link>
+              <button
+                onClick={() => {
+                  if (typeof window !== "undefined") {
+                    window.dispatchEvent(new CustomEvent("open-copilot"));
+                  }
+                }}
+                className="btn-outline magnetic-btn inline-flex items-center gap-2"
+                style={{ borderColor: "rgba(34,197,94,0.4)", background: "rgba(34,197,94,0.06)", color: "#E8DCC8" }}
+              >
+                <span className="text-[#22C55E] text-xs">◈</span>
+                <span>Tanya AI Twin</span>
+              </button>
               <Link href="/tentang" className="btn-outline magnetic-btn hidden sm:inline-flex" style={{ borderColor: "rgba(201,169,110,0.25)" }}>
                 {t.nav.about}
               </Link>
@@ -498,6 +510,18 @@ export default function Home() {
                 <Link href="/sertifikat" className="btn-outline magnetic-btn">
                   {t.nav.certificates}
                 </Link>
+                <button
+                  onClick={() => {
+                    if (typeof window !== "undefined") {
+                      window.dispatchEvent(new CustomEvent("open-copilot"));
+                    }
+                  }}
+                  className="btn-outline magnetic-btn inline-flex items-center gap-2"
+                  style={{ borderColor: "rgba(34,197,94,0.4)", background: "rgba(34,197,94,0.06)", color: "#E8DCC8" }}
+                >
+                  <span className="text-[#22C55E] text-xs">◈</span>
+                  <span>Tanya AI Twin</span>
+                </button>
               </div>
             </Reveal>
           </div>

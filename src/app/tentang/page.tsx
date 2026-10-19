@@ -159,6 +159,21 @@ export default function Tentang() {
               </span>
             ))}
           </div>
+
+          {/* Quick CTA to open Dujanah AI Twin */}
+          <div style={{ marginTop: "2.25rem", display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+            <button
+              onClick={() => {
+                if (typeof window !== "undefined") {
+                  window.dispatchEvent(new CustomEvent("open-copilot"));
+                }
+              }}
+              className="btn-cream magnetic-btn inline-flex items-center gap-2"
+            >
+              <span className="text-[#050505] text-xs font-bold">◈</span>
+              <span>Tanya Dujanah AI Twin (Co-Pilot)</span>
+            </button>
+          </div>
         </Reveal>
       </section>
 

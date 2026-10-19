@@ -24,7 +24,7 @@ export function CommandPalette() {
   const { lang, setLang } = useLanguage();
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Global shortcut: Ctrl+K / Cmd+K
+  // Global shortcut: Ctrl+K / Cmd+K & Custom Event for Dropdown
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
@@ -40,8 +40,18 @@ export function CommandPalette() {
         setIsOpen(false);
       }
     };
+
+    const handleOpenEvent = () => {
+      audioController.playMechanicalClick();
+      setIsOpen(true);
+    };
+
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    window.addEventListener("open-command-palette", handleOpenEvent);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("open-command-palette", handleOpenEvent);
+    };
   }, []);
 
   useEffect(() => {
