@@ -226,8 +226,8 @@ export function OceanDepthMeter() {
         transition={{ delay: 1.5, duration: 0.8 }}
         style={{
           position: "fixed",
-          bottom: "1rem",
-          right: "1rem",
+          bottom: "1.2rem",
+          left: "1rem",
           zIndex: 40,
           pointerEvents: "none",
         }}

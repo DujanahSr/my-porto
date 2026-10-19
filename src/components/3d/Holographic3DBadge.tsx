@@ -69,7 +69,7 @@ export function Holographic3DBadge() {
           rotateY,
           transformStyle: "preserve-3d",
         }}
-        className="relative w-[320px] sm:w-[350px] h-[510px] rounded-[22px] cursor-grab active:cursor-grabbing"
+        className="relative w-full max-w-[340px] h-[490px] sm:h-[510px] rounded-[22px] cursor-grab active:cursor-grabbing"
       >
         {/* Animated Inner Flipping Shell */}
         <motion.div

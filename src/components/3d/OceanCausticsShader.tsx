@@ -86,59 +86,74 @@ export function OceanCausticsShader({ className = "" }: OceanCausticsShaderProps
         return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
       }
 
-      // Volumetric light shafts emanating from top-right towards seabed
-      float godRayShafts(vec2 uv, vec2 sunPos, float t) {
+      // Directional volumetric light shafts strictly aligned with ocean-hero.jpg sunlight angle
+      // Angle: From top-right (sunburst) diagonally cascading downward-left
+      float directionalGodRays(vec2 uv, vec2 sunPos, vec2 mouseOffset, float t) {
+        // Natural diagonal sunlight vector (~60 degrees down-left)
+        vec2 beamDir = normalize(vec2(-0.55 + mouseOffset.x * 0.06, -0.85 + mouseOffset.y * 0.04));
+        vec2 perpDir = vec2(-beamDir.y, beamDir.x);
+
         vec2 delta = uv - sunPos;
-        float angle = atan(delta.y, delta.x);
-        float dist = length(delta);
+        float u_parallel = dot(delta, beamDir);
+        float u_perp = dot(delta, perpDir);
 
-        // Multiple overlapping soft ray frequencies
-        float ray1 = sin(angle * 14.0 + t * 0.35 + smoothNoise(uv * 3.0 + t * 0.1) * 2.0) * 0.5 + 0.5;
-        float ray2 = cos(angle * 22.0 - t * 0.25) * 0.5 + 0.5;
-        float ray3 = sin(angle * 32.0 + t * 0.5) * 0.5 + 0.5;
-        
-        float combined = pow(ray1 * 0.6 + ray2 * 0.3 + ray3 * 0.1, 3.2);
+        // Strict cone mask: Only projects forward along the sunbeam vector
+        if (u_parallel <= 0.0) return 0.0;
 
-        // Falloff along the beam path towards bottom-left
-        float beamFalloff = smoothstep(1.9, 0.1, dist);
-        return combined * beamFalloff;
+        // Beam width spreads naturally with depth
+        float coneWidth = 0.22 + u_parallel * 0.55;
+        float lateralMask = smoothstep(coneWidth, 0.02, abs(u_perp));
+
+        // Soft longitudinal falloff along the water column
+        float forwardMask = smoothstep(0.0, 0.18, u_parallel) * smoothstep(1.85, 0.35, u_parallel);
+
+        // Natural frequency harmonics across the sunbeam columns
+        float turbulence = smoothNoise(vec2(u_perp * 14.0 + t * 0.15, u_parallel * 3.0 - t * 0.2));
+        float shaft1 = sin(u_perp * 26.0 + t * 0.3 + turbulence * 2.2) * 0.5 + 0.5;
+        float shaft2 = cos(u_perp * 42.0 - t * 0.25) * 0.5 + 0.5;
+        float shaft3 = sin(u_perp * 65.0 + t * 0.4) * 0.5 + 0.5;
+
+        float combinedShafts = pow(shaft1 * 0.6 + shaft2 * 0.3 + shaft3 * 0.1, 3.2);
+
+        return combinedShafts * lateralMask * forwardMask;
       }
 
-      // Soft, warm underwater luminescence (strictly low-contrast shimmer, no harsh white web)
+      // Soft underwater ambient breathing (gentle oceanic swell)
       float ambientWaterBreath(vec2 uv, float t) {
-        float n = smoothNoise(uv * 2.5 + vec2(t * 0.08, -t * 0.05));
-        return sin(n * 6.28 + t * 0.5) * 0.5 + 0.5;
+        float n = smoothNoise(uv * 2.5 + vec2(t * 0.06, -t * 0.04));
+        return sin(n * 6.28 + t * 0.4) * 0.5 + 0.5;
       }
 
       void main() {
         vec2 uv = gl_FragCoord.xy / u_resolution.xy;
         float aspect = u_resolution.x / u_resolution.y;
 
-        // Dynamic sun source in top-right matching ocean-hero.jpg, shifting subtly with mouse
-        vec2 sunOrigin = vec2(0.72 + (u_mouse.x - 0.5) * 0.12, 1.08 + (u_mouse.y - 0.5) * 0.08);
+        // Precise sunburst anchor at top-right (matching the bright spot in ocean-hero.jpg)
+        vec2 mouseOffset = (u_mouse - vec2(0.5, 0.5));
+        vec2 sunOrigin = vec2(0.82 + mouseOffset.x * 0.08, 1.12 + mouseOffset.y * 0.05);
 
-        // Calculate volumetric light shafts
-        float rays = godRayShafts(uv, sunOrigin, u_time);
+        // Calculate strictly directional downward sunbeams
+        float rays = directionalGodRays(uv, sunOrigin, mouseOffset, u_time);
         float waterBreath = ambientWaterBreath(uv, u_time);
 
-        // Depth dimming (scroll-linked)
+        // Depth dimming on scroll
         float depth = clamp(u_scroll_depth, 0.0, 1.0);
 
-        // Golden amber sunlight colors matching the brand & photo lighting
-        vec3 sunColor = vec3(0.85, 0.72, 0.48);       // Warm #C9A96E gold tone
-        vec3 deepBlueGlow = vec3(0.12, 0.35, 0.48);    // Soft oceanic ambient cyan
+        // Warm golden sunlight tones matching brand (#C9A96E / #E8DCC8)
+        vec3 sunColor = vec3(0.88, 0.74, 0.50);
+        vec3 ambientGlow = vec3(0.10, 0.30, 0.42);
 
-        // Combine subtle illumination
-        vec3 finalColor = sunColor * rays * 0.65;
-        finalColor += deepBlueGlow * waterBreath * 0.15;
+        // Composite illumination (focused solely on enhancing the photo's real rays)
+        vec3 finalColor = sunColor * rays * 0.72;
+        finalColor += ambientGlow * waterBreath * 0.12;
 
-        // Vignette to softly keep the edges dark and moody
+        // Edge vignette keeping the bottom and left moody
         float vignette = uv.x * uv.y * (1.0 - uv.x) * (1.0 - uv.y);
         vignette = clamp(pow(16.0 * vignette, 0.25), 0.0, 1.0);
-        finalColor *= vignette * (1.0 - depth * 0.7);
+        finalColor *= vignette * (1.0 - depth * 0.75);
 
-        // Low, luxurious alpha: acts as a living atmospheric shimmer without hiding the photo
-        float alpha = clamp((rays * 0.35 + waterBreath * 0.08) * (1.0 - depth * 0.6), 0.0, 0.45);
+        // Elegant translucent alpha
+        float alpha = clamp((rays * 0.40 + waterBreath * 0.06) * (1.0 - depth * 0.7), 0.0, 0.5);
 
         gl_FragColor = vec4(finalColor, alpha);
       }
