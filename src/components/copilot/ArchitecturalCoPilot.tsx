@@ -193,7 +193,7 @@ const KNOWLEDGE_BASE: QAPair[] = [
 3. **Dead Letter Queue (DLQ)**: Jika webhook payment gateway pihak ketiga mengalami timeout atau server down, message otomatis dialihkan ke antrean DLQ untuk retry bertahap dengan *exponential backoff* tanpa ada data pesanan yang hilang.`,
     actionText: "Jalankan Chaos Engineering Sandbox",
     actionType: "scroll",
-    actionPayload: "chaos",
+    actionPayload: "architecture-playground",
     codeSnippetId: "rabbitPublisher",
   },
   {

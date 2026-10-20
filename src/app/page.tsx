@@ -10,14 +10,9 @@ import { FeaturedProject3DCard } from "@/components/Project3DCard";
 import { OceanDepthMeter } from "@/components/OceanDepthMeter";
 import { OceanCausticsShader } from "@/components/3d/OceanCausticsShader";
 import { Holographic3DBadge } from "@/components/3d/Holographic3DBadge";
-import { RegarStoreStressSimulator } from "@/components/simulator/RegarStoreStressSimulator";
-import { RowLockingVisualizer } from "@/components/simulator/RowLockingVisualizer";
-import { MorphingArchitectureTimeline } from "@/components/simulator/MorphingArchitectureTimeline";
-import { ChaosEngineeringSandbox } from "@/components/simulator/ChaosEngineeringSandbox";
+import { ArchitectureMasterPlayground } from "@/components/simulator/ArchitectureMasterPlayground";
 import { FluidParticlesSimulation } from "@/components/3d/FluidParticlesSimulation";
 import { CryptographicDossier } from "@/components/dossier/CryptographicDossier";
-import { BTreeIndexVisualizer3D } from "@/components/3d/BTreeIndexVisualizer3D";
-import { ExplodedArchitecture3D } from "@/components/3d/ExplodedArchitecture3D";
 
 // ─── Scroll Reveal Component ──────────────────────────────────────────────────
 function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
@@ -461,34 +456,10 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Interactive Senior System Architecture Simulators */}
-          <div className="mt-16 sm:mt-24 space-y-12">
+          {/* Unified Architecture Master Playground (Consolidated & Streamlined) */}
+          <div className="mt-16 sm:mt-24">
             <Reveal delay={0.2}>
-              <MorphingArchitectureTimeline />
-            </Reveal>
-
-            <div id="exploded-architecture">
-              <Reveal delay={0.22}>
-                <ExplodedArchitecture3D />
-              </Reveal>
-            </div>
-
-            <Reveal delay={0.25}>
-              <ChaosEngineeringSandbox />
-            </Reveal>
-
-            <div id="btree-visualizer">
-              <Reveal delay={0.28}>
-                <BTreeIndexVisualizer3D />
-              </Reveal>
-            </div>
-
-            <Reveal delay={0.3}>
-              <RegarStoreStressSimulator />
-            </Reveal>
-
-            <Reveal delay={0.35}>
-              <RowLockingVisualizer />
+              <ArchitectureMasterPlayground />
             </Reveal>
           </div>
         </div>

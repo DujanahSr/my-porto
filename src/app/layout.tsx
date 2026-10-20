@@ -20,7 +20,6 @@ import { SubmersibleDiveMode } from "@/components/submersible/SubmersibleDiveMod
 import { XRayBlueprintMode } from "@/components/xray/XRayBlueprintMode";
 import { ArchitecturalCoPilot } from "@/components/copilot/ArchitecturalCoPilot";
 import { GravitationalCursorLensing } from "@/components/3d/GravitationalCursorLensing";
-import { AudioReactiveSonarSphere } from "@/components/3d/AudioReactiveSonarSphere";
 
 export default function RootLayout({
   children,
@@ -51,7 +50,6 @@ export default function RootLayout({
             <SubmersibleDiveMode />
             <XRayBlueprintMode />
             <ArchitecturalCoPilot />
-            <AudioReactiveSonarSphere />
           </LanguageProvider>
         </SmoothScrollProvider>
       </body>

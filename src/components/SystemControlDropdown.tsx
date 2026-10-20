@@ -64,15 +64,18 @@ export function SystemControlDropdown() {
     }
   };
 
-  const scrollToSection = (id: string) => {
+  const navigateToPlaygroundTab = (tab: "microservices" | "database" | "evolution", subView?: string) => {
     playClick(true);
     setIsOpen(false);
-    setTimeout(() => {
-      const el = document.getElementById(id);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }, 150);
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent("switch-architecture-tab", { detail: { tab, subView } }));
+      setTimeout(() => {
+        const el = document.getElementById("architecture-playground");
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 150);
+    }
   };
 
   const handleToggleSound = () => {
@@ -218,7 +221,7 @@ export function SystemControlDropdown() {
 
               {/* 3. 3D CAD Exploded View */}
               <button
-                onClick={() => scrollToSection("exploded-architecture")}
+                onClick={() => navigateToPlaygroundTab("microservices", "cad")}
                 onMouseEnter={() => playHoverTick()}
                 className="w-full flex items-start gap-3 p-2.5 rounded-xl text-left hover:bg-[#C9A96E]/10 border border-transparent hover:border-[#C9A96E]/30 transition-all group"
               >
@@ -242,7 +245,7 @@ export function SystemControlDropdown() {
 
               {/* 4. 3D B-Tree Storage Engine */}
               <button
-                onClick={() => scrollToSection("btree-visualizer")}
+                onClick={() => navigateToPlaygroundTab("database", "btree")}
                 onMouseEnter={() => playHoverTick()}
                 className="w-full flex items-start gap-3 p-2.5 rounded-xl text-left hover:bg-[#C9A96E]/10 border border-transparent hover:border-[#C9A96E]/30 transition-all group"
               >
