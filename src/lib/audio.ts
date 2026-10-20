@@ -3,6 +3,7 @@
 
 class AudioController {
   private ctx: AudioContext | null = null;
+  private analyser: AnalyserNode | null = null;
   private ambientGain: GainNode | null = null;
   private ambientNoiseNode: AudioNode | null = null;
   private isEnabled: boolean = false;
@@ -22,10 +23,28 @@ class AudioController {
         this.ctx = new AudioCtx();
       }
     }
+    if (this.ctx && !this.analyser) {
+      this.analyser = this.ctx.createAnalyser();
+      this.analyser.fftSize = 64;
+      this.analyser.smoothingTimeConstant = 0.8;
+      this.analyser.connect(this.ctx.destination);
+    }
     if (this.ctx && this.ctx.state === "suspended") {
       this.ctx.resume().catch(() => {});
     }
     return this.ctx;
+  }
+
+  public getAnalyser(): AnalyserNode | null {
+    this.initCtx();
+    return this.analyser;
+  }
+
+  public getFrequencyData(): Uint8Array {
+    if (!this.analyser) return new Uint8Array(32);
+    const data = new Uint8Array(this.analyser.frequencyBinCount);
+    this.analyser.getByteFrequencyData(data);
+    return data;
   }
 
   public getSoundState(): boolean {
@@ -80,7 +99,7 @@ class AudioController {
       gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.038);
 
       osc.connect(gain);
-      gain.connect(ctx.destination);
+      gain.connect(this.analyser || ctx.destination);
 
       osc.start(now);
       osc.stop(now + 0.04);
@@ -110,7 +129,7 @@ class AudioController {
       gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.015);
 
       osc.connect(gain);
-      gain.connect(ctx.destination);
+      gain.connect(this.analyser || ctx.destination);
 
       osc.start(now);
       osc.stop(now + 0.016);
@@ -167,7 +186,7 @@ class AudioController {
       subOsc.connect(subGain);
       subGain.connect(masterGain);
 
-      masterGain.connect(ctx.destination);
+      masterGain.connect(this.analyser || ctx.destination);
 
       noise.start();
       subOsc.start();

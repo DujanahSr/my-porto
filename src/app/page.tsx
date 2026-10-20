@@ -16,6 +16,8 @@ import { MorphingArchitectureTimeline } from "@/components/simulator/MorphingArc
 import { ChaosEngineeringSandbox } from "@/components/simulator/ChaosEngineeringSandbox";
 import { FluidParticlesSimulation } from "@/components/3d/FluidParticlesSimulation";
 import { CryptographicDossier } from "@/components/dossier/CryptographicDossier";
+import { BTreeIndexVisualizer3D } from "@/components/3d/BTreeIndexVisualizer3D";
+import { ExplodedArchitecture3D } from "@/components/3d/ExplodedArchitecture3D";
 
 // ─── Scroll Reveal Component ──────────────────────────────────────────────────
 function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
@@ -465,9 +467,21 @@ export default function Home() {
               <MorphingArchitectureTimeline />
             </Reveal>
 
+            <div id="exploded-architecture">
+              <Reveal delay={0.22}>
+                <ExplodedArchitecture3D />
+              </Reveal>
+            </div>
+
             <Reveal delay={0.25}>
               <ChaosEngineeringSandbox />
             </Reveal>
+
+            <div id="btree-visualizer">
+              <Reveal delay={0.28}>
+                <BTreeIndexVisualizer3D />
+              </Reveal>
+            </div>
 
             <Reveal delay={0.3}>
               <RegarStoreStressSimulator />

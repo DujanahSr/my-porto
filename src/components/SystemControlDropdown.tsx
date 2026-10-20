@@ -15,6 +15,8 @@ import {
   X,
   Bot,
   ShieldCheck,
+  Database,
+  Boxes,
 } from "lucide-react";
 import { audioController, playClick, playHoverTick } from "@/lib/audio";
 
@@ -60,6 +62,17 @@ export function SystemControlDropdown() {
     if (typeof window !== "undefined") {
       window.dispatchEvent(new CustomEvent(eventName));
     }
+  };
+
+  const scrollToSection = (id: string) => {
+    playClick(true);
+    setIsOpen(false);
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 150);
   };
 
   const handleToggleSound = () => {
@@ -199,6 +212,54 @@ export function SystemControlDropdown() {
                   </div>
                   <p className="font-sans text-[11px] text-[#8A8078] leading-tight mt-0.5 line-clamp-1">
                     Cetak biru sirkuit emas, JVM ZGC Heap &amp; port microservices.
+                  </p>
+                </div>
+              </button>
+
+              {/* 3. 3D CAD Exploded View */}
+              <button
+                onClick={() => scrollToSection("exploded-architecture")}
+                onMouseEnter={() => playHoverTick()}
+                className="w-full flex items-start gap-3 p-2.5 rounded-xl text-left hover:bg-[#C9A96E]/10 border border-transparent hover:border-[#C9A96E]/30 transition-all group"
+              >
+                <div className="p-2 rounded-lg bg-[#C9A96E]/10 text-[#C9A96E] group-hover:scale-110 transition-transform mt-0.5">
+                  <Boxes className="w-4 h-4" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between">
+                    <span className="font-serif font-bold text-sm text-[#E8DCC8] group-hover:text-[#C9A96E] transition-colors">
+                      3D CAD Exploded View
+                    </span>
+                    <span className="text-[9px] px-1.5 py-0.5 rounded bg-[#C9A96E]/15 text-[#C9A96E] font-bold">
+                      3D MESH
+                    </span>
+                  </div>
+                  <p className="font-sans text-[11px] text-[#8A8078] leading-tight mt-0.5 line-clamp-1">
+                    Bongkar pasang jeroan monolith ke 6 kontainer microservices.
+                  </p>
+                </div>
+              </button>
+
+              {/* 4. 3D B-Tree Storage Engine */}
+              <button
+                onClick={() => scrollToSection("btree-visualizer")}
+                onMouseEnter={() => playHoverTick()}
+                className="w-full flex items-start gap-3 p-2.5 rounded-xl text-left hover:bg-[#C9A96E]/10 border border-transparent hover:border-[#C9A96E]/30 transition-all group"
+              >
+                <div className="p-2 rounded-lg bg-[#C9A96E]/10 text-[#C9A96E] group-hover:scale-110 transition-transform mt-0.5">
+                  <Database className="w-4 h-4" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between">
+                    <span className="font-serif font-bold text-sm text-[#E8DCC8] group-hover:text-[#C9A96E] transition-colors">
+                      3D B-Tree DB Storage Engine
+                    </span>
+                    <span className="text-[9px] px-1.5 py-0.5 rounded bg-[#C9A96E]/15 text-[#C9A96E] font-bold">
+                      O(log N)
+                    </span>
+                  </div>
+                  <p className="font-sans text-[11px] text-[#8A8078] leading-tight mt-0.5 line-clamp-1">
+                    Navigasi PostgreSQL B-Tree traversal buffer vs sequential scan.
                   </p>
                 </div>
               </button>
