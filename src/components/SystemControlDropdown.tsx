@@ -147,7 +147,7 @@ export function SystemControlDropdown() {
                 className="w-full flex items-start gap-3 p-2.5 rounded-xl text-left bg-gradient-to-r from-emerald-950/40 via-[#C9A96E]/10 to-transparent border border-emerald-500/50 hover:border-emerald-400 transition-all group shadow-md"
               >
                 <div className="p-2 rounded-lg bg-emerald-500/20 text-emerald-400 group-hover:scale-110 transition-transform mt-0.5">
-                  <Bot className="w-4 h-4 animate-pulse" />
+                  <Bot className="w-4 h-4" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between">

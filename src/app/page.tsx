@@ -347,7 +347,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-14 md:mb-20 gap-6">
             <Reveal>
               <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "0.75rem" }}>
-                <span className="h-1.5 w-1.5 rounded-full bg-[#C9A96E]" />
+                <span className="text-[#C9A96E] text-[10px]">◈</span>
                 <p style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", letterSpacing: "0.25em", color: "#C9A96E", textTransform: "uppercase" }}>
                   {t.home.works.label}
                 </p>

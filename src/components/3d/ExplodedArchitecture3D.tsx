@@ -352,11 +352,9 @@ export function ExplodedArchitecture3D() {
         {/* Active Isolation Status Badge */}
         <div className="absolute top-3 left-3 px-3.5 py-2 rounded-xl bg-black/85 border border-white/10 backdrop-blur-md text-xs space-y-0.5">
           <div className="flex items-center gap-2">
-            <span
-              className={`w-2 h-2 rounded-full ${
-                explosionProgress > 0.5 ? "bg-[#22C55E] animate-pulse" : "bg-[#C9A96E]"
-              }`}
-            />
+            <span className="text-[#C9A96E] text-[10px] font-bold">
+              {explosionProgress > 0.5 ? "◈" : "◇"}
+            </span>
             <span className="text-[#E8DCC8] font-bold">
               {explosionProgress === 0
                 ? "STATUS: MONOLITH TIGHTLY-COUPLED"

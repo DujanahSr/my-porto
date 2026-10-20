@@ -107,9 +107,9 @@ export function Holographic3DBadge() {
                   DEV-PASS // ID-2026
                 </span>
               </div>
-              <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#22C55E]/10 border border-[#22C55E]/30">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#22C55E] animate-pulse" />
-                <span className="font-mono text-[8.5px] tracking-wider text-[#22C55E] uppercase font-bold">
+              <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#C9A96E]/10 border border-[#C9A96E]/30">
+                <span className="font-mono text-[8px] text-[#C9A96E]">◈</span>
+                <span className="font-mono text-[8.5px] tracking-wider text-[#E8DCC8] uppercase font-bold">
                   AUTHENTICATED
                 </span>
               </div>

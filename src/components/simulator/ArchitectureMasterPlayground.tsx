@@ -66,7 +66,7 @@ export function ArchitectureMasterPlayground() {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center pb-6 border-b border-white/10 gap-4">
         <div>
           <div className="flex items-center gap-2 font-mono text-[10px] text-[#C9A96E] uppercase tracking-widest font-bold">
-            <span className="w-2 h-2 rounded-full bg-[#22C55E] animate-pulse" />
+            <span className="text-[#C9A96E] text-xs">◈</span>
             <span>ARCHITECTURE LABS // LIVE REASONING PLAYGROUND</span>
           </div>
           <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#E8DCC8] tracking-tight mt-1">

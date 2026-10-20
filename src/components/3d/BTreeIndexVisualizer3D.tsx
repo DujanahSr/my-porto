@@ -337,7 +337,7 @@ export function BTreeIndexVisualizer3D() {
 
         {/* Dynamic Traversal Log Overlay */}
         <div className="absolute top-3 left-3 px-3 py-1.5 rounded-lg bg-black/80 border border-white/10 backdrop-blur-md text-[10px] text-[#C9A96E] flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-[#C9A96E] animate-ping" />
+          <span className="text-[#C9A96E] text-xs">⌖</span>
           <span>{activeStep}</span>
         </div>
 

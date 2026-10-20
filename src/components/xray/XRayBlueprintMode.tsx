@@ -154,7 +154,7 @@ export function XRayBlueprintMode() {
                 onClick={() => setIsMinimized(!isMinimized)}
                 title={isMinimized ? "Klik untuk melihat telemetri lengkap" : "Kecilkan"}
               >
-                <Radio className="w-3.5 h-3.5 animate-pulse text-[#22C55E]" />
+                <Radio className="w-3.5 h-3.5 text-[#C9A96E]" />
                 <span className="font-bold tracking-wider text-[10px] uppercase">
                   {isMinimized ? `X-RAY · ${fps} FPS · ${heapMb}MB` : "X-RAY SCHEMATIC // ARCH-TELEMETRY"}
                 </span>

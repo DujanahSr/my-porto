@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Terminal, X, Maximize2, Minimize2 } from "lucide-react";
+import { Terminal, X, Maximize2, Minimize2, CornerDownLeft, Sparkles } from "lucide-react";
 import { audioController } from "@/lib/audio";
 
 interface TerminalLine {
@@ -10,14 +10,42 @@ interface TerminalLine {
   text: string;
 }
 
+const AVAILABLE_COMMANDS = [
+  "help",
+  "neofetch",
+  "skills",
+  "cv",
+  "projects",
+  "arch",
+  "metrics",
+  "clear",
+  "exit",
+];
+
+const QUICK_CHIPS = [
+  { label: "help", cmd: "help" },
+  { label: "neofetch", cmd: "neofetch" },
+  { label: "skills", cmd: "skills" },
+  { label: "cv", cmd: "cv" },
+  { label: "projects", cmd: "projects" },
+  { label: "arch", cmd: "arch" },
+  { label: "metrics", cmd: "metrics" },
+  { label: "clear", cmd: "clear" },
+];
+
 export function MiniTerminalREPL() {
   const [isOpen, setIsOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [inputVal, setInputVal] = useState("");
   const [history, setHistory] = useState<TerminalLine[]>([
-    { type: "system", text: "Abu Dujanah Siregar — Architecture Terminal v2.4.0 (x86_64-pasim-linux)" },
-    { type: "system", text: "Ketik 'help' untuk melihat daftar perintah teknis yang tersedia." },
+    { type: "system", text: "Abu Dujanah Siregar — Architecture Terminal v2.5.0 (x86_64-pasim-linux)" },
+    { type: "system", text: "Ketik 'help' atau klik tombol pintasan di bawah untuk navigasi." },
   ]);
+
+  // Command history buffer for ArrowUp / ArrowDown navigation
+  const [cmdHistoryList, setCmdHistoryList] = useState<string[]>([]);
+  const [historyIndex, setHistoryIndex] = useState<number>(-1);
+
   const inputRef = useRef<HTMLInputElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -68,22 +96,48 @@ export function MiniTerminalREPL() {
     const cmd = raw.toLowerCase();
     const newHistory: TerminalLine[] = [...history, { type: "input", text: `root@dujanah-core:~# ${raw}` }];
 
+    // Save to cmd history list
+    setCmdHistoryList((prev) => [...prev, raw]);
+    setHistoryIndex(-1);
+
     switch (cmd) {
       case "help":
         newHistory.push({
           type: "output",
-          text: `Daftar Perintah Tersedia:
-  help                - Menampilkan pesan bantuan ini
-  dujanah --skills    - Status matriks kompetensi Backend & Full-Stack
-  dujanah --cv        - Kredensial ringkas (IPK, Beasiswa PUB, Instruktur)
-  projects            - Menampilkan repositori & proyek unggulan
-  arch                - Spesifikasi arsitektur microservices & database
-  curl /api/metrics   - Cetak live JSON telemetri sistem
-  clear               - Membersihkan layar konsol terminal
-  exit                - Menutup terminal`,
+          text: `PERINTAH TERSEDIA:
+  help              Ringkasan perintah sistem
+  neofetch          Spesifikasi sistem & profil
+  skills            Matriks stack Java & Distributed
+  cv                Kredensial, IPK & sertifikasi
+  projects          Katalog sistem produksi terpilih
+  arch              Cetak blueprint arsitektur
+  metrics           Telemetri real-time sistem
+  clear             Bersihkan layar konsol
+  exit              Tutup sesi terminal`,
         });
         break;
 
+      case "neofetch":
+      case "whoami":
+      case "uname -a":
+        newHistory.push({
+          type: "output",
+          text: `       ___       root@dujanah-core
+      /   \\      -----------------
+     / /_\\ \\     OS: Pasim Linux x86_64 (Kernel 6.11-lts)
+    /  ___  \\    Host: Abu Dujanah Siregar [Backend Engineer]
+   /_/     \\_\\   Uptime: 3 Tahun Akselerasi (UNAS PASIM Bandung)
+                 IPK: 3.75 / 4.00 (Beasiswa Penuh PUB Yayasan Wiranata)
+                 Peran: Instruktur Fundamental Algoritma Java Backend
+                 Runtime: OpenJDK 21 LTS (Virtual Threads Enabled)
+                 Framework: Spring Boot 3.x · Spring Cloud Netty Gateway
+                 Broker: RabbitMQ AMQP 0-9-1 (Transactional Pipelines)
+                 RDBMS: PostgreSQL (ACID) · MySQL 8.0 (Row-Locking)
+                 Status: P99 < 38ms · 94 Automated Tests PASSED`,
+        });
+        break;
+
+      case "skills":
       case "dujanah --skills":
         newHistory.push({
           type: "output",
@@ -92,20 +146,23 @@ export function MiniTerminalREPL() {
   ├─ Message Broker & Caching : RabbitMQ (Event-Driven) · Redis (Sub-ms Cache)
   ├─ Container & Deploy       : Docker Compose Multi-Container · Traefik
   ├─ Automated Testing        : 94 Automated Tests (JUnit 5, Mockito, MockMvc)
-  ├─ Frontend Ecosystem       : React 19 (Vite) · TypeScript · Tailwind CSS · Motion
+  ├─ Frontend Ecosystem       : React 19 · Next.js · TypeScript · Tailwind CSS
   └─ Database Relational      : PostgreSQL (Per-Service Schemas) · MySQL 8`,
         });
         break;
 
+      case "cv":
       case "dujanah --cv":
+      case "cat cv.txt":
         newHistory.push({
           type: "output",
           text: `[CREDENTIALS & BACKGROUND]
   Nama       : Abu Dujanah Siregar
   Peran      : Backend & Full-Stack Developer
-  Pendidikan : S1 Teknik Industri (Akselerasi 3 Tahun) — Universitas Nasional PASIM Bandung
-  IPK        : 3.75 / 4.00 (Beasiswa Penuh PUB)
-  Pengalaman : Instruktur Fundamental Java Backend (Okt 2025 – Jan 2026)
+  Pendidikan : S1 Teknik Industri (Akselerasi 3 Tahun)
+               Universitas Nasional PASIM Bandung
+  IPK        : 3.75 / 4.00 (Beasiswa Penuh PUB Yayasan Wiranata)
+  Pengalaman : Instruktur Algoritma & Pemrograman Java (Okt 2025 – Jan 2026)
   Fokus      : Enterprise Microservices, REST API & High-Concurrency Systems`,
         });
         break;
@@ -133,6 +190,7 @@ export function MiniTerminalREPL() {
         });
         break;
 
+      case "metrics":
       case "curl /api/metrics":
         newHistory.push({
           type: "output",
@@ -174,6 +232,45 @@ export function MiniTerminalREPL() {
     setInputVal("");
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    // Arrow Up: navigate backward in command history
+    if (e.key === "ArrowUp") {
+      e.preventDefault();
+      if (cmdHistoryList.length === 0) return;
+      const nextIdx = historyIndex === -1 ? cmdHistoryList.length - 1 : Math.max(0, historyIndex - 1);
+      setHistoryIndex(nextIdx);
+      setInputVal(cmdHistoryList[nextIdx]);
+      return;
+    }
+
+    // Arrow Down: navigate forward in command history
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      if (historyIndex === -1) return;
+      const nextIdx = historyIndex + 1;
+      if (nextIdx >= cmdHistoryList.length) {
+        setHistoryIndex(-1);
+        setInputVal("");
+      } else {
+        setHistoryIndex(nextIdx);
+        setInputVal(cmdHistoryList[nextIdx]);
+      }
+      return;
+    }
+
+    // Tab: autocompletion
+    if (e.key === "Tab") {
+      e.preventDefault();
+      const current = inputVal.trim().toLowerCase();
+      if (!current) return;
+      const matched = AVAILABLE_COMMANDS.find((cmd) => cmd.startsWith(current));
+      if (matched) {
+        setInputVal(matched);
+        audioController.playHoverTick();
+      }
+    }
+  };
+
   return (
     <>
       {/* ── Interactive Terminal Window & Backdrop (Triggered from Navbar Labs Menu or ⌘K) ── */}
@@ -196,7 +293,6 @@ export function MiniTerminalREPL() {
               exit={{ opacity: 0, scale: 0.94, y: 25 }}
               transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
               style={{
-                // Explicit positioning to guarantee close button is always visible below navbar (90px)
                 top: isExpanded ? "90px" : "auto",
                 bottom: isExpanded ? "1.5rem" : "5rem",
                 left: isExpanded ? "1rem" : "auto",
@@ -206,10 +302,10 @@ export function MiniTerminalREPL() {
               className={`fixed z-[200] rounded-2xl border border-[#C9A96E]/40 bg-[#080808]/98 backdrop-blur-2xl shadow-[0_30px_80px_rgba(0,0,0,0.95),0_0_40px_rgba(201,169,110,0.15)] overflow-hidden flex flex-col font-mono text-xs ${
                 isExpanded
                   ? "w-[calc(100vw-2rem)] md:w-[calc(100vw-4rem)] md:left-8 md:right-8"
-                  : "w-[calc(100vw-2rem)] sm:w-[560px] h-[400px]"
+                  : "w-[calc(100vw-2rem)] sm:w-[620px] h-[450px]"
               }`}
             >
-              {/* Top Bar with Prominent Close Button */}
+              {/* Top Bar with Prominent Window Controls */}
               <div className="flex items-center justify-between px-4 py-2.5 bg-[#141312] border-b border-[#E8DCC8]/10 select-none">
                 <div className="flex items-center gap-2">
                   <span
@@ -227,7 +323,8 @@ export function MiniTerminalREPL() {
                     onClick={() => setIsExpanded(!isExpanded)}
                     title={isExpanded ? "Kecilkan" : "Perbesar"}
                   />
-                  <span className="font-mono text-[0.7rem] text-[#A89F91] ml-2 font-medium">
+                  <span className="font-mono text-[0.7rem] text-[#A89F91] ml-2 font-medium flex items-center gap-1.5">
+                    <Terminal className="w-3 h-3 text-[#C9A96E]" />
                     dujanah@core-node:~ (zsh)
                   </span>
                 </div>
@@ -249,6 +346,22 @@ export function MiniTerminalREPL() {
                     <X className="w-4 h-4" />
                   </button>
                 </div>
+              </div>
+
+              {/* Quick Command Chips (Clickable shortcuts) */}
+              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-[#0D0C0B] border-b border-[#E8DCC8]/5 overflow-x-auto no-scrollbar select-none">
+                <span className="text-[10px] text-[#A89F91]/70 tracking-wider flex-shrink-0 mr-1">
+                  PINTASAN:
+                </span>
+                {QUICK_CHIPS.map((chip) => (
+                  <button
+                    key={chip.cmd}
+                    onClick={() => handleCommand(chip.cmd)}
+                    className="px-2 py-0.5 rounded text-[10px] bg-white/[0.04] border border-[#C9A96E]/20 text-[#E8DCC8]/80 hover:bg-[#C9A96E]/15 hover:border-[#C9A96E]/60 hover:text-[#C9A96E] transition-all flex-shrink-0 cursor-pointer"
+                  >
+                    {chip.label}
+                  </button>
+                ))}
               </div>
 
               {/* Terminal Body */}
@@ -288,9 +401,18 @@ export function MiniTerminalREPL() {
                       setInputVal(e.target.value);
                       audioController.playHoverTick();
                     }}
-                    className="flex-1 bg-transparent text-[#E8DCC8] focus:outline-none font-mono text-xs caret-[#C9A96E]"
+                    onKeyDown={handleKeyDown}
+                    placeholder="Ketik perintah (Tab untuk autocompletion)..."
+                    className="flex-1 bg-transparent text-[#E8DCC8] placeholder-[#A89F91]/30 focus:outline-none font-mono text-xs caret-[#C9A96E]"
                     autoFocus
                   />
+                  <button
+                    type="submit"
+                    title="Jalankan perintah"
+                    className="p-1 text-[#C9A96E]/60 hover:text-[#C9A96E] transition-colors"
+                  >
+                    <CornerDownLeft className="w-3.5 h-3.5" />
+                  </button>
                 </form>
               </div>
             </motion.div>

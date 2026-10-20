@@ -524,9 +524,6 @@ Silakan pilih topik di bawah ini untuk melihat implementasi arsitektur atau kode
               <div className="flex items-center gap-3">
                 <div className="relative w-8 h-8 rounded-xl bg-gradient-to-br from-[#C9A96E]/20 to-black border border-[#C9A96E]/40 flex items-center justify-center text-[#C9A96E]">
                   <Bot className="w-4 h-4" />
-                  {isSpeaking && (
-                    <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-[#22C55E] animate-ping" />
-                  )}
                 </div>
 
                 <div>
@@ -539,9 +536,9 @@ Silakan pilih topik di bawah ini untuk melihat implementasi arsitektur atau kode
                     </span>
                   </div>
                   <div className="flex items-center gap-2 font-mono text-[9.5px] text-[#8A8078]">
-                    <span className="flex items-center gap-1 text-[#22C55E]">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#22C55E] animate-pulse" />
-                      ONLINE (12ms)
+                    <span className="flex items-center gap-1.5 text-[#C9A96E]">
+                      <span className="font-mono text-[8px] px-1 py-0.2 rounded bg-[#C9A96E]/15 border border-[#C9A96E]/30 text-[#C9A96E] font-bold">SYS:OK</span>
+                      <span>12ms</span>
                     </span>
                     <span>·</span>
                     <span>SPRING &amp; REACT CO-PILOT</span>
@@ -641,8 +638,8 @@ Silakan pilih topik di bawah ini untuk melihat implementasi arsitektur atau kode
                       PERTANYAAN ARSITEKTUR REKOMENDASI:
                     </span>
                     {isSpeaking && (
-                      <span className="flex items-center gap-1 font-mono text-[9px] text-[#22C55E]">
-                        <span className="animate-pulse">●</span> Speaking...
+                      <span className="flex items-center gap-1 font-mono text-[9px] text-[#C9A96E]">
+                        <span>◈</span> Speaking...
                       </span>
                     )}
                   </div>
@@ -686,7 +683,7 @@ Silakan pilih topik di bawah ini untuk melihat implementasi arsitektur atau kode
                         <div className="whitespace-pre-wrap space-y-2 font-sans">
                           {m.text}
                           {isStreaming && idx === messages.length - 1 && m.role === "assistant" && (
-                            <span className="inline-block w-2 h-3.5 bg-[#C9A96E] ml-1 animate-pulse" />
+                            <span className="inline-block w-2 h-3.5 bg-[#C9A96E] ml-1 opacity-90" />
                           )}
                         </div>
 
@@ -708,7 +705,7 @@ Silakan pilih topik di bawah ini untuk melihat implementasi arsitektur atau kode
 
                   {isStreaming && (
                     <div className="flex items-center gap-2 text-[#8A8078] font-mono text-[10px] pl-2">
-                      <Sparkles className="w-3.5 h-3.5 text-[#C9A96E] animate-spin" />
+                      <Sparkles className="w-3.5 h-3.5 text-[#C9A96E]" />
                       <span>Synthesizing architectural knowledge...</span>
                     </div>
                   )}
